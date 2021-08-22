@@ -19,6 +19,7 @@
     - [Power BI](#power-bi)
   - [シナリオの概要](#scenario-overview)
   - [ラボの構成と前提条件](#lab-setup-and-pre-requisites)
+  - [演習 0: 専用 SQL プールを起動する](#exercise-0-start-the-dedicated-sql-pool)
   - [演習 1: サービスを構成する](#exercise-1-configure-services)
     - [タスク 1: Event Hubs を構成する](#task-1-configure-event-hubs)
     - [タスク 2:  Synapse Analytics を構成する](#task-2-configure-synapse-analytics)
@@ -27,6 +28,10 @@
     - [タスク 1: データ ジェネレーターを実行する](#task-1-run-data-generator)
     - [タスク 2: Power BI  ダッシュボードを作成する](#task-2-create-power-bi-dashboard)
     - [タスク 3: synapse Analytics で集計データを表示する](#task-3-view-aggregate-data-in-synapse-analytics)
+  - [演習 3クリーンアップ](#exercise-3-cleanup)
+    - [タスク 1: データ ジェネレーターを停止する](#task-1-stop-the-data-generator)
+    - [タスク 2: Stream Analytics ジョブの停止](#task-2-stop-the-stream-analytics-job)
+    - [タスク 3: 専用 SQL プールを一時停止する](#task-3-pause-the-dedicated-sql-pool)
 
 ## テクノロジの概要
 
@@ -58,11 +63,31 @@ Contoso Auto は車両テレメトリを収集しており、Event Hubs を利�
 
 ## ラボの構成と前提条件
 
-> **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 1 にスキップします。
+> **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、「ラボの構成と前提条件」の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
 - Azure サブスクリプション
 - Power BI アカウント (<https://powerbi.microsoft.com> でサインアップ)
 - [ラボ環境のセットアップ](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/tree/main/setup/14)
+
+## 演習 0: 専用 SQL プールを起動する
+
+このラボでは専用 SQL プールを使用します。最初の手順として、これが一時停止状態でないことを確認してください。一時停止している場合は、以下の手順に従って起動します。
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして [**再開**]  (2) を選択します。
+
+    ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
+
+4. プロンプトが表示されたら、[**再開**] を選択します。プールが再開するまでに、1 ～ 2 分かかります。
+
+    ![[再開] ボタンが強調表示されています。](media/resume-dedicated-sql-pool-confirm.png "Resume")
+
+> 専用 SQL プールが再開する間、**続行して次の演習に進みます**。
 
 ## 演習 1: サービスを構成する
 
@@ -98,7 +123,7 @@ Azure Event Hubs はビッグ データ ストリーミング プラットフォ
 
 8. 「**SAS ポリシーの追加**」 ブレードで以下のように構成します。
 
-    - **名前:** "Read" と入力します。
+    - **名前:** 「Read」 と入力します。
     - **マネージド:** オフにします。
     - **送信:** オフにします。
     - **リッスン:** チェックします。
@@ -115,7 +140,7 @@ Azure Event Hubs はビッグ データ ストリーミング プラットフォ
 
 11. 「**SAS ポリシーの追加**」 ブレードで以下のように構成します。
 
-    - **名前:** "Write" と入力します。
+    - **名前:** 「Write」 と入力します。
     - **マネージド:** オフにします。
     - **送信:** チェックします。
     - **リッスン:** オフにします。
@@ -150,7 +175,7 @@ Azure Synapse はエンドツーエンドの分析プラットフォームで、
 
     ![データ ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-6. 「**ワークスペース**」 タブ **(1)** を選択し、データベースを展開して 「**ContosoAuto**」 (2) を右クリックします。「**新しい SQL スクリプト**」 (3) を選択してから 「**空のスクリプト**」 (4) を選択します。
+6. 「**ワークスペース**」 タブ **(1)** を選択し、データベースを展開して 「**ContosoAuto」 (2)** を右クリックします。「**新しい SQL スクリプト」 (3)** を選択してから 「**空のスクリプト」 (4)** を選択します。
 
     ![「新しい SQL スクリプト」 オプションが ContosoAuto コンテキスト メニューで強調表示されています。](media/synapse-new-script.png "New SQL script")
 
@@ -212,8 +237,8 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
 9. 「**新しい入力**」 ブレードで次のように構成します。
 
-    - **名前:** "eventhub" と入力します。
-    - **サブスクリプションからイベント ハブを選択する: ** 選択します。
+    - **名前:** 「eventhub」 と入力します。
+    - **サブスクリプションからイベント ハブを選択する:** 選択します。
     - **サブスクリプション:** このラボで使用するサブスクリプションが選択されていることを確認します。
     - **イベント ハブの名前空間:** このラボで使用しているイベント ハブの名前空間を選択します。
     - **イベント ハブ名:** 「**既存のものを使用**」 を選択し、先ほど作成した**テレメトリ**を選択します。
@@ -248,11 +273,11 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
 16. 「**新しい出力**」 ブレードで次のように構成します。
 
-    - **出力エイリアス:** "powerBIAlerts" と入力します。
+    - **出力エイリアス:** `powerBIAlerts` と入力します。
     - **認証モード:** 「ユーザー トークン」 を選択します。
     - **グループ ワークスペース:** 「マイ ワークスペース」 を選択します (このオプションが表示されない場合は、最初に 「ユーザー トークン」 認証モードを選択します)。
-    - **データセット名:** "ContosoAutoVehicleAnomalies" と入力します。
-    - **テーブル名:** "Alerts" と入力します。
+    - **データセット名:** `ContosoAutoVehicleAnomalies` と入力します。
+    - **テーブル名:** `Alerts` と入力します。
 
     ![適切なフィールドに入力された前述の設定が 「新しい出力」 フォームに読み込まれています。](media/stream-analytics-new-output.png 'New Output')
 
@@ -264,14 +289,14 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
 19. 「**新しい出力**」 ブレードで次のように構成します。
 
-    - **出力エイリアス:** "synapse" と入力します。
+    - **出力エイリアス:** 「synapse」 と入力します。
     - **サブスクリプションから Azure Synapse Analytics を選択する:** 選択します。
     - **サブスクリプション:** このラボで使用しているサブスクリプションを選択します。
-    - **データベース:** "ContosoAuto" を選択します。適正な Synapse ワークスペース名が 「サーバー名」 に表示されていることを確認します。
+    - **データベース:** 「ContosoAuto」 を選択します。適正な Synapse ワークスペース名が 「サーバー名」 に表示されていることを確認します。
     - **表:** `dbo.VehicleAverages` と入力します。
     - **認証モード:** 「接続文字列」 を選択します。
     - **ユーザー名:** `asa.sql.admin` と入力します。
-    - **パスワード:** ラボ環境を展開する際に入力した SQL 管理者のパスワードを入力します。
+    - **パスワード:** `P4ssw.rd` のパスワード、またはラボ環境の展開時に入力した、またはホストされたラボ環境の一部として提供された SQL 管理者パスワードの値を入力します。**注**: このパスワードは、Azure portal へのサインインに使用したパスワードと同じではない可能性があります。
 
     ![適切なフィールドに入力された前述の設定が 「新しい出力」 フォームに読み込まれています。](media/synapse-new-output.png "New Output")
 
@@ -403,7 +428,7 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
    1. Windows:
 
-      * `win-x64` フォルダー内で **DataGenerator.exe** を実行します。
+      * `win-x64` フォルダー内で **TransactionGenerator.exe** を実行します。
 
    2. Linux:
 
@@ -416,6 +441,12 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
       * 新しいターミナルを開きます。
       * `osx-x64` ディレクトリに移動します。
       * `./DataGenerator` を実行します。
+
+6. Windows を使用していて、データ ジェネレーターを実行しようとした後にダイアログが表示される場合は、**[詳細情報]** を選択し、**[とにかく実行]** を選択します。
+
+    ![[詳細情報] が強調表示されます。](media/microsoft-defender-moreinfo.png "Windows protected your PC")
+
+    ![[とにかく実行] ボタンが強調表示されています。](media/microsoft-defender-runanyway.png "Run anyway")
 
 6.  新しいコンソール ウィンドウが開き、数秒後にデータの送信が始まるはずです。Event Hubs にデータが送信されるようになったら、ウィンドウを_最小化_して背景で実行中のままにします。
 
@@ -511,7 +542,7 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
     ![「保存」 ボタンが強調表示されています。](media/pbi-save.png 'Save')
 
-22. 名前 ("Contoso Auto Vehicle Anomalies" など) を入力し、「**保存**」 を選択します。
+22. 名前 (「Contoso Auto Vehicle Anomalies」 など) を入力し、「**保存**」 を選択します。
 
     ![保存ダイアログのスクリーンショット。](media/pbi-save-dialog.png 'Save dialog')
 
@@ -519,7 +550,7 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
     ![「ダッシュボードにピン留め」 ボタンが強調表示されています。](media/pbi-live.png 'Pin to a dashboard')
 
-24. 「**新しいダッシュボード**」 を選択した後、名前 ("Contoso Auto Vehicle Anomalies Dashboard" など) を入力します。「**ライブをピン留めする**」 を選択します。プロンプトで指示されたら、ダッシュボードを表示するオプションを選択します。プロンプトが表示されない場合は、左側のメニューの 「マイ ワークスペース」 にダッシュボードがあります。
+24. 「**新しいダッシュボード**」 を選択した後、名前 (「Contoso Auto Vehicle Anomalies Dashboard」 など) を入力します。「**ライブをピン留めする**」 を選択します。プロンプトで指示されたら、ダッシュボードを表示するオプションを選択します。プロンプトが表示されない場合は、左側のメニューの 「マイ ワークスペース」 にダッシュボードがあります。
 
     ![「ダッシュボードにピン留めする」 ダイアログのスクリーンショット。](media/pbi-live-dialog.png 'Pin to dashboard dialog')
 
@@ -551,7 +582,7 @@ Stream Analytics でクエリを作成した際は、2 分間隔でエンジン�
 
     !「データ ハブが強調表示されています。」(media/data-hub.png "Data hub")
 
-7. ［**ワークスペース**］ タブ **(1)** を選択し、`ContosoAuto` データベースを展開します。`Tables` を展開してから **dbo.VehicleAverages** テーブル **(2)** を右クリックします。このテーブルがリストに表示されない場合は、テーブル リストを更新します。「**新しい SQL スクリプト**」 (3) を選択してから 「**上位 100 行を選択**」 (4) を選びます。
+7. ［**ワークスペース**］ タブ **(1)** を選択し、`ContosoAuto` データベースを展開します。`Tables` を展開してから **dbo.VehicleAverages** テーブル **(2)** を右クリックします。このテーブルがリストに表示されない場合は、テーブル リストを更新します。「**新しい SQL スクリプト」 (3)** を選択してから 「**上位 100 行を選択」 (4)** を選びます。
 
     ![「上位 100 行を選択」 メニュー項目が選択されています。](media/select-top-100-rows.png "Select TOP 100 rows")
 
@@ -562,3 +593,35 @@ Stream Analytics でクエリを作成した際は、2 分間隔でエンジン�
 9. ［結果］ 出力で 「**グラフ**」 ビューを選択し、グラフの種類を 「**面グラフ**」 に設定します。この視覚化では、時間の経過に伴う平均速度に関連した平均エンジン温度が示されます。グラフの設定をいろいろ試してみてください。
 
 ![グラフ ビューが表示されています。](media/synapse-vehicleaverage-chart.png "VehicleAverages chart")
+
+## 演習 3: クリーンアップ
+
+これらの手順を実行して、データ ジェネレーターを停止し、不要になったリソースを解放します。
+
+### タスク 1: データ ジェネレーターを停止する
+
+1. データ ジェネレーターが実行されているコンソール/ターミナル ウィンドウに戻ります。ウィンドウを閉じてジェネレーターを停止します。
+
+### タスク 2: Stream Analytics ジョブの停止
+
+1. Azure portal で Stream Analytics ジョブに移動します。
+
+2. [概要]ペインで、**[停止]** を選択し、プロンプトが表示されたら **[はい]** を選択します。
+
+    ![[停止] ボタンが強調表示されています。](media/asa-stop.png "Stop")
+
+### タスク 3: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

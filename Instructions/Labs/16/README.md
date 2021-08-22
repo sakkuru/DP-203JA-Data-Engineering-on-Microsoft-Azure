@@ -30,6 +30,8 @@
   - [演習 3: SQL サーバーレスでデータを視覚化する](#exercise-3-visualize-data-with-sql-serverless)
     - [タスク 1: SQL サーバーレスを使用してデータ レイクを探索する](#task-1-explore-the-data-lake-with-sql-serverless)
     - [タスク 2: SQL サーバーレスでデータを視覚化し、Power BI レポートを作成する](#task-2-visualize-data-with-sql-serverless-and-create-a-power-bi-report)
+  - [演習 4: クリーンアップ](#exercise-4-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
 ## このラボで使用するリソース名
 
@@ -48,7 +50,7 @@
 
 ラボのコンピューターまたは VM で [Power BI Desktop](https://www.microsoft.com/download/details.aspx?id=58494) を起動します。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -73,7 +75,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」 (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -189,29 +191,26 @@
 3. **SQLPool01** に接続した後、以下のクエリを実行しておおよその実行時間を確認します (おそらく 1 分程度)。このクエリは、この演習で後ほど作成する Power BI レポートでデータを取得する際にも使用します。
 
     ```sql
-    SELECT count(*) FROM
-    (
-        SELECT
-            FS.CustomerID
-            ,P.Seasonality
-            ,D.Year
-            ,D.Quarter
-            ,D.Month
-            ,avg(FS.TotalAmount) as AvgTotalAmount
-            ,avg(FS.ProfitAmount) as AvgProfitAmount
-            ,sum(FS.TotalAmount) as TotalAmount
-            ,sum(FS.ProfitAmount) as ProfitAmount
-        FROM
-            wwi.SaleSmall FS
-            JOIN wwi.Product P ON P.ProductId = FS.ProductId
-            JOIN wwi.Date D ON FS.TransactionDateId = D.DateId
-        GROUP BY
-            FS.CustomerID
-            ,P.Seasonality
-            ,D.Year
-            ,D.Quarter
-            ,D.Month
-    ) T
+    SELECT
+        FS.CustomerID
+        ,P.Seasonality
+        ,D.Year
+        ,D.Quarter
+        ,D.Month
+        ,avg(FS.TotalAmount) as AvgTotalAmount
+        ,avg(FS.ProfitAmount) as AvgProfitAmount
+        ,sum(FS.TotalAmount) as TotalAmount
+        ,sum(FS.ProfitAmount) as ProfitAmount
+    FROM
+        wwi.SaleSmall FS
+        JOIN wwi.Product P ON P.ProductId = FS.ProductId
+        JOIN wwi.Date D ON FS.TransactionDateId = D.DateId
+    GROUP BY
+        FS.CustomerID
+        ,P.Seasonality
+        ,D.Year
+        ,D.Quarter
+        ,D.Month
     ```
 
     194683820 というクエリ結果が表示されるはずです。
@@ -434,7 +433,7 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
     (
         DISTRIBUTION = HASH( CustomerId )
     )
-    _AS
+    AS
     SELECT
         FS.CustomerID
         ,P.Seasonality
@@ -569,7 +568,7 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
 
     ![データ ハブ](media/data-hub.png "Data hub")
 
-2. 「**リンク済み**」 タブを選択します **(1)**。**Azure Data Lake Storage Gen2** グループでプライマリ データ レイク (最初のノード) **(2)** を選択し、**wwi-02** コンテナー **(3)** を選択します。**`wwi-02/sale-small/Year=2019/Quarter=Q1/Month=1/Day=20190101` (4)** に移動します。Parquet ファイル **(5)** を右クリックし、「**新しい SQL スクリプト**」 (6) を選択してから 「**上位 100 行を選択**」 (7) を選択します。
+2. 「**リンク済み**」 タブを選択します **(1)**。**Azure Data Lake Storage Gen2** グループでプライマリ データ レイク (最初のノード) **(2)** を選択し、**wwi-02** コンテナー **(3)** を選択します。**`wwi-02/sale-small/Year=2019/Quarter=Q1/Month=1/Day=20190101` (4)** に移動します。Parquet ファイル **(5)** を右クリックし、「**新しい SQL スクリプト」 (6)** を選択してから 「**上位 100 行を選択」 (7)** を選択します。
 
     ![データ レイク ファイルシステムの構造を探索し、Parquet ファイルを選択します。](media/select-parquet-file.png "Select Parquet file")
 
@@ -657,7 +656,7 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
 
     ![SQL オンデマンドのエンドポイントを識別します。](media/pbi-get-data-synapse.png "Get Data")
 
-4. エンドポイントを、最初のステップで識別したサーバーレス SQL エンドポイントへのエンドポイントを 「**サーバー**」 フィールド **(1)** に貼り付け、**データベース (2)** に **`demo`** と入力します。「**DirectQuery**」 (3) を選択し、**その下のクエリ (4)** を SQL サーバー データベース ダイアログで展開済みの 「**詳細オプション**」 セクションに貼り付けます。最後に 「**OK**] をクリックします (5)。
+4. エンドポイントを、最初のステップで識別したサーバーレス SQL エンドポイントへのエンドポイントを 「**サーバー**」 フィールド **(1)** に貼り付け、**データベース (2)** に **`demo`** と入力します。「**DirectQuery」 (3)** を選択し、**その下のクエリ (4)** を SQL サーバー データベース ダイアログで展開済みの 「**詳細オプション**」 セクションに貼り付けます。最後に 「**OK**] をクリックします **(5)**。
 
     ```sql
     SELECT TOP (100) [Year]
@@ -734,7 +733,7 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
 
     ![設定メニュー項目が選択されています。](media/pbi-com-settings-button.png "Settings")
 
-17. 「**データセット**」 タブ **(1)** を選択してから **synapse-sql-serverless** データセット **(2)** を選択します。`Data source credentials` に、資格情報が無効なのでデータ ソースを更新できないというエラー メッセージが表示されたら、「**資格情報を編集**」 を選択します (3)。このセクションが表示されるまで数秒かかるかもしれません。
+17. 「**データセット**」 タブ **(1)** を選択してから **synapse-sql-serverless** データセット **(2)** を選択します。`Data source credentials` に、資格情報が無効なのでデータ ソースを更新できないというエラー メッセージが表示されたら、「**資格情報を編集**」 を選択します **(3)**。このセクションが表示されるまで数秒かかるかもしれません。
 
     ![データセットの設定が表示されます。](media/pbi-com-settings-datasets-2.png "Datasets")
 
@@ -757,3 +756,23 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
 22. **`Synapse-sql-serverless`** レポートを選択します。このレポートも表示して編集できるはずです。
 
     ![レポートは Synapse Studio に埋め込まれています。](media/data-synapse-sql-serverless-report.png "Report")
+
+## 演習 4: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

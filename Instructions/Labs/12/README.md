@@ -29,7 +29,7 @@
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 1 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -66,7 +66,7 @@
 
     ![「管理」、「新規」、[Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
 
-3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成**」 (4) を選択します。
+3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成」 (4)** を選択します。
 
     ![新しい Azure Cosmos DB リンク サービス。](media/create-cosmos-db-linked-service.png "New linked service")
 
@@ -80,15 +80,15 @@
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+2. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-3. リストから 「**Azure Cosmos DB (SQL API)**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+3. リストから 「**Azure Cosmos DB (SQL API)**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![Azure Cosmos DB SQL API オプションが強調表示されています。](media/new-cosmos-db-dataset.png "Integration dataset")
 
-4. 以下の特徴でデータセットを構成し、「**OK**」 (4) を選択します。
+4. 以下の特徴でデータセットを構成し、「**OK」 (4)** を選択します。
 
     - **名前**: `asal400_customerprofile_cosmosdb` **(1)** と入力します。
     - **リンク サービス**: Azure Cosmos DB リンク サービス **(2)** を選択します。
@@ -126,7 +126,7 @@ Azure Synapse Link では、Cosmos DB のトランザクション処理の分散
 
     ![Azure Cosmos DB アカウントが強調表示されます。](media/resource-group-cosmos.png "Azure Cosmos DB account")
 
-3. 左側のメニューで 「**機能**」 **(1)** を選択し、「**Azure Synapse リンク**」 (2)を選択します。
+3. 左側のメニューで 「**機能**」 **(1)** を選択し、「**Azure Synapse リンク」 (2)** を選択します。
 
     ![機能ブレードが表示されます。](media/cosmos-db-features.png "Features")
 
@@ -158,7 +158,7 @@ Tailwind Traders には、`OnlineUserProfile01` という名前の Azure Cosmos 
 
     ![ボタンが強調表示されています。](media/new-container-button.png "New Container")
 
-3. 「**データベース ID**」 で、「**既存のものを使用**」 を選択し、**`CustomerProfile` (1)** を選択します。「**コンテナー ID**」 (2) に **`UserProfileHTAP`** と入力し、「**パーティション キー**」 (3) に **`/userId`** と入力します。「**スループット**」については、「**自動スケール**」 (4) を選択し、「**最大 RU/秒**」 の値 **(5)** に **`4000`** と入力します。最後に、「**分析ストア**」 を 「**オン**」 (6) に設定し、「**OK**」 を選択します。
+3. [**データベース ID**] で、[**既存のものを使用**] を選択し、**`CustomerProfile` (1)** を選択します。[**コンテナー ID**] (2) に **`UserProfileHTAP`** と入力し、[**パーティション キー**] (3) に **`/userId`** と入力します。[**スループット**]については、[**自動スケール**] (4) を選択し、[**最大 RU/秒**] の値 **(5)** に **`4000`** と入力します。最後に、[詳細] を展開し、[**分析ストア**] を [**オン**] (6) に設定し、[**OK**] を選択します。
 
     ![説明されたようにフォームが設定されています。](media/new-container.png "New container")
 
@@ -166,7 +166,7 @@ Tailwind Traders には、`OnlineUserProfile01` という名前の Azure Cosmos 
 
     ここでは、新しいコンテナーにコピーするデータを簡単に見てみましょう。
 
-4. 「**CustomerProfile**」 データベースの下にある `OnlineUserProfile01` コンテナーを展開し、「**項目**」 (1) を選択します。ドキュメントの 1 つ **(2)** を選択し、その内容を表示します **(3)**。ドキュメントは JSON 形式で格納されます。
+4. 「**CustomerProfile**」 データベースの下にある `OnlineUserProfile01` コンテナーを展開し、「**項目」 (1)** を選択します。ドキュメントの 1 つ **(2)** を選択し、その内容を表示します **(3)**。ドキュメントは JSON 形式で格納されます。
 
     ![コンテナー項目が表示されます。](media/existing-items.png "Container items")
 
@@ -196,15 +196,15 @@ Tailwind Traders には、`OnlineUserProfile01` という名前の Azure Cosmos 
 
     ![ソースが選択されています。](media/copy-source.png "Source")
 
-5. 「**シンク**」 タブ **(1)** を選択した後、「**+ 新規**」 (2) を選択します。
+5. 「**シンク**」 タブ **(1)** を選択した後、「**+ 新規」 (2)** を選択します。
 
     ![シンクが選択されています。](media/copy-sink.png "Sink")
 
-6. 「**Azure Cosmos DB (SQL API)**」 データ型 **(1)** を選択し、「**続行**」 (2) を選択します。
+6. 「**Azure Cosmos DB (SQL API)**」 データ型 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![Azure Cosmos DB が選択されています。](media/dataset-type.png "New dataset")
 
-7. 「**名前**」 で **`cosmos_db_htap` (1)** と入力します。**`asacosmosdb01` (2)** **リンク サービス**を選択します。**`UserProfileHTAP` (3)** **コレクション**を選択します。**スキーマのインポート** (4) で 「**接続/ストアから**」 を選択し、「**OK**」 (5) を選択します。
+7. 「**名前**」 で **`cosmos_db_htap` (1)** と入力します。**`asacosmosdb01` (2)** **リンク サービス**を選択します。**`UserProfileHTAP` (3)** **コレクション**を選択します。**スキーマのインポート (4)** で 「**接続/ストアから**」 を選択し、「**OK」 (5)** を選択します。
 
     ![説明されたようにフォームが設定されています。](media/dataset-properties.png "Set properties")
 
@@ -216,7 +216,7 @@ Tailwind Traders には、`OnlineUserProfile01` という名前の Azure Cosmos 
 
     ![すべてを公開します。](media/publish-all-1.png "Publish")
 
-10. パイプライン キャンバスの上で 「**トリガーの追加**」 (1) を選択した後、「**今すぐトリガー**」 (2) を選択します。「**OK**」 を選択して実行をトリガーします。
+10. パイプライン キャンバスの上で 「**トリガーの追加」 (1)** を選択した後、「**今すぐトリガー」 (2)** を選択します。「**OK**」 を選択して実行をトリガーします。
 
     ![トリガー メニューが表示されています。](media/pipeline-trigger.png "Trigger now")
 
@@ -224,7 +224,7 @@ Tailwind Traders には、`OnlineUserProfile01` という名前の Azure Cosmos 
 
     ![監視ハブ。](media/monitor-hub.png "Monitor hub")
 
-12. 「**パイプライン実行**」 (1) を選択し、パイプラインの実行が完了するまで待ちます **(2)**。「**更新**」 (3) を数回選択する必要があるかもしれません。
+12. 「**パイプライン実行」 (1)** を選択し、パイプラインの実行が完了するまで待ちます **(2)**。「**更新」 (3)** を数回選択する必要があるかもしれません。
 
     ![パイプライン実行が完了として表示されています。](media/pipeline-run-status.png "Pipeline runs")
 
@@ -242,7 +242,7 @@ Tailwind Traders は各ユーザーで特定されたお気に入りの製品リ
 
     ![データ ハブ](media/data-hub.png "Data hub")
 
-2. 「**リンク済み**」 タブ **(1)** を選択し、**Azure Cosmos DB** セクションを展開してから **asacosmosdb01 (CustomerProfile)** リンク サービス **(2)** を展開します。**UserProfileHTAP** コンテナー **(3)** を右クリックし、「**新しいノートブック**」 ジェスチャ **(4)** を選択してから 「**DataFrame に読み込む**」 (5) を選択します。
+2. 「**リンク済み**」 タブ **(1)** を選択し、**Azure Cosmos DB** セクションを展開してから **asacosmosdb01 (CustomerProfile)** リンク サービス **(2)** を展開します。**UserProfileHTAP** コンテナー **(3)** を右クリックし、「**新しいノートブック**」 ジェスチャ **(4)** を選択してから 「**DataFrame に読み込む」 (5)** を選択します。
 
     ![新しいノートブック ジェスチャが強調表示されています。](media/new-notebook.png "New notebook")
 
@@ -357,11 +357,11 @@ Tailwind Traders は、T-SQL を使用して Azure Cosmos DB 分析ストアを�
 
     ![開発ハブ](media/develop-hub.png "Develop hub")
 
-2. **+** (1) を選択してから 「**SQL スクリプト**」 (2) を選択します。
+2. **+ (1)** を選択してから 「**SQL スクリプト」 (2)** を選択します。
 
     ![SQL スクリプト ボタンが強調表示されています。](media/new-script.png "SQL script")
 
-3. スクリプトが開くと、右側に 「**プロパティ**」 ペインが表示されています **(1)**。「**名前**」 (2) に **`User Profile HTAP`** と入力し、「**プロパティ**」 ボタンを選択してペインを閉じます **(1)**。
+3. スクリプトが開くと、右側に 「**プロパティ**」 ペインが表示されています **(1)**。「**名前」 (2)** に **`User Profile HTAP`** と入力し、「**プロパティ**」 ボタンを選択してペインを閉じます **(1)**。
 
     ![プロパティ ペインが表示されます。](media/new-script-properties.png "Properties")
 
@@ -388,7 +388,7 @@ Tailwind Traders は、T-SQL を使用して Azure Cosmos DB 分析ストアを�
     GO
 
     CREATE VIEW UserProfileHTAP
-    _AS
+    AS
     SELECT
         *
     FROM OPENROWSET(
@@ -419,14 +419,14 @@ Tailwind Traders は、T-SQL を使用して Azure Cosmos DB 分析ストアを�
     - **1.**`UserProfileHTAP` という名前の SQL ビューを作成します。
     - **2.**`OPENROWSET` ステートメントを使用してデータ ソースのタイプを `CosmosDB` に設定し、アカウントの詳細を設定して、`UserProfileHTAP` という名前の Azure Cosmos DB 分析ストア コンテナーに対するビューを作成します。
     - **3.**`WITH` 句が JSON ドキュメントのプロパティ名に一致し、適切な SQL データ型を適用します。`preferredProducts` と `productReviews` フィールドが `varchar(max)` に設定されていることがわかります。これは、両方のプロパティに JSON 形式のデータが含まれているためです。
-    - **4.**JSON ドキュメントの `productReviews` プロパティには入れ子になった部分配列が含まれているため、ドキュメントのプロパティと配列のあらゆる要素を「結合」します。Synapse SQL を使用すると、入れ子になった配列で `OPENJSON` 関数を適用して、入れ子になった構造をフラット化できます。Synapse ノートブックで先ほど Python `explode` 関数を使用した場合と同様に、`productReviews` 内で値をフラット化します。
-    - **5.**出力には、ステートメントの実行が成功したことが示されます。
+    - **4.** JSON ドキュメントの `productReviews` プロパティには入れ子になった部分配列が含まれているため、ドキュメントのプロパティと配列のあらゆる要素を「結合」します。Synapse SQL を使用すると、入れ子になった配列で `OPENJSON` 関数を適用して、入れ子になった構造をフラット化できます。Synapse ノートブックで先ほど Python `explode` 関数を使用した場合と同様に、`productReviews` 内で値をフラット化します。
+    - **5.** 出力には、ステートメントの実行が成功したことが示されます。
 
 6. 「**データ**」 ハブに移動します。
 
     ![データ ハブ](media/data-hub.png "Data hub")
 
-7. 「**ワークスペース**」 タブ **(1)** を選択し、データベース グループを展開します。**プロファイル** SQL オンデマンド データベース **(2)** を展開します。これがリストに表示されない場合は、データベース リストを更新します。「ビュー」 を展開し、**`UserProfileHTAP`** ビューを右クリックします **(3)**。「**新しい SQL スクリプト**」 (4) を選択してから 「**上位 100 行を選択**」 (5) を選びます。
+7. 「**ワークスペース**」 タブ **(1)** を選択し、データベース グループを展開します。**プロファイル** SQL オンデマンド データベース **(2)** を展開します。これがリストに表示されない場合は、データベース リストを更新します。「ビュー」 を展開し、**`UserProfileHTAP`** ビューを右クリックします **(3)**。「**新しい SQL スクリプト」 (4)** を選択してから 「**上位 100 行を選択」 (5)** を選びます。
 
     ![「上位 100 行を選択」 のクエリ オプションが強調表示されています。](media/new-select-query.png "New select query")
 

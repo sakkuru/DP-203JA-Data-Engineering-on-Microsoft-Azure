@@ -25,12 +25,14 @@
     - [タスク 1: Azure Synapse で Apache Spark を使用して JSON データのクエリと変換を実行する](#task-1-query-and-transform-json-data-with-apache-spark-for-azure-synapse)
   - [演習 4: Azure Synapse Analytics で SQL プールと Spark プールを統合する](#exercise-4-integrating-sql-and-spark-pools-in-azure-synapse-analytics)
     - [タスク 1: ノートブックを更新する](#task-1-update-notebook)
+  - [演習 5: クリーンアップ](#exercise-5-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
 ## ラボの構成と前提条件
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites`の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -55,7 +57,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして [**再開**]  (2) を選択します。
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして [**再開] (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -293,7 +295,7 @@ Tailwind Traders には、さまざまなデータ ソースからの非構造�
 
 Tailwind Traders 社では、Parquet ファイルがデータ レイクに格納されています。社員は、Apache Spark を使用してファイルにすばやくアクセスし、確認できるようにするにはどうすればよいのか知りたいと考えています。
 
-あなたが推奨しているのは、データ ハブを使用して、接続されているストレージ アカウントの Parquet ファイルを表示したうえで、[_新しいノートブック_] コンテキスト メニューを使用して、Spark データフレームと選択した Parquet ファイルの内容を読み込む新しい Synapse ノートブックを作成する方法です。
+あなたが推奨しているのは、データ ハブを使用して、接続されているストレージ アカウントの Parquet ファイルを表示したうえで、「_新しいノートブック_」 コンテキスト メニューを使用して、Spark データフレームと選択した Parquet ファイルの内容を読み込む新しい Synapse ノートブックを作成する方法です。
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
@@ -301,13 +303,13 @@ Tailwind Traders 社では、Parquet ファイルがデータ レイクに格納
 
     ![[データ] ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-3. [**リンク済み**] タブ **(1)** を選択し、`Azure Data Lake Storage Gen2` グループを展開した後、プライマリ データ レイク ストレージ アカウントを展開します (*名前は、ここに表示されているものとは異なる場合があります。これは、一覧の最初のストレージ アカウントです*)。**Wwi-02** コンテナー **(2)** を選択し、`sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231` フォルダーを参照します **(3)**.Parquet ファイル **(4)** を右クリックし、[**新しいノートブック**] (5) を選択してから [**DataFrame に読み込む**] (6) を選びます。
+3. [**リンク済み**] タブ **(1)** を選択し、`Azure Data Lake Storage Gen2` グループを展開した後、プライマリ データ レイク ストレージ アカウントを展開します (*名前は、ここに表示されているものとは異なる場合があります。これは、一覧の最初のストレージ アカウントです*)。**Wwi-02** コンテナー **(2)** を選択し、`sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231` フォルダーを参照します **(3)**.Parquet ファイル **(4)** を右クリックし、[**新しいノートブック] (5)** を選択してから [**DataFrame に読み込む] (6)** を選びます。
 
     ![説明どおりに、Parquet ファイルが表示されます。](media/2010-sale-parquet-new-notebook.png "New notebook")
 
-    これにより、Spark データフレームにデータを読み込み、ヘッダー付きで 100 行を表示する PySpark コードを含むノートブックが生成されます。
+    これにより、Spark データフレームにデータを読み込み、ヘッダー付きで 10 行を表示する PySpark コードを含むノートブックが生成されます。
 
-4. Spark プールがノートブックにアタッチされていることを確認してください。
+4. Spark プールがノートブックにアタッチされていることを確認してください。最初にデータ レイクの名前の変数を作成する必要があるため、**この段階ではセルを実行行しないでください**。
 
     ![Spark プールが強調表示されています。](media/2010-sale-parquet-notebook-sparkpool.png "Notebook")
 
@@ -333,7 +335,7 @@ Tailwind Traders 社では、Parquet ファイルがデータ レイクに格納
 
     > **注:** Spark プールでノートブックを初めて実行すると、Azure Synapse によって新しいセッションが作成されます。これには、3 から 5 分ほどかかる可能性があります。
 
-    > **注:** セルだけを実行するには、セルの上にポインターを合わせ、セルの左側にある [_セルの実行_] アイコンを選択するか、セルを選択してキーボードで **Ctrl + Enter** キーを押します。
+    > **注:** セルだけを実行するには、セルの上にポインターを合わせ、セルの左側にある _セルの実行_ アイコンを選択するか、セルを選択してキーボードで **Ctrl + Enter** キーを押します。
 
 7. セルの実行が完了したら、セルの出力でビューを [**グラフ**] に変更します。
 
@@ -345,7 +347,7 @@ Tailwind Traders 社では、Parquet ファイルがデータ レイクに格納
 
     ![ボタンが強調表示されています。](media/2010-sale-parquet-chart-options-button.png "View options")
 
-9. キーを **`ProductId`**、値を **`TotalAmount` (1)** に設定し、[**適用**] (2) を選択します。
+9. キーを **`ProductId`**、値を **`TotalAmount` (1)** に設定し、[**適用] (2)** を選択します。
 
     ![オプションが説明どおりに構成されています。](media/2010-sale-parquet-chart-options.png "View options")
 
@@ -460,10 +462,10 @@ Synapse ノートブックを使用して JSON ファイルのデータ変換を
     これにより、データの分析が少し困難になります。これは、JSON ファイルの内容が次のようになっているためです。
 
     ```json
-    「
+    [
     {
         "visitorId": 9529082,
-        "topProductPurchases": 「
+        "topProductPurchases": [
         {
             "productId": 4679,
             "itemsPurchasedLast12Months": 26
@@ -648,7 +650,7 @@ Synapse SQL コネクタへの Apache Spark プールは、Apache Spark 用の�
     df.write.sqlanalytics("SQLPool01.wwi.TopPurchases", Constants.INTERNAL)
     ```
 
-    > **注**: セルの実行には 1 分以上かかる場合があります。この前にこのコマンドを実行すると、テーブルが既に存在しているため、"... という名前のオブジェクトが既に存在します" というエラーが表示されます。
+    > **注**: セルの実行には 1 分以上かかる場合があります。この前にこのコマンドを実行すると、テーブルが既に存在しているため、「... という名前のオブジェクトが既に存在します」 というエラーが表示されます。
 
     セルの実行が完了したら、SQL テーブルの一覧を見て、テーブルが正常に作成されたことを確認します。
 
@@ -656,7 +658,7 @@ Synapse SQL コネクタへの Apache Spark プールは、Apache Spark 用の�
 
     ![[データ] ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-4. [**ワークスペース**] タブ **(1)** を選択して SQL データベースを展開し、テーブルで省略記号 **(...)** **(2)** を選択してから [**更新**] (3) を選択します。**`wwi.TopPurchases`** テーブルと列 **(4)** を展開します。
+4. [**ワークスペース**] タブ **(1)** を選択して SQL データベースを展開し、テーブルで省略記号 **(...)** **(2)** を選択してから [**更新] (3)** を選択します。**`wwi.TopPurchases`** テーブルと列 **(4)** を展開します。
 
     ![テーブルが表示されています。](media/toppurchases-table.png "TopPurchases table")
 
@@ -732,3 +734,23 @@ Synapse SQL コネクタへの Apache Spark プールは、Apache Spark 用の�
     > **注**: [テーブル] ビューの列ヘッダーをクリックして、結果セットを並べ替えてみてください。
 
     ![セルの内容と出力が表示されています。](media/join-output.png "Join output")
+
+## 演習 5: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

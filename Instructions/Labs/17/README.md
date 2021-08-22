@@ -1,4 +1,4 @@
-﻿# モジュール 17 ? Azure Synapse Analytics で統合された機械学習プロセスを実行する
+﻿# モジュール 17 - Azure Synapse Analytics で統合された機械学習プロセスを実行する
 
 このラボでは、Azure Synapse Analytics で統合されたエンドツーエンドの Azure Machine Learning および Azure Cognitive Services について説明します。リンク サービスを使用して Azure Synapse Analytics ワークスペースを Azure Machine Learning ワークスペースに接続する方法を学習した後、Spark テーブルからのデータを使用する Automated ML 実験を開始します。また、Azure Machine Learning または Azure Cognitive Services からトレーニング済みのモデルを使用して SQL プール テーブルでデータを強化し、Power BI で予測結果を提示する方法も学びます。
 
@@ -6,7 +6,7 @@
 
 ## ラボの詳細
 
-- [モジュール 17 ? Azure Synapse Analytics で統合された機械学習プロセスを実行する](#module-17---perform-integrated-machine-learning-processes-in-azure-synapse-analytics)
+- [モジュール 17 - Azure Synapse Analytics で統合された機械学習プロセスを実行する](#module-17---perform-integrated-machine-learning-processes-in-azure-synapse-analytics)
   - [ラボの詳細](#lab-details)
   - [前提条件](#pre-requisites)
   - [実践ラボの前](#before-the-hands-on-lab)
@@ -25,6 +25,8 @@
     - [タスク 3: Machine Learning ベースの強化手順を Synapse パイプラインで統合する](#task-3-integrate-a-machine-learning-based-enrichment-procedure-in-a-synapse-pipeline)
   - [演習 4: Power BI を使用して予測結果を提供する](#exercise-4-serve-prediction-results-using-power-bi)
     - [タスク 1: Power BI レポートで予測結果を表示する](#task-1-display-prediction-results-in-a-power-bi-report)
+  - [演習 5: クリーンアップ](#exercise-5-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
   - [リソース](#resources)
 
 ## 前提条件
@@ -59,7 +61,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」  (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -274,7 +276,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     ![「データ」 ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「Workspace」 タブを選択し、`SQLPool01 (SQL)` データベースで `wwi.ProductQuantityForecast` テーブルを見つけます (「データベース」 に含まれています)。テーブル名の右側で `...` を選択してコンテキスト メニューを開き、「新しい SQL スクリプト」 > 「上位 100 行を選択」 の順に選択します。テーブルには次の列が含まれています。
+2. `Workspace` タブを選択し、`SQLPool01 (SQL)` データベースで `wwi.ProductQuantityForecast` テーブルを見つけます (`Databases` に含まれています)。テーブル名の右側で `...` を選択してコンテキスト メニューを開き、`New SQL script > Select TOP 100 rows` の順に選択します。テーブルには次の列が含まれています。
 
 - **ProductId**: 予測したい製品の識別子
 - **TransactionDate**: 予測したい将来の日付
@@ -285,7 +287,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     > すべての行で `TotalQuantity` はゼロになっています。これは、取得したい予測値のプレースホルダーだからです。
 
-3. Azure Machine Learning でトレーニングを行ったばかりのモデルを使用するには、`wwi.ProductQuantityForecast` のコンテキスト メニューを有効にし、「Machine Learning」 > 「既存のモデルで強化」 の順に選択します。
+3. Azure Machine Learning でトレーニングを行ったばかりのモデルを使用するには、`wwi.ProductQuantityForecast` のコンテキスト メニューを有効にし、`Machine Learning > Enrich with existing model` の順に選択します。
 
     ![コンテキスト メニューが表示されます。](media/enrich-with-ml-model-menu.png "Enrich with existing model")
 
@@ -299,9 +301,9 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
 6. 最後の手順では、予測を行うストアド プロシージャと、シリアル化された形式のモデルを格納するテーブルに名前を付けるオプションがあります。次の値を指定します。
 
-   - **ストアド プロシージャ名:** `「wwi」.「ForecastProductQuantity」`
+   - **ストアド プロシージャ名:** `[wwi].[ForecastProductQuantity]`
    - **ターゲット テーブルの選択**: `Create new`
-   - **新しいテーブル**: `「wwi」.「Model」`
+   - **新しいテーブル**: `[wwi].[Model]`
 
     「**モデルをデプロイしてスクリプトを開く**」 を選択し、モデルを SQL プールにデプロイします。
 
@@ -311,7 +313,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     ![ストアド プロシージャ向けの SQL スクリプト](media/lab-01-ex-03-task-01-forecast-stored-procedure.png)
 
-8. 生成される T-SQL コードは、予測の結果を返すのみで、実際にこれを保存することはありません。予測結果を直接 `「wwi」.「ProductQuantityForecast」` テーブルに保存するには、生成されたコードを以下に置き換え、スクリプトを実行してください (`<your_model_id>` を置き換えた後)。
+8. 生成される T-SQL コードは、予測の結果を返すのみで、実際にこれを保存することはありません。予測結果を直接 `[wwi].[ProductQuantityForecast]` テーブルに保存するには、生成されたコードを以下に置き換え、スクリプトを実行してください (`<your_model_id>` を置き換えた後)。
 
     ```sql
     CREATE PROC [wwi].[ForecastProductQuantity] AS
@@ -349,7 +351,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     >**注**:
     >
-    >このストアド プロシージャのバージョンでは、`MERGE` コマンドを使用して `TotalQuantity` フィールドの値を `wwi.ProductQuantityForecast` テーブルで更新します。`MERGE` コマンドは最近、Azure Synapse Analytics に追加されました。詳細については、「Azure Synapse Analytics の新しい MERGE コマンド」(https://azure.microsoft.com/updates/new-merge-command-for-azure-synapse-analytics/)をご覧ください。
+    >このストアド プロシージャのバージョンでは、`MERGE` コマンドを使用して `TotalQuantity` フィールドの値を `wwi.ProductQuantityForecast` テーブルで更新します。`MERGE` コマンドは最近、Azure Synapse Analytics に追加されました。詳細については、[Azure Synapse Analytics の新しい MERGE コマンド](https://azure.microsoft.com/updates/new-merge-command-for-azure-synapse-analytics/)をご覧ください。
 
 9. これで、`TotalQuantity` 列で予測を行う準備が整いました。SQL スクリプトを置き換え、以下のステートメントを実行してください。
 
@@ -374,7 +376,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     ![「データ」 ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「リンク済み」 タブを選択します。プライマリ `Azure Data Lake Storage Gen 2` アカウントで、`wwi-02` ファイル システムを選択した後、`wwi-02\sale-small-product-reviews` で `ProductReviews.csv` ファイルを選択します。ファイルを右クリックして 「新しいノートブック」 → 「新しい Spark テーブル」 を選択します。
+2. `Linked` タブを選択します。プライマリ `Azure Data Lake Storage Gen 2` アカウントで、`wwi-02` ファイル システムを選択した後、`wwi-02\sale-small-product-reviews` で `ProductReviews.csv` ファイルを選択します。ファイルを右クリックして `New notebook -> New Spark table` を選択します。
 
     ![プライマリ　データ レイクの製品レビュー ファイルから新しい Spark テーブルを作成します](media/lab-01-ex-03-task-02-new-spark-table.png)
 
@@ -396,7 +398,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
     >
     >`<data_lake_account_name>` は Synapse Analytics プライマリ データ レイク アカウントの実際の名前に置き換えてください。
 
-5. 「データ」 ハブでテーブルを表示するには、「ワークスペース」 セクションで 「既定 (Spark)」 データベースを展開します。**Productreview** テーブルが `Tables` フォルダーに表示されます。テーブル名の右側にある 3 つの点を選択すると、コンテキスト メニューで 「Machine Learning」 オプションが表示されます。その後、「Machine Learning」 > 「既存のモデルで強化」 の順に選択します。 
+5. `Data` ハブでテーブルを表示するには、`Workspace` セクションで `default (Spark)` データベースを展開します。**Productreview** テーブルが `Tables` フォルダーに表示されます。テーブル名の右側にある 3 つの点を選択すると、コンテキスト メニューで `Machine Learning` オプションが表示されます。その後、`Machine Learning` > Enrich with existing model` の順に選択します。 
 
     ![コンテキストには新しい Spark テーブルが表示されています。](media/productreview-spark-table.png "productreview table with context menu")
 
@@ -430,7 +432,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
     >![ノートブックの Text Analytics サービス統合コード](media/lab-01-ex-03-task-02-text-analytics-code.png)
 
     >**注**:
-    >セルをコピーせずに Synapse Studio で生成したノートブックを実行するには、`Monitor` ハブの `Apache Spark applications` セクションを使用すると、実行中の Spark セッションを表示してキャンセルできます。詳細については、「Synapse Studio を使用して Apache Spark アプリケーションを監視する」(https://docs.microsoft.com/azure/synapse-analytics/monitoring/apache-spark-applications)を参照してください。このラボでは、セルをコピーするアプローチを使用して、実行中の Spark セッションをキャンセルして新しいセッションを始める手間暇を省きました。
+    >セルをコピーせずに Synapse Studio で生成したノートブックを実行するには、`Monitor` ハブの `Apache Spark applications` セクションを使用すると、実行中の Spark セッションを表示してキャンセルできます。詳細については、[Synapse Studio を使用して Apache Spark アプリケーションを監視する](https://docs.microsoft.com/azure/synapse-analytics/monitoring/apache-spark-applications)を参照してください。このラボでは、セルをコピーするアプローチを使用して、実行中の Spark セッションをキャンセルして新しいセッションを始める手間暇を省きました。
 
     ノートブックでセル 2 および 3 を実行すると、データのセンチメント分析結果を得られます。
 
@@ -480,14 +482,14 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     ![コピー アクティビティの設定の構成](media/lab-01-ex-03-task-03-pipeline-staging.png)
 
-9. 「Synapse」 セクションで 「SQL プール ストアド プロシージャ」 アクティビティを追加し、`Forecast product quantities` という名前を付けます。2 つのパイプライン アクティビティを接続し、データのインポート後にストアド プロシージャが実行することを確認します。
+9. `Synapse` セクションで `SQL pool stored procedure` アクティビティを追加し、`Forecast product quantities` という名前を付けます。2 つのパイプライン アクティビティを接続し、データのインポート後にストアド プロシージャが実行することを確認します。
 
     ![パイプラインに予測ストアド プロシージャを追加](media/lab-01-ex-03-task-03-pipeline-stored-procedure-01.png)
 
 10. ストアド プロシージャ アクティビティのプロパティの `Settings` セクションで以下の値を入力します。
 
     - **Azure Synapse 専用 SQL プール**: お使いになっている専用 SQL プールを選択します (例: `SQLPool01`)。
-    - **ストアド プロシージャ名**: `「wwi」.「ForecastProductQuantity」` を選択します。
+    - **ストアド プロシージャ名**: `[wwi].[ForecastProductQuantity]` を選択します。
 
     ![ストアド プロシージャ アクティビティの設定が表示されています。](media/pipeline-sproc-settings.png "Settings")
 
@@ -530,19 +532,19 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
 まず、シンプルな製品数量予測レポートを Power BI に発行します。
 
-1. `ProductQuantityForecast.pbix` ファイルをGitHub リポジトリ[ProductQuantityForecast.pbix](ProductQuantityForecast.pbix) (GitHub ページで ［ダウンロード］ を選択) から ダウンロードしてください。
+1. `ProductQuantityForecast.pbix` ファイルを GitHub リポジトリ[ProductQuantityForecast.pbix](ProductQuantityForecast.pbix) (GitHub ページで `Download` を選択) から ダウンロードしてください。
 
 2. Power BI Desktop でこのファイルを開きます (資格情報がないという警告は無視します)。また、資格情報を更新するよう最初に指示されたら、このメッセージを無視し、接続情報を更新せずにポップアップを閉じてください。
 
-3. レポートの `Home` セクションで [**データの変換**」 を選択します。
+3. レポートの `Home` セクションで 「**データの変換**」 を選択します。
 
-    ![[データの変換」 ボタンが強調表示されています。](media/pbi-transform-data-button.png "Transform data")
+    ![「データの変換」 ボタンが強調表示されています。](media/pbi-transform-data-button.png "Transform data")
 
-4. `ProductQuantityForecast` クエリの `APPLIED STEPS` リストで [ソース」 エントリの**歯車アイコン**を選択します。
+4. `ProductQuantityForecast` クエリの `APPLIED STEPS` リストで `Source` エントリの**歯車アイコン**を選択します。
 
-    ![歯車アイコンが [ソース」 エントリの右側で強調表示されています。](media/pbi-source-button.png "Edit Source button")
+    ![歯車アイコンが 「ソース」 エントリの右側で強調表示されています。](media/pbi-source-button.png "Edit Source button")
 
-5. サーバーの名前を `asagaworkspace<unique_suffix>.sql.azuresynapse.net` に変更します (`<unique_suffix>` は Synapse Analytics ワークスペースの一意のサフィックス)。[**OK**」 を選択します。
+5. サーバーの名前を `asagaworkspace<unique_suffix>.sql.azuresynapse.net` に変更します (`<unique_suffix>` は Synapse Analytics ワークスペースの一意のサフィックス)。「**OK**」 を選択します。
 
     ![Power BI Desktop でサーバー名を編集](media/lab-01-ex-04-task-01-server-in-power-bi-desktop.png)
 
@@ -552,25 +554,25 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     ![Power BI Desktop で資格情報を編集](media/lab-01-ex-04-task-01-credentials-in-power-bi-desktop.png)
 
-8. サインインした後、[**接続**」 を選択して専用 SQL プールへの接続を確立します。
+8. サインインした後、「**接続**」 を選択して専用 SQL プールへの接続を確立します。
 
-    ![[接続」 ボタンが強調表示されています。](media/pbi-signed-in-connect.png "Connect")
+    ![「接続」 ボタンが強調表示されています。](media/pbi-signed-in-connect.png "Connect")
 
-9. 開いているポップアップ ウィンドウをすべて閉じて、[**閉じて適用**」 を選択します。
+9. 開いているポップアップ ウィンドウをすべて閉じて、「**閉じて適用**」 を選択します。
 
-    ![[閉じて適用」 ボタンが強調表示されています。](media/pbi-close-apply.png "Close & Apply")
+    ![「閉じて適用」 ボタンが強調表示されています。](media/pbi-close-apply.png "Close & Apply")
 
-10. レポートが読み込まれたら、リボン上で [**公開**」 を選択します。変更を保存するよう指示されたら、[**保存**」 を選択します。
+10. レポートが読み込まれたら、リボン上で 「**公開**」 を選択します。変更を保存するよう指示されたら、「**保存**」 を選択します。
 
-    ![[公開」 ボタンが強調表示されています。](media/pbi-publish-button.png "Publish")
+    ![「公開」 ボタンが強調表示されています。](media/pbi-publish-button.png "Publish")
 
-11. プロンプトで指示されたら、このラボで使用している Azure アカウントのメール アドレスを入力し、[**続行**」 を選択します。指示されたら、パスワードを入力するか、リストからユーザーを選択します。
+11. プロンプトで指示されたら、このラボで使用している Azure アカウントのメール アドレスを入力し、「**続行**」 を選択します。指示されたら、パスワードを入力するか、リストからユーザーを選択します。
 
-    ![メール形式と [続行」 ボタンが強調表示されています。](media/pbi-enter-email.png "Enter your email address")
+    ![メール形式と 「続行」 ボタンが強調表示されています。](media/pbi-enter-email.png "Enter your email address")
 
-12. このラボで作成した Synapse Analytics Power BI Pro ワークスペースを選択し、[**保存**」 を選択します。
+12. このラボで作成した Synapse Analytics Power BI Pro ワークスペースを選択し、「**保存**」 を選択します。
 
-    ![ワークスペースと [選択」 ボタンが強調表示されています。](media/pbi-select-workspace.png "Publish to Power BI")
+    ![ワークスペースと 「選択」 ボタンが強調表示されています。](media/pbi-select-workspace.png "Publish to Power BI")
 
     公開が成功するまで待ちます。
 
@@ -578,21 +580,21 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
 13. 新しい Web ブラウザー タブで、<https://powerbi.com> に移動します。
 
-14. [**サインイン**」 を選択し、プロンプトで指示されたら、このラボで使用している Azure 資格情報を入力します。
+14. 「**サインイン**」 を選択し、プロンプトで指示されたら、このラボで使用している Azure 資格情報を入力します。
 
-15. 左側のメニューで [**ワークスペース**」 を選択した後、このラボで作成した Synapse Analytics Power BI ワークスペースを選択します。これは先ほど公開したワークスペースと同じものです。
+15. 左側のメニューで 「**ワークスペース**」 を選択した後、このラボで作成した Synapse Analytics Power BI ワークスペースを選択します。これは先ほど公開したワークスペースと同じものです。
 
     ![ワークスペースが強調表示されています。](media/pbi-com-select-workspace.png "Select workspace")
 
-16. 一番上のメニューで [**設定**」 を選択してから [**設定**」 を選択します。
+16. 一番上のメニューで 「**設定**」 を選択してから 「**設定**」 を選択します。
 
     ![設定メニュー項目が選択されています。](media/pbi-com-settings-link.png "Settings")
 
-17. [**データベース**」 タブを選択してから [**資格情報の編集**」 を選択します。
+17. 「**データベース**」 タブを選択してから 「**資格情報の編集**」 を選択します。
 
     ![データセットと資格情報の編集リンクが強調表示されています。](media/pbi-com-datasets-edit.png "Edit credentials")
 
-18. `Authentication method` で **OAuth2** を選択した後、[**サインイン**」 を選択します。プロンプトで指示されたら資格情報を入力します。
+18. `Authentication method` で **OAuth2** を選択した後、「**サインイン**」 を選択します。プロンプトで指示されたら資格情報を入力します。
 
     ![OAuth2 が選択されています。](media/pbi-com-auth-method.png "Authentication method")
 
@@ -608,15 +610,15 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
 <!-- ### タスク 2: イベントベースのトリガーを使用してパイプラインをトリガーする
 
-1. Synapse Studio で左側にある [**統合**」 ハブを選択します。
+1. Synapse Studio で左側にある 「**統合**」 ハブを選択します。
 
     ![統合ハブが選択されています。](media/integrate-hub.png "Integrate hub")
 
-2. `Product Quantity Forecast` パイプラインを開きます。[**+ トリガーの追加**」 を選択してから [**新規作成/編集**」 を選択します。
+2. `Product Quantity Forecast` パイプラインを開きます。「**+ トリガーの追加**」 を選択してから 「**新規作成/編集**」 を選択します。
 
     ![新規作成/編集ボタンのオプションが強調表示されています。](media/pipeline-new-trigger.png "New trigger")
 
-3. `Add triggers` ダイアログで [**トリガーの選択...**」 を選んでから [**+ 新規作成**」 を選択します。
+3. `Add triggers` ダイアログで 「**トリガーの選択...**」 を選んでから 「**+ 新規作成**」 を選択します。
 
     ![ドロップダウンと新規作成オプションが選択されています。](media/pipeline-new-trigger-add-new.png "Add new trigger")
 
@@ -632,17 +634,37 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
    ![説明されたようにフォームに記入されています。](media/pipeline-add-new-trigger-form.png "New trigger")
 
-5. [**続行**」 を選択してトリガーを作成し、`Data preview` ダイアログでもう一度 `Continue` を選択して `OK` を選択します。もう一度、`OK` を選択してトリガーを保存します。
+5. 「**続行**」 を選択してトリガーを作成し、`Data preview` ダイアログでもう一度 `Continue` を選択して `OK` を選択します。もう一度、`OK` を選択してトリガーを保存します。
 
-    ![一致する Blob 名が強調表示され、[続行」 ボタンが選択されています。](media/pipeline-add-new-trigger-preview.png "Data preview")
+    ![一致する Blob 名が強調表示され、「続行」 ボタンが選択されています。](media/pipeline-add-new-trigger-preview.png "Data preview")
 
 6. Synapse Studio で `Publish all` を選択した後、`Publish` を選択してあらゆる変更を公開します。
 
 7. https://solliancepublicdata.blob.core.windows.net/wwi-02/sale-small-product-quantity-forecast/ProductQuantity-20201209-12.csv から `ProductQuantity-20201209-12.csv` ファイルをダウンロードします。
 
-8. Synapse Studio で左側にある `Data` ハブを選択し、`Linked` セクションのプライマリ データ レイク アカウントに移動します。`wwi-02 > sale-small-product-quantity-forecast` パスを開きます。既存の `ProductQuantity-20201209-11.csv` ファイルを削除し、`ProductQuantity-20201209-12.csv` ファイルをアップロードします。これにより、[製品数量予測」 パイプラインがトリガーされ、予測リクエストが CSV ファイルからインポートされ、予測ストアド プロシージャを実行します。
+8. Synapse Studio で左側にある `Data` ハブを選択し、`Linked` セクションのプライマリ データ レイク アカウントに移動します。`wwi-02 > sale-small-product-quantity-forecast` パスを開きます。既存の `ProductQuantity-20201209-11.csv` ファイルを削除し、`ProductQuantity-20201209-12.csv` ファイルをアップロードします。これにより、`Product Quantity Forecast` パイプラインがトリガーされ、予測リクエストが CSV ファイルからインポートされ、予測ストアド プロシージャを実行します。
 
 9. Synapse Studio で左側にある `Monitor` ハブを選択し、`Trigger runs` を選択すると、新しく有効になったパイプライン実行が表示されます。パイプラインが終了すると、Synapse Studio で Power BI レポートが更新され、更新されたデータが表示されます。-->
+
+## 演習 5: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
 
 ## リソース
 

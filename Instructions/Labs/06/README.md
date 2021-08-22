@@ -25,11 +25,11 @@
     - [演習 3: 関数表示ノートブックを完了する](#exercise-3-complete-the-display-function-notebook)
     - [演習 4: 特徴的な記事の演習ノートブックを完了する](#exercise-4-complete-the-distinct-articles-exercise-notebook)
   - [ラボ 2 - DataFrame の高度なメソッドを使用する](#lab-2---working-with-dataframes-advanced-methods)
-    - [演習 2: ラボのノートブックを完了する](#exercise-2-complete-the-lab-notebook)
+    - [演習 1: ラボノートブックを実行して完成させる](#exercise-1-run-and-complete-the-lab-notebook)
       - [タスク 1: Databricks アーカイブを複製する](#task-1-clone-the-databricks-archive-1)
       - [タスク 2: 日付と時間の操作ノートブックを完了する](#task-2-complete-the-date-and-time-manipulation-notebook)
-    - [演習 3: 集計関数の使用ノートブックを完了する](#exercise-3-complete-the-use-aggregate-functions-notebook)
-    - [演習 4: データの重複排除の演習ノートブックを完了する](#exercise-4-complete-the-de-duping-data-exercise-notebook)
+    - [演習 2: 集計関数の使用ノートブックを完了する](#exercise-2-complete-the-use-aggregate-functions-notebook)
+    - [演習 3データの重複排除の演習ノートブックを完了する](#exercise-3-complete-the-de-duping-data-exercise-notebook)
 
 ## ラボ 1 - DataFrame を使用する
 
@@ -117,7 +117,7 @@ Azure Databricks ワークスペースで、ユーザー フォルダー内に�
 
 Azure Databricks ワークスペースで、ユーザー フォルダー内にインポートした **04-Working-With-Dataframes** フォルダーを開きます。
 
-**4.Exercise:** ** Distinct Articles** ノートブックを開きます。指示に従ってセルで操作を実行する前に、必ずクラスターをノートブックに接続してください。
+**4.Exercise: Distinct Articles** ノートブックを開きます。指示に従ってセルで操作を実行する前に、必ずクラスターをノートブックに接続してください。
 
 この演習では、Parquet ファイルを読み取り、必要な変換を適用して、レコードの合計数を実行し、すべてのデータが正しく読み込まれたことを確認します。おまけとして、データを照合するスキーマを定義してみて、このスキーマを使用するように読み取り操作を更新します。
 
@@ -129,7 +129,7 @@ Azure Databricks ワークスペースで、ユーザー フォルダー内に�
 
 このラボでは、上記のラボで学んだ Azure Databricks DataFrames のコンセプトに基づき、データ エンジニアが DataFrame を使用してデータの読み取り、書き込み、変換で使用できる高度なメソッドをいくつか確認します。
 
-### 演習 2: ラボのノートブックを完了する
+### 演習 1: ラボノートブックを実行して完成させる
 
 #### タスク 1: Databricks アーカイブを複製する
 
@@ -159,7 +159,7 @@ Azure Databricks ワークスペースで、ユーザー フォルダー内に�
 
 ノートブックを完了した後は、この画面に戻り、次のステップに進みます。
 
-### 演習 3: 集計関数の使用ノートブックを完了する
+### 演習 2: 集計関数の使用ノートブックを完了する
 
 Azure Databricks ワークスペースで、ユーザー フォルダー内にインポートした **07-Dataframe-Advanced-Methods** フォルダーを開きます。
 
@@ -169,7 +169,7 @@ Azure Databricks ワークスペースで、ユーザー フォルダー内に�
 
 ノートブックを完了した後は、この画面に戻り、次のステップに進みます。
 
-### 演習 4: データの重複排除の演習ノートブックを完了する
+### 演習 3データの重複排除の演習ノートブックを完了する
 
 Azure Databricks ワークスペースで、ユーザー フォルダー内にインポートした **07-Dataframe-Advanced-Methods** フォルダーを開きます。
 

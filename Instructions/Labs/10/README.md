@@ -39,12 +39,14 @@
     - [タスク 3: 統計を作成して更新する](#task-3-create-and-update-statistics)
     - [タスク 4: インデックスを作成して更新する](#task-4-create-and-update-indexes)
     - [タスク 5: 順序指定クラスター化列ストア インデックス](#task-5-ordered-clustered-columnstore-indexes)
+  - [演習 5: クリーンアップ](#exercise-5-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
 ## ラボの構成と前提条件
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -69,7 +71,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」 (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -91,7 +93,7 @@
 
     ![開発ハブが強調表示されています。](media/develop-hub.png "Develop hub")
 
-3. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+3. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -172,7 +174,7 @@
     GO
 
     COPY INTO Category 
-    FROM 'https://solliancepublicdata.blob.core.windows.net/cdp/csv/Category.csv'
+    FROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/books/Category.csv'
     WITH (
         FILE_TYPE = 'CSV',
         FIRSTROW = 2
@@ -180,7 +182,7 @@
     GO
 
     COPY INTO Books 
-    FROM 'https://solliancepublicdata.blob.core.windows.net/cdp/csv/Books.csv'
+    FROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/books/Books.csv'
     WITH (
         FILE_TYPE = 'CSV',
         FIRSTROW = 2
@@ -188,7 +190,7 @@
     GO
 
     COPY INTO BookConsumption 
-    FROM 'https://solliancepublicdata.blob.core.windows.net/cdp/csv/BookConsumption.csv'
+    FROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/books/BookConsumption.csv'
     WITH (
         FILE_TYPE = 'CSV',
         FIRSTROW = 2
@@ -196,7 +198,7 @@
     GO
 
     COPY INTO BookList 
-    FROM 'https://solliancepublicdata.blob.core.windows.net/cdp/csv/BookList.csv'
+    FROM 'https://solliancepublicdata.blob.core.windows.net/dataengineering/dp-203/books/BookList.csv'
     WITH (
         FILE_TYPE = 'CSV',
         FIRSTROW = 2
@@ -224,7 +226,7 @@ Tailwind Traders は、高価なカーソルやサブクエリのほか、現在
 
     ![開発ハブが強調表示されています。](media/develop-hub.png "Develop hub")
 
-2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -385,7 +387,7 @@ Tailwind Traders 社は、国ごとのダウンロード数が最も少ない書
 
     このクエリでは、`FIRST_VALUE` 分析関数を使用して、ダウンロード数が最も少ない書籍のタイトルを取得します。これは、`Country` パーティションに対する **`ROWS UNBOUNDED PRECEDING`** 句によって示されています **(1)**。`UNBOUNDED PRECEDING` オプションは、パーティションの最初の行にウィンドウの先頭を設定します。これにより、パーティション内の国について、ダウンロード数が最も少ない書籍のタイトルが取得されます。
 
-    結果セットでは、ダウンロード数の昇順で並べ替えられた国別の書籍の一覧をスクロールすることができます。ドイツでは、`Harry Potter - The Ultimate Quiz Book` のダウンロード数が最も少なく (最も多かった `Harry Potter - The Ultimate Quiz` とは別の本です)、スウェーデンでは `Burn for Me` のダウンロードが最小でした **(2)**。
+    結果セットでは、ダウンロード数の昇順で並べ替えられた国別の書籍の一覧をスクロールすることができます。ここでは、ドイツの場合、`Fallen Kitten of the Sword - The Ultimate Quiz` のダウンロード数が最も多く、`Notebooks for Burning` のダウンロード数がスウェーデンで最も少なかったことがわかります **(2)**。
 
 ### タスク 3: HyperLogLog 関数を使用した近似的実行
 
@@ -445,7 +447,7 @@ Tailwind Tradersから、CEO の実行するクエリを他のユーザーより
 
     ![開発ハブが強調表示されています。](media/develop-hub.png "Develop hub")
 
-2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -477,7 +479,7 @@ Tailwind Tradersから、CEO の実行するクエリを他のユーザーより
 
     ![統合ハブが強調表示されています。](media/integrate-hub.png "Integrate hub")
 
-7. 「**ラボ 08 - データ分析と CEO クエリを実行する**」 パイプライン **(1)** を選択します。これは `asa.sql.workload01` と `asa.sql.workload02` クエリを実行/トリガーします。「**トリガーの追加**」 (2) が選択してから、「**今すぐトリガー**」 (3) を選択します。表示されるダイアログで、「**OK**」 を選択します。
+7. 「**ラボ 08 - データ分析と CEO クエリを実行する**」 パイプライン **(1)** を選択します。これは `asa.sql.workload01` と `asa.sql.workload02` クエリを実行/トリガーします。「**トリガーの追加」 (2)** が選択してから、「**今すぐトリガー」 (3)** を選択します。表示されるダイアログで、「**OK**」 を選択します。
 
     ![「トリガーの追加」 および 「今すぐトリガーする」 メニュー項目が強調表示されています。](media/trigger-data-analyst-and-ceo-queries-pipeline.png "Add trigger")
 
@@ -549,7 +551,7 @@ Tailwind Tradersから、CEO の実行するクエリを他のユーザーより
 
     ![監視ハブが強調表示されています。](media/monitor-hub.png "Monitor hub")
 
-16. 「**パイプラインの実行**」 (1) を選択し、「**実行中**」 (3) とマークされ、Lab 08 を実行している各パイプラインで 「**再帰のキャンセル**」 (2) を選択します。これにより、残りのタスクを高速化できます。
+16. 「**パイプラインの実行**」 (1) を選択し、「**実行中」 (3)** とマークされ、Lab 08 を実行している各パイプラインで 「**再帰のキャンセル」 (2)** を選択します。これにより、残りのタスクを高速化できます。
 
     ![「再帰のキャンセル」 オプションが表示されます。](media/cancel-recursive.png "Pipeline runs - Cancel recursive")
 
@@ -623,7 +625,7 @@ Tailwind Traders が提供するワークロードの要件を考慮して、CEO
 
     ![統合ハブが強調表示されています。](media/integrate-hub.png "Integrate hub")
 
-8. 「**ラボ 08 - ビジネス分析クエリを実行する**」 パイプライン **(1)** を選択します。これにより、`asa.sql.workload02` クエリが実行またはトリガーされます。「**トリガーの追加**」 (2) が選択してから、「**今すぐトリガー**」 (3) を選択します。表示されるダイアログで、「**OK**」 を選択します。
+8. 「**ラボ 08 - ビジネス分析クエリを実行する**」 パイプライン **(1)** を選択します。これにより、`asa.sql.workload02` クエリが実行またはトリガーされます。「**トリガーの追加」 (2)** が選択してから、「**今すぐトリガー」 (3)** を選択します。表示されるダイアログで、「**OK**」 を選択します。
 
     ![「トリガーの追加」 および 「今すぐトリガーする」 メニュー項目が強調表示されています。](media/trigger-business-analyst-queries-pipeline.png "Add trigger")
 
@@ -654,7 +656,7 @@ Tailwind Traders が提供するワークロードの要件を考慮して、CEO
 
     ![監視ハブが強調表示されています。](media/monitor-hub.png "Monitor hub")
 
-12. 「**パイプラインの実行**」 (1) を選択し、「**実行中**」 (3) とマークされ、Lab 08 を実行している各パイプラインで 「**再帰のキャンセル**」 (2) を選択します。これにより、残りのタスクを高速化できます。
+12. 「**パイプラインの実行**」 (1) を選択し、「**実行中」 (3)** とマークされ、Lab 08 を実行している各パイプラインで 「**再帰のキャンセル」 (2)** を選択します。これにより、残りのタスクを高速化できます。
 
     ![「再帰のキャンセル」 オプションが表示されます。](media/cancel-recursive-ba.png "Pipeline runs - Cancel recursive")
 
@@ -696,7 +698,7 @@ Tailwind Traders が提供するワークロードの要件を考慮して、CEO
 
     ![開発ハブが強調表示されています。](media/develop-hub.png "Develop hub")
 
-2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -763,7 +765,7 @@ Tailwind Traders が提供するワークロードの要件を考慮して、CEO
 
     ![「データ」 ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-9. 「**SQLPool01**」 データベースとそのテーブルの一覧を展開します。**`wwi_poc.Sale`** (1) を右クリックし、「**新しい SQL スクリプト**」 (2)  を選択してから 「**作成**」 (3) を選択します。
+9. 「**SQLPool01**」 データベースとそのテーブルの一覧を展開します。**`wwi_poc.Sale`** (1) を右クリックし、「**新しい SQL スクリプト」 (2)**  を選択してから 「**作成」 (3)** を選択します。
 
     ![売上テーブルの CREATE スクリプトが強調表示されています。](media/sale-heap-create.png "Create script")
 
@@ -894,7 +896,7 @@ Tailwind Traders が提供するワークロードの要件を考慮して、CEO
     ---|---|---
     1 | RND_ID | 作成されるオブジェクトを特定します。この場合は、`TEMP_ID_76` 内部テーブルです。
     2 | ON | 操作が実行される場所 (ノードまたはディストリビューション) を指定します。`AllDistributions` は、SQL プールの 60 のディストリビューションそれぞれで操作が行われるということです。この操作は SQL 操作 (`<sql_operations>` を介して指定)で、`TEMP_ID_76` テーブルが作成されます。
-    3 | SHUFFLE_MOVE | シャッフル列のリストには、列がひとつしか含まれていません。`CustomerId` です (`<suffle_columns>` を介して指定)。値はハッシュ所有ディストリビューションに分散され、`TEMP_ID_76` テーブルでローカルに保存されます。操作は、見積もられた 41265.25 行を出力します (`<operation_cost>` を介して指定)。同じセクションに基づき、結果的に生じる行の平均サイズは 13 バイトです。
+    3 | SHUFFLE_MOVE | シャッフル列のリストには、列がひとつしか含まれていません。`CustomerId` です (`<shuffle_columns>` を介して指定)。値はハッシュ所有ディストリビューションに分散され、`TEMP_ID_76` テーブルでローカルに保存されます。操作は、見積もられた 41265.25 行を出力します (`<operation_cost>` を介して指定)。同じセクションに基づき、結果的に生じる行の平均サイズは 13 バイトです。
     4 | RETURN | シャッフル操作の結果生じるデータは、一時的な内部テーブル `TEMP_ID_76` のクエリを実行することで、あらゆるディストリビューションから収集されます (`<location>` を参照)。
     5 | ON | `TEMP_ID_76` があらゆるディストリビューションから削除されます。
 
@@ -976,7 +978,7 @@ Tailwind Traders が提供するワークロードの要件を考慮して、CEO
 
     ![開発ハブが強調表示されています。](media/develop-hub.png "Develop hub")
 
-2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -1981,3 +1983,23 @@ Tailwind Trader のダウンストリーム レポートは多くのユーザー
     この結果は、セグメント間で重複が大幅に減少したことを示しています。
 
     ![順序指定 CCI を使用した場合の各分散の CCI セグメントの構造](./media/lab3_ordered_cci_2.png)
+
+## 演習 5: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

@@ -29,7 +29,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 1 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -70,7 +70,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
     ![「管理」、「新規」、[Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
 
-3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成**」 (4) を選択します。
+3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成」 (4)** を選択します。
 
     ![新しい Azure Cosmos DB リンク サービス。](media/create-cosmos-db-linked-service.png "New linked service")
 
@@ -84,15 +84,15 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+2. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-3. リストから 「**Azure Cosmos DB (SQL API)**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+3. リストから 「**Azure Cosmos DB (SQL API)**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![Azure Cosmos DB SQL API オプションが強調表示されています。](media/new-cosmos-db-dataset.png "Integration dataset")
 
-4. 以下の特徴でデータセットを構成し、「**OK**」 (4) を選択します。
+4. 以下の特徴でデータセットを構成し、「**OK」 (4)** を選択します。
 
     - **名前**: `asal400_customerprofile_cosmosdb` **(1)** と入力します。
     - **リンク サービス**: Azure Cosmos DB リンク サービス **(2)** を選択します。
@@ -100,19 +100,19 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
     ![新しい Azure Cosmos DB データセット。](media/create-cosmos-db-dataset.png "New Cosmos DB dataset")
 
-5. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+5. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-6. リストから 「**Azure Data Lake Storage Gen2**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+6. リストから 「**Azure Data Lake Storage Gen2**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![ADLS Gen2 オプションが強調表示されています。](media/new-adls-dataset.png "Integration dataset")
 
-7. 「**JSON**」 形式 **(1)** を選び、「**続行**」 (2) を選択します。
+7. 「**JSON**」 形式 **(1)** を選び、「**続行」 (2)** を選択します。
 
     ![JSON 形式が選択されています。](media/json-format.png "Select format")
 
-8. 以下の特徴でデータセットを構成し、「**OK**」 (5) を選択します。
+8. 以下の特徴でデータセットを構成し、「**OK」 (5)** を選択します。
 
     - **名前**: `asal400_ecommerce_userprofiles_source` **(1)** と入力します。
     - **リンク サービス**: すでに存在する `asadatalakeXX` リンク サービスを選択します **(2)**。
@@ -169,7 +169,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
         "properties": {
             "type": "MappingDataFlow",
             "typeProperties": {
-                "sources": 「
+                "sources": [
                     {
                         "dataset": {
                             "referenceName": "asal400_ecommerce_userprofiles_source",
@@ -184,8 +184,8 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
                         },
                         "name": "UserProfiles"
                     }
-                」,
-                "sinks": 「
+                ],
+                "sinks": [
                     {
                         "linkedService": {
                             "referenceName": "INSERT_YOUR_DATALAKE_SERVICE_NAME",
@@ -193,8 +193,8 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
                         },
                         "name": "DataLake"
                     }
-                」,
-                "transformations": 「
+                ],
+                "transformations": [
                     {
                         "name": "userId"
                     },
@@ -216,7 +216,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
                     {
                         "name": "Filter1"
                     }
-                」,
+                ],
                 "script": "source(output(\n\t\tvisitorId as string,\n\t\ttopProductPurchases as (productId as string, itemsPurchasedLast12Months as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\twildcardPaths:['online-user-profiles-02/*.json']) ~> EcommerceUserProfiles\nsource(output(\n\t\tcartId as string,\n\t\tpreferredProducts as integer[],\n\t\tproductReviews as (productId as integer, reviewDate as string, reviewText as string)[],\n\t\tuserId as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'document') ~> UserProfiles\nEcommerceUserProfiles derive(visitorId = toInteger(visitorId)) ~> userId\nuserId foldDown(unroll(topProductPurchases),\n\tmapColumn(\n\t\tvisitorId,\n\t\tproductId = topProductPurchases.productId,\n\t\titemsPurchasedLast12Months = topProductPurchases.itemsPurchasedLast12Months\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> UserTopProducts\nUserTopProducts derive(productId = toInteger(productId),\n\t\titemsPurchasedLast12Months = toInteger(itemsPurchasedLast12Months)) ~> DerivedProductColumns\nUserProfiles foldDown(unroll(preferredProducts),\n\tmapColumn(\n\t\tpreferredProductId = preferredProducts,\n\t\tuserId\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> UserPreferredProducts\nDerivedProductColumns, UserPreferredProducts join(visitorId == userId,\n\tjoinType:'outer',\n\tpartitionBy('hash', 30,\n\t\tproductId\n\t),\n\tbroadcast: 'left')~> JoinTopProductsWithPreferredProducts\nJoinTopProductsWithPreferredProducts derive(isTopProduct = toBoolean(iif(isNull(productId), 'false', 'true')),\n\t\tisPreferredProduct = toBoolean(iif(isNull(preferredProductId), 'false', 'true')),\n\t\tproductId = iif(isNull(productId), preferredProductId, productId),\n\t\tuserId = iif(isNull(userId), visitorId, userId)) ~> DerivedColumnsForMerge\nDerivedColumnsForMerge filter(!isNull(productId)) ~> Filter1\nFilter1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'delta',\n\tcompressionType: 'snappy',\n\tcompressionLevel: 'Fastest',\n\tfileSystem: 'wwi-02',\n\tfolderPath: 'top-products',\n\ttruncate:true,\n\tmergeSchema: false,\n\tautoCompact: false,\n\toptimizedWrite: false,\n\tvacuum: 0,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tmapColumn(\n\t\tvisitorId,\n\t\tproductId,\n\t\titemsPurchasedLast12Months,\n\t\tpreferredProductId,\n\t\tuserId,\n\t\tisTopProduct,\n\t\tisPreferredProduct\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> DataLake"
             }
         }
@@ -261,7 +261,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
     ![説明されているように全般タブで名前が設定されています。](media/pipeline-data-flow-general.png "Name on the General tab")
 
-6. **「設定」** タブを選択します **(1)**。「**データ フロー**」 (2) で `user_profiles_to_datalake` を選択し、`AutoResolveIntegrationRuntime` が 「**実行 (Azure IR)**」 (3) で選択されていることを確認します。`General purpose` で 「**コンピューティング型**」 (4) を選び、`8 (+ 8 コア)` を 「**コア数**」 (5) で選択します。
+6. **「設定」** タブを選択します **(1)**。「**データ フロー」 (2)** で `user_profiles_to_datalake` を選択し、`AutoResolveIntegrationRuntime` が 「**実行 (Azure IR)」 (3)** で選択されていることを確認します。`General purpose` で 「**コンピューティング型」 (4)** を選び、`8 (+ 8 cores)` を 「**コア数」 (5)** で選択します。
 
     ![設定が説明どおりに構成されています。](media/data-flow-activity-settings1.png "Settings")
 
@@ -271,7 +271,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
 ### タスク 4: パイプラインをトリガーする
 
-1. パイプラインの最上部で 「**トリガーの追加**」 (1) を選択した後、「**今すぐトリガー**」 (2) を選択します。
+1. パイプラインの最上部で 「**トリガーの追加**」 (1) を選択した後、「**今すぐトリガー」 (2)** を選択します。
 
     ![パイプラインのトリガー オプションが強調表示されています。](media/pipeline-user-profiles-new-trigger.png "Trigger now")
 
@@ -283,7 +283,7 @@ Azure Synapse パイプラインでリンク サービスを作成し、デー�
 
     ![監視ハブ メニュー項目が選択されています。](media/monitor-hub.png "Monitor hub")
 
-4. 「**パイプライン実行**」 (1) を選択し、パイプラインの実行が完了するのを待ちます **(2)**。場合によっては、ビューを更新する必要があります **(3)**。
+4. 「**パイプライン実行」 (1)** を選択し、パイプラインの実行が完了するのを待ちます **(2)**。場合によっては、ビューを更新する必要があります **(3)**。
 
     > これを実行している間に、ラボの手順の残りを読み、内容をよく理解しておいてください。
 
@@ -303,7 +303,7 @@ Tailwind Traders は Synapse Analytics でマッピング データ フローを
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「**リンク済み**」 タブ **(1)** を選択し、**Azure Data Lake Storage Gen2** で**プライマリ　データ レイク ストレージ アカウント (2)** を展開します。**wwi-02** コンテナー **(3)** を選択して **top-products** フォルダー **(4)** を開きます。任意の Parquet ファイル **(5)** を右クリックし、「**新しいノートブック**」 メニュー項目 **(6)** を選択してから 「**DataFrame に読み込む**」 (7) を選択します。フォルダーが表示されない場合は、上にある `Refresh` を選択します。
+2. 「**リンク済み**」 タブ **(1)** を選択し、**Azure Data Lake Storage Gen2** で**プライマリ　データ レイク ストレージ アカウント (2)** を展開します。**wwi-02** コンテナー **(3)** を選択して **top-products** フォルダー **(4)** を開きます。任意の Parquet ファイル **(5)** を右クリックし、「**新しいノートブック**」 メニュー項目 **(6)** を選択してから 「**DataFrame に読み込む」 (7)** を選択します。フォルダーが表示されない場合は、上にある `Refresh` を選択します。
 
     ![Parquet ファイルと新しいノートブックのオプションが強調表示されています。](media/synapse-studio-top-products-folder.png "New notebook")
 
@@ -390,7 +390,7 @@ Tailwind Traders は Synapse Analytics でマッピング データ フローを
     %%sql
 
     CREATE OR REPLACE TEMPORARY VIEW top_5_products
-    _AS
+    AS
         select UserId, ProductId, ItemsPurchasedLast12Months
         from (select *,
                     row_number() over (partition by UserId order by ItemsPurchasedLast12Months desc) as seqnum
@@ -400,7 +400,7 @@ Tailwind Traders は Synapse Analytics でマッピング データ フローを
         order by a.UserId
     ```
 
-    *上記のクエリの出力はない点に留意してください。*クエリでは `top_purchases` 一時的ビューをソースとして使用し、`row_number() over` メソッドを適用して、`ItemsPurchasedLast12Months` が最大の記録の行番号を各ユーザーに適用します。`where` 句が結果をフィルタリングするので、`IsTopProduct` と `IsPreferredProduct` が true に設定されている製品を最大 5 個まで取得できます。このため、各ユーザーが最も多く購入した上位 5 つの製品が表示されます。これらの製品は、Azure Cosmos DB に格納されているユーザー プロファイルに基づき、お気に入りの製品として_も_識別されています。
+    *上記のクエリの出力はない点に留意してください*。クエリでは `top_purchases` 一時的ビューをソースとして使用し、`row_number() over` メソッドを適用して、`ItemsPurchasedLast12Months` が最大の記録の行番号を各ユーザーに適用します。`where` 句が結果をフィルタリングするので、`IsTopProduct` と `IsPreferredProduct` が true に設定されている製品を最大 5 個まで取得できます。このため、各ユーザーが最も多く購入した上位 5 つの製品が表示されます。これらの製品は、Azure Cosmos DB に格納されているユーザー プロファイルに基づき、お気に入りの製品として*も*識別されています。
 
 10. 新しいセルで以下を実行し、前のセルで作成した `top_5_products` 一時ビューの結果が格納されている新しい DataFrame を作成して表示します。
 
@@ -459,7 +459,7 @@ Tailwind Traders は Synapse Analytics でマッピング データ フローを
 
     ランダム GUID を生成するため、Spark に付随している `uuid` ライブラリを使用しています。パイプラインでパスされたパラメーターを使って `runId` 変数をオーバーライドする計画です。このため、これをパラメーター セルとしてトグルする必要があります。
 
-14. セルの上でアクション省略記号 **(...)** を選択し**(1)**、「**パラメーター セルのトグル**」 (2) を選択します。
+14. セルの上でアクション省略記号 **(...)** を選択し **(1)**、「**パラメーター セルのトグル」 (2)** を選択します。
 
     ![メニュー項目が強調表示されます。](media/toggle-parameter-cell.png "Toggle parameter cell")
 
@@ -499,11 +499,11 @@ Tailwind Traders は、調整プロセスの一環としてマッピング デ�
 
     ![プロパティ ブレードが表示されます。](media/notebook-top-products-top-5-preferred-properties.png "Properties")
 
-2. ノートブックの右上コーナーで 「**パイプラインに追加**」 ボタン **(1)** を選択してから 「**既存のパイプライン**」 (2) を選択します。
+2. ノートブックの右上コーナーで 「**パイプラインに追加**」 ボタン **(1)** を選択してから 「**既存のパイプライン」 (2)** を選択します。
 
     ![「パイプラインに追加」 ボタンが強調表示されています。](media/add-to-pipeline.png "Add to pipeline")
 
-3. 「**ユーザー プロファイルからデータレイク**」 パイプライン **(1)** を選択し、「**追加**」 (2) を選択します。
+3. 「**ユーザー プロファイルからデータレイク**」 パイプライン **(1)** を選択し、「**追加」 (2)** を選択します。
 
     ![パイプラインが選択されています。](media/add-to-pipeline-selection.png "Add to pipeline")
 
@@ -513,11 +513,11 @@ Tailwind Traders は、調整プロセスの一環としてマッピング デ�
 
     成功アクティビティの矢印は、データ フロー アクティビティの実行が成功した後にノートブック アクティビティを実行するようパイプラインに指示します。
 
-5. 「**ノートブック アクティビティ**」 (1) を選択し、「**設定**」 タブ **(2)** を選択して 「**ベース パラメーター**」 (3) を展開し、「**+ 新規**」 (4) を選択します。「**名前**」 フィールド **(5)** に **`runId`** と入力します。「**種類**」 (6) で 「**文字列**」 を選択します。「**値**」 で 「**動的コンテンツを追加**」 (7) を選択します。
+5. 「**ノートブック アクティビティ」 (1)** を選択し、「**設定**」 タブ **(2)** を選択して 「**ベース パラメーター」 (3)** を展開し、「**+ 新規」 (4)** を選択します。「**名前**」 フィールド **(5)** に **`runId`** と入力します。「**種類」 (6)** で 「**文字列**」 を選択します。「**値**」 で 「**動的コンテンツを追加」 (7)** を選択します。
 
     ![設定が表示されます。](media/notebook-activity-settings.png "Settings")
 
-6. 「**システム変数**」 で 「**パイプライン実行 ID**」 (1) を選択します。これにより `@pipeline().RunId` が動的コンテンツ ボックス **(2)** に追加されます。「**終了**］ （3） を選択してダイアログを閉じます。
+6. 「**システム変数**」 で 「**パイプライン実行 ID」 (1)** を選択します。これにより `@pipeline().RunId` が動的コンテンツ ボックス **(2)** に追加されます。「**終了］ （3）** を選択してダイアログを閉じます。
 
     ![動的コンテンツ フォームが表示されています。](media/add-dynamic-content.png "Add dynamic content")
 
@@ -527,7 +527,7 @@ Tailwind Traders は、調整プロセスの一環としてマッピング デ�
 
     ![「すべて公開」 が強調表示されています。](media/publish-all-1.png "Publish all")
 
-8. **オプション - 現在、パイプライン実行には 10 分以上かかります -** 公開の完了後、「**トリガーの追加**」 (1) を選択してから 「**今すぐトリガー**」 (2) を選択し、更新されたパイプラインを実行します。
+8. **オプション - 現在、パイプライン実行には 10 分以上かかります -** 公開の完了後、「**トリガーの追加」 (1)** を選択してから 「**今すぐトリガー」 (2)** を選択し、更新されたパイプラインを実行します。
 
     ![トリガー メニュー項目が強調表示されています。](media/trigger-updated-pipeline.png "Trigger pipeline")
 
@@ -539,7 +539,7 @@ Tailwind Traders は、調整プロセスの一環としてマッピング デ�
 
     ![監視ハブ メニュー項目が選択されています。](media/monitor-hub.png "Monitor hub")
 
-11. 「**パイプライン実行**」 (1) を選択し、パイプラインの実行が完了するのを待ちます **(2)**。場合によっては、ビューを更新する必要があります **(3)**。
+11. 「**パイプライン実行」 (1)** を選択し、パイプラインの実行が完了するのを待ちます **(2)**。場合によっては、ビューを更新する必要があります **(3)**。
 
     ![パイプライン実行は成功しました。](media/pipeline-user-profiles-updated-run-complete.png "Pipeline runs")
 

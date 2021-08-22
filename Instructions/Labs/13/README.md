@@ -27,6 +27,8 @@
     - [タスク 1 - 列 レベルのセキュリティ](#task-1---column-level-security)
     - [タスク 2 - 行レベルのセキュリティ](#task-2---row-level-security)
     - [タスク 3 - 動的データ マスク](#task-3---dynamic-data-masking)
+  - [演習 4: クリーンアップ](#exercise-4-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
   - [照会](#reference)
   - [その他のリソース](#other-resources)
 
@@ -59,7 +61,7 @@
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -84,7 +86,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」 (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -194,7 +196,7 @@ Azure Key Vault はリンク サービスとして設定されているため、
 
 8. **Web1** Web アクティビティを選択し、「**設定**」 タブを選択します。以下のようにフォームに入力します。
 
-    1. **URL**: 上記の手順 4 でコピーしたキー コンテナー シークレット ID を貼り付け、`?api-version=7.0` をこの値の最後に**追加**します。たとえば、次のようになります。`https://asakeyvaultNNNNN.vault.azure.net/secrets/PipelineSecret/f808d4fa99d84861872010f6c8d25c68?api-version=7.0`
+    1. **URL**: 上記の手順 4 でコピーしたキー コンテナー シークレット ID を貼り付け、`?api-version=7.1` をこの値の最後に**追加**します。たとえば、次のようになります。`https://asakeyvaultNNNNN.vault.azure.net/secrets/PipelineSecret/f808d4fa99d84861872010f6c8d25c68?api-version=7.1`
   
     2. **メソッド**: 「**Get**」 を選択します。
 
@@ -307,6 +309,26 @@ Transparent Data Encryption (TDE) は SQL サーバーの機能で、保存中�
    ![Synapse Studio ツールバーが表示され、実行ボタンが選択されています。](media/lab5_synapsestudioqueryruntoolbarmenu.png)
 
 5. これで 「スクリプト」 タブを閉じることができます。プロンプトで指示されたら 「**すべての変更を破棄**」 を選択します。
+
+## 演習 4: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
 
 ## 照会
 

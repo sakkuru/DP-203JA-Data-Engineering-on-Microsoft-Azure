@@ -31,12 +31,14 @@
   - [演習 5 - 膨大なログを回避する](#exercise-5---avoid-extensive-logging)
     - [タスク 1 - 最小ログ記録操作のルールを確認する](#task-1---explore-rules-for-minimally-logged-operations)
     - [タスク 2 - 削除操作を最適化する](#task-2---optimizing-a-delete-operation)
+  - [演習 6: クリーンアップ](#exercise-6-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
 ## ラボの構成と前提条件
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -61,7 +63,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」 (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -81,7 +83,7 @@
 
     ![開発ハブが強調表示されています。](media/develop-hub.png "Develop hub")
 
-3. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+3. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -197,9 +199,9 @@
 
     ```sql
     CREATE VIEW [wwi_perf].[vTableSizes]
-    _AS
+    AS
     WITH base
-    _AS
+    AS
     (
     SELECT
         GETDATE()                                                              AS  [execution_time]
@@ -259,7 +261,7 @@
     WHERE pn.[type] = 'COMPUTE'
     )
     , size
-    _AS
+    AS
     (
     SELECT
     [execution_time]
@@ -304,7 +306,7 @@
     FROM base
     )
     SELECT *
-    FROM サイズ
+    FROM size
     ```
 
     時間をとって上記のスクリプトを分析してください。すでに以前のラボでいくつかテーブルを使用しています。ここでは、テーブルと、クエリに関わる DMV を簡単に説明します。
@@ -323,7 +325,7 @@
     sys.dm_pdw_nodes | SQL プールからのノードに関する情報を保持します。コンピューティング ノードのみを含むようフィルタリングします (`type` = `COMPUTE`)。
     sys.dm_pdw_nodes_db_partition_stats | 現在のデータベースのすべてのパーティションに関するページ数または行数の情報を返します。
 
-2. 以下のスクリプトを実行し、`wwi_perf` スキーマのテーブルおよび `「wwi_poc」.「Sale」` テーブル (`Sale_Hash` テーブルのソースとして使用) の構造に関する詳細を表示します。
+2. 以下のスクリプトを実行し、`wwi_perf` スキーマのテーブルおよび `[wwi_poc].[Sale]` テーブル (`Sale_Hash` テーブルのソースとして使用) の構造に関する詳細を表示します。
 
     ```sql
     SELECT
@@ -463,7 +465,7 @@ WITH
 	DISTRIBUTION = HASH ( [CustomerId] ),
 	HEAP
 )
-_AS
+AS
 SELECT
 	[CustomerId]
 	,[ProductId]
@@ -477,7 +479,7 @@ WITH
 	DISTRIBUTION = HASH ( [CustomerId] ),
 	CLUSTERED COLUMNSTORE INDEX
 )
-_AS
+AS
 SELECT
 	[CustomerId]
 	,[ProductId]
@@ -499,7 +501,7 @@ WITH
 	DISTRIBUTION = HASH ( [CustomerId] ),
 	HEAP
 )
-_AS
+AS
 SELECT
 	[CustomerId]
 	,CAST([ProductId] as bigint) as [ProductId]
@@ -513,7 +515,7 @@ WITH
 	DISTRIBUTION = HASH ( [CustomerId] ),
 	CLUSTERED COLUMNSTORE INDEX
 )
-_AS
+AS
 SELECT
 	[CustomerId]
 	,CAST([ProductId] as bigint) as [ProductId]
@@ -571,11 +573,9 @@ FROM
 
 3. 結果の分析:
 
-    ![データ型の選択はテーブルのストレージに影響](./media/lab4_data_type_selection.png)
-
-    行数が少ない場合 (3 億 4000 万行程度)、`BIGINT` 列のタイプと `SMALLINT` および `TINYINT` の間では領域に差があることがわかります。
+    行数が少ない場合 (3 億 4000 万行程度)、`BIGINT` 列のタイプと `SMALLINT` および `TINYINT` の間では領域に差があります。
     
-    29 億行を読み込んだ後、この同じクエリを実行した結果はさらに明確でした。ここで導くことのできる重要な結論が 2 つあります。
+    このラボの外では、実験として、29 億行を読み込んだ後、この同じクエリを実行した結果はさらに明確でした。実験から集められた 2 つの重要な結論は次のとおりです。
 
     - `HEAP` テーブルの場合、 `SMALLINT` (`ProductId` 用) と `TINYINT` (`QUANTITY` 用) の代わりに `BIGINT` を使用した際のストレージへの影響は 1 GB 近くになりました (0.8941 GB)。ここでは 2 列と比較的少数の行 (29 億行) しか使用していません。
     - `CLUSTERED COLUMNSTORE` テーブルで圧縮が差の一部を相殺した場合でも、また、12.7 MB の差がありました。
@@ -801,7 +801,7 @@ FROM
     (
         DISTRIBUTION = HASH([CustomerId])
     )
-    _AS
+    AS
     SELECT
         CustomerId
         ,COUNT(*) AS ItemsCount
@@ -1006,7 +1006,7 @@ CTAS と INSERT...SELECT は、どちらも一括読み込み操作です。た�
         DISTRIBUTION = ROUND_ROBIN,
         HEAP
     )
-    _AS
+    AS
     SELECT
         *
     FROM
@@ -1015,7 +1015,7 @@ CTAS と INSERT...SELECT は、どちらも一括読み込み操作です。た�
         CustomerId >= 900000
     ```
 
-    このクエリは、約 90 秒で実行できるはずです。プロセスで残っているのは、`Sale_Heap` テーブルを削除して、`Sale_Heap_v2` の名前を `Sale_Heap` に変更することだけです。
+    このクエリは、約 90 秒で実行できるはずです。プロセスで残っているのは、最初に元の `Sale_Hash` テーブルを削除し、`Sale_Hash_v2` の名前を `Sale_Hash` に変更することだけです。
 
 3. 前の操作を従来の削除に比較してください。
 
@@ -1029,3 +1029,23 @@ CTAS と INSERT...SELECT は、どちらも一括読み込み操作です。た�
     >**注**
     >
     >クエリの実行には長時間かかります (12 分超)。前の CTAS クエリの実行時間を大幅に超過する場合はキャンセルできます (すでに CTAS ベースのアプローチに利点は把握できています)。
+
+## 演習 6: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

@@ -24,12 +24,14 @@
   - [演習 2: Azure Synapse パイプラインを使用してペタバイト規模のインジェストを行う](#exercise-2-petabyte-scale-ingestion-with-azure-synapse-pipelines)
     - [タスク 1: ワークロード管理分類を構成する](#task-1-configure-workload-management-classification)
     - [タスク 2: コピー アクティビティを含むパイプラインを作成する](#task-2-create-pipeline-with-copy-activity)
+  - [演習 3クリーンアップ](#exercise-3-cleanup)
+    - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
 ## ラボの構成と前提条件
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -54,7 +56,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」 (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -224,7 +226,7 @@ PolyBase では以下の要素が必要です。
         )
     WITH
         (
-            LOCATION = '/sale-small%2FYear%3D2019',  
+            LOCATION = '/sale-small/Year=2019',  
             DATA_SOURCE = ABSS,
             FILE_FORMAT = [ParquetFormat]  
         )  
@@ -244,6 +246,11 @@ PolyBase では以下の要素が必要です。
     ```
 
     > これを実行している間に、ラボの手順の残りを読み、内容をよく理解しておいてください。
+6. クエリ ウィンドウで、スクリプトを以下に置き換えて、インポートされた行数を確認します。
+
+    ```sql
+    SELECT COUNT(1) FROM wwi_staging.SaleHeap(nolock)
+    ```
 
 ### タスク 3: COPY ステートメントを設定して実行する
 
@@ -257,7 +264,7 @@ PolyBase では以下の要素が必要です。
 
     -- Replace <PrimaryStorage> with the workspace default storage account name.
     COPY INTO wwi_staging.SaleHeap
-    FROM 'https://asadatalakeSUFFIX.dfs.core.windows.net/wwi-02/sale-small%2FYear%3D2019'
+    FROM 'https://asadatalakeSUFFIX.dfs.core.windows.net/wwi-02/sale-small/Year=2019'
     WITH (
         FILE_TYPE = 'PARQUET',
         COMPRESSION = 'SNAPPY'
@@ -288,7 +295,7 @@ PolyBase では以下の要素が必要です。
     ```sql
     -- Replace SUFFIX with the workspace default storage account name.
     COPY INTO wwi_staging.Sale
-    FROM 'https://asadatalakeSUFFIX.dfs.core.windows.net/wwi-02/sale-small%2FYear%3D2019'
+    FROM 'https://asadatalakeSUFFIX.dfs.core.windows.net/wwi-02/sale-small/Year=2019'
     WITH (
         FILE_TYPE = 'PARQUET',
         COMPRESSION = 'SNAPPY'
@@ -303,7 +310,7 @@ PolyBase では以下の要素が必要です。
 PolyBase vs. COPY (DW500) *(2019 年の小規模なデータ セット (339,507,246 行) を挿入)*:
 
 - COPY (Heap:  **5:08**、クラスター化列ストア: **6:52**)
-- PolyBase (Heap:  **5:59**)
+- PolyBase (Heap: **5:59**)
 
 ### タスク 5: COPY を使用して非標準行区切りでテキスト ファイルを読み込む
 
@@ -494,7 +501,7 @@ Tailwind Traders は大量の売上データをデータ ウェアハウスに�
 
     ![「統合ハブが強調表示されています。](media/integrate-hub.png "Integrate hub")
 
-2. **+ (1)** を選択してから 「**パイプライン**」 (2) を選択して新しいパイプラインを作成します。
+2. **+ (1)** を選択してから 「**パイプライン」 (2)** を選択して新しいパイプラインを作成します。
 
     ![新しいパイプライン コンテキスト メニュー項目が選択されています。](media/new-pipeline.png "New pipeline")
 
@@ -514,39 +521,39 @@ Tailwind Traders は大量の売上データをデータ ウェアハウスに�
 
     ![新規ボタンが強調表示されています。](media/pipeline-copy-sales-source-new.png "Source tab")
 
-7. 「**Azure Data Lake Storage Gen2**」 データ ストア **(1)** を選択してから 「**続行**」 (2) を選択します。
+7. 「**Azure Data Lake Storage Gen2**」 データ ストア **(1)** を選択してから 「**続行」 (2)** を選択します。
 
     ![ADLS Gen2 が選択されています。](media/new-dataset-adlsgen2.png "New dataset")
 
-8. 「**Parquet**」 形式 **(1)** を選び、「**続行**」 (2) を選択します。
+8. 「**Parquet**」 形式 **(1)** を選び、「**続行」 (2)** を選択します。
 
     ![Parquet 形式が強調表示されています。](media/new-dataset-adlsgen2-parquet.png "Select format")
 
-9. プロパティで名前を **asal400_december_sales (1)** に設定し、**asadatalakeNNNNNN** リンク サービス **(2)** を選択します。**`wwi-02/campaign-analytics/sale-20161230-snappy.parquet`** ファイルの場所 **(3)** を参照し、スキーマのインポート向けに 「**サンプル ファイルから**」 (4) を選択します。お使いになっているコンピューターに「このサンプル ファイルをダウンロード」(sale-small-20100102-snappy.parquet?raw=true)して、「**ファイルの選択**」 フィールド **(5)** でこれを参照します。「**OK**」を選択します (6)。
+9. プロパティで名前を **asal400_december_sales (1)** に設定し、**asadatalakeNNNNNN** リンク サービス **(2)** を選択します。**`wwi-02/campaign-analytics/sale-20161230-snappy.parquet`** ファイルの場所 **(3)** を参照し、スキーマのインポート向けに 「**サンプル ファイルから」 (4)** を選択します。お使いになっているコンピューターに「このサンプル ファイルをダウンロード」(sale-small-20100102-snappy.parquet?raw=true)して、「**ファイルの選択**」 フィールド **(5)** でこれを参照します。「**OK**」を選択します **(6)**。
 
     ![プロパティが表示されます。](media/pipeline-copy-sales-source-dataset.png "Dataset properties")
 
     まったく同じスキーマが含まれていて、サイズがはるかに小さいサンプル Parquet ファイルをダウンロードしました。これは、コピーするファイルが、コピー アクティビティ ソース設定で自動的にスキーマを推論するには大きすぎるためです。
 
-10. 「**シンク**」 タブ **(1)** を選択した後、`Sink dataset` の隣で 「**+ 新規**」 (2) を選択します。
+10. 「**シンク**」 タブ **(1)** を選択した後、`Sink dataset` の隣で 「**+ 新規」 (2)** を選択します。
 
     ![新規ボタンが強調表示されています。](media/pipeline-copy-sales-sink-new.png "Sink tab")
 
-11. 「**Azure Synapse Analytics**」 データ ストア **(1)** を選択してから 「**続行**」 (2) を選択します。
+11. 「**Azure Synapse Analytics**」 データ ストア **(1)** を選択してから 「**続行」 (2)** を選択します。
 
     ![Azure Synapse Analytics が選択されています。](media/new-dataset-asa.png "New dataset")
 
-12. プロパティで名前を **`asal400_saleheap_asa` (1)** に設定し、`asa.sql.import01` で Synapse Analytics に接続する **sqlpool01_import01** リンク サービス **(2)** を選択します。テーブル名については、テーブル名ドロップダウンをスクロールし、**wwi_perf.Sale_Heap** テーブル **(3)** を選択してから 「**OK**」 (4) を選択します。
+12. プロパティで名前を **`asal400_saleheap_asa` (1)** に設定し、`asa.sql.import01` で Synapse Analytics に接続する **sqlpool01_import01** リンク サービス **(2)** を選択します。テーブル名については、テーブル名ドロップダウンをスクロールし、**wwi_perf.Sale_Heap** テーブル **(3)** を選択してから 「**OK」 (4)** を選択します。
 
     ![プロパティが表示されます。](media/pipeline-copy-sales-sink-dataset.png "Dataset properties")
 
-13. 「**シンク**」 タブで 「**Copy コマンド**」 (1) のコピー メソッドを選択し、コピー前のスクリプトに以下を入力して、インポート前にテーブルをクリアします:  **`TRUNCATE TABLE wwi_perf.Sale_Heap` (2)**。
+13. 「**シンク**」 タブで 「**Copy コマンド」 (1)** のコピー メソッドを選択し、コピー前のスクリプトに以下を入力して、インポート前にテーブルをクリアします:  **`TRUNCATE TABLE wwi_perf.Sale_Heap` (2)**。
 
     ![説明された設定が表示されます。](media/pipeline-copy-sales-sink-settings.png "Sink")
 
     最速で最もスケーラブルなデータの読み込み方法は、PolyBase または COPY ステートメント **(1)** を使用することです。COPY ステートメントは、スループットの高いデータを SQL プールに取り込む最も柔軟性の高い方法です。
 
-14. 「**マッピング**」 タブ **(1)** を選択してから 「**スキーマのインポート**」 (2) を選択肢、各ソースおよび宛先フィールドのマッピングを作成します。ソース列で **`TransactionDate`** **(3)** を選択し、`TransactionDateId` 宛先列にマッピングします。
+14. 「**マッピング**」 タブ **(1)** を選択してから 「**スキーマのインポート」 (2)** を選択肢、各ソースおよび宛先フィールドのマッピングを作成します。ソース列で **`TransactionDate`** **(3)** を選択し、`TransactionDateId` 宛先列にマッピングします。
 
     ![マッピングが表示されます。](media/pipeline-copy-sales-sink-mapping.png "Mapping")
 
@@ -558,7 +565,7 @@ Tailwind Traders は大量の売上データをデータ ウェアハウスに�
 
     ![「すべて公開」 が強調表示されています。](media/publish-all-1.png "Publish all")
 
-17. 「**トリガーの追加**」 (1) が選択してから、「**今すぐトリガー**」 (2) を選択します。パイプライン実行トリガーで 「**OK**」 を選択して開始します。
+17. 「**トリガーの追加」 (1)** が選択してから、「**今すぐトリガー」 (2)** を選択します。パイプライン実行トリガーで 「**OK**」 を選択して開始します。
 
     ![今すぐトリガー](media/copy-pipeline-trigger-now.png "Trigger now")
 
@@ -566,6 +573,26 @@ Tailwind Traders は大量の売上データをデータ ウェアハウスに�
 
     ![監視ハブ メニュー項目が選択されています。](media/monitor-hub.png "Monitor hub")
 
-19. 「**パイプラインの実行**」 (1) を選択します。パイプライン実行のステータスはここで確認できます **(2)**。ビューを更新する必要があるかもしれません **(3)**。パイプライン実行が完了したら、`wwi_perf.Sale_Heap` テーブルのクエリを行い、インポートされたデータを表示できます。
+19. 「**パイプラインの実行」 (1)** を選択します。パイプライン実行のステータスはここで確認できます **(2)**。ビューを更新する必要があるかもしれません **(3)**。パイプライン実行が完了したら、`wwi_perf.Sale_Heap` テーブルのクエリを行い、インポートされたデータを表示できます。
 
     ![パイプライン実行の完了が表示されています。](media/pipeline-copy-sales-pipeline-run.png "Pipeline runs")
+
+## 演習 3: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

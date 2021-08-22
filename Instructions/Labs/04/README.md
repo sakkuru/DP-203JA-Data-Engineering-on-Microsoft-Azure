@@ -35,7 +35,7 @@ Tailwind Trader 社のデータ エンジニアは、データ　レイクを探
 
 新しい Azure Active Directory セキュリティ　グループを作成してメンバーを割り当てる許可が必要です。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -66,7 +66,7 @@ Azure Synapse Analytics では、SQL、Apache Spark for Synapse、またはそ�
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231` フォルダー **(4)** に移動します。`Sale-small-20161231-snappy.parquet` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト**」 (6) を選択してから 「**上位 100 行を選択**」 (7) を選びます。
+2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231` フォルダー **(4)** に移動します。`Sale-small-20161231-snappy.parquet` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト」 (6)** を選択してから 「**上位 100 行を選択」 (7)** を選びます。
 
     ![オプションが強調表示されたデータ ハブが表示されています。](media/data-hub-parquet-select-rows.png "Select TOP 100 rows")
 
@@ -95,7 +95,7 @@ Azure Synapse Analytics では、SQL、Apache Spark for Synapse、またはそ�
 
     ![上記の T-SQL クエリがクエリ ウィンドウ内に表示されます。](media/sql-serverless-aggregates.png "Query window")
 
-5. この 2016 年の単一ファイルから、より新しいデータ セットに移行しましょう。2019 年のあらゆるデータで Parquet ファイルに記録がいくつ含まれているのか調べます。この情報は、データを Azure Synapse Analytics にインポートするための最適化を計画する上で重要です。このために、クエリを以下に置き換えます (必ず `「asadatalakeSUFFIX」` を置き換えて BULK ステートメントのデータ レイクの名前を更新してください):
+5. この 2016 年の単一ファイルから、より新しいデータ セットに移行しましょう。2019 年のあらゆるデータで Parquet ファイルに記録がいくつ含まれているのか調べます。この情報は、データを Azure Synapse Analytics にインポートするための最適化を計画する上で重要です。このために、クエリを以下に置き換えます (必ず `[asadatalakeSUFFIX]` を置き換えて BULK ステートメントのデータ レイクの名前を更新してください):
 
     ```sql
     SELECT
@@ -119,11 +119,11 @@ Parquet ファイルのクエリを行うたびに `OPENROWSET` のスクリプ�
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2019/Quarter=Q1/Month=1/Day=20190101` フォルダー **(4)** に移動します。`Sale-small-20190101-snappy.parquet` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト**」 を選択してから 「**外部テーブルの作成**」 (7) を選択します。
+2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2019/Quarter=Q1/Month=1/Day=20190101` フォルダー **(4)** に移動します。`Sale-small-20190101-snappy.parquet` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト」 (6)** を選択してから 「**外部テーブルの作成」 (7)** を選択します。
 
     ![外部リンクの作成が強調表示されています。](media/create-external-table.png "Create external table")
 
-3. **SQL プール (1)** で **`Built-in`** が選択されていることを確認します。「**データベースの選択**」 で 「**+ 新規**」 を選択して `demo` と入力します **(2)**。**外部テーブル名**として `All2019Sales` と入力します **(3)**。「**外部テーブルの作成**」 で 「**SQL スクリプトを使用**」 (4) を選択してから 「**作成**」 (5) を選択します。
+3. **SQL プール (1)** で **`Built-in`** が選択されていることを確認します。「**データベースの選択**」 で 「**+ 新規**」 を選択して `demo` と入力します **(2)**。**外部テーブル名**として `All2019Sales` と入力します **(3)**。「**外部テーブルの作成**」 で 「**SQL スクリプトを使用」 (4)** を選択してから 「**作成」 (5)** を選択します。
 
     ![外部テーブルの作成フォームが表示されます。](media/create-external-table-form.png "Create external table")
 
@@ -256,7 +256,7 @@ SQL クエリをラップするビューを作成してみましょう。ビュ�
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`Customer-info` フォルダー **(4)** に移動します。`Customerinfo.csv` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト**」 (6) を選択してから 「**上位 100 行を選択**」 を選びます。
+2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`Customer-info` フォルダー **(4)** に移動します。`Customerinfo.csv` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト」 (6)** を選択してから 「**上位 100 行を選択」 (7)** を選びます。
 
     ![オプションが強調表示されたデータ ハブが表示されています。](media/customerinfo-select-rows.png "Select TOP 100 rows")
 
@@ -300,7 +300,7 @@ SQL クエリをラップするビューを作成してみましょう。ビュ�
 
     最初の行には列のヘッダーが含まれていません。これは、ビューの作成時に `OPENROWSET` ステートメントで `FIRSTROW=2` 設定を使用したためです。
 
-6. 「**データ**」 ハブ内で 「**ワークスペース**」 タブ **(1)** を選択します。データベース グループ **(2)** の右にあるアクションの省略記号 **(...)** を選択してから、「**更新**」 を選択します (3)。
+6. 「**データ**」 ハブ内で 「**ワークスペース**」 タブ **(1)** を選択します。データベース グループ **(2)** の右にあるアクションの省略記号 **(...)** を選択してから、「**更新**」 を選択します **(3)**。
 
     ![「更新」 ボタンが強調表示されています。](media/refresh-databases.png "Refresh databases")
 
@@ -385,7 +385,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 1. 新しく作成された **`tailwind-readers-<suffix>`** グループを開きます。
 
-2. 左側で 「**メンバー**」 (1) を選択してから 「**+ メンバーの追加**」 (2) を選択します。
+2. 左側で 「**メンバー**」 (1) を選択してから 「**+ メンバーの追加」 (2)** を選択します。
 
     ![グループが表示され、「メンバーの追加」 が強調表示されています。](media/tailwind-readers.png "tailwind-readers group")
 
@@ -395,7 +395,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 4. **`Tailwind-2019-writers-<suffix>`** グループを開きます。
 
-5. 左側で 「**メンバー**」 (1) を選択してから 「**+ メンバーの追加**」 (2) を選択します。
+5. 左側で 「**メンバー**」 (1) を選択してから 「**+ メンバーの追加」 (2)** を選択します。
 
     ![グループが表示され、「メンバーの追加」 が強調表示されています。](media/tailwind-2019-writers.png "tailwind-2019-writers group")
 
@@ -447,7 +447,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     Tailwind Traders は、あらゆる履歴データを修正する許可のあるユーザー セキュリティ プリンシパルを `tailwind-history-owners-<suffix>` セキュリティ グループに追加する必要があります。
 
-9. ストレージ アカウントの 「**アクセス制御 (IAM)**」 リストの 「**Storage Blob Data Owner**」 のロール **(1)** で Azure ユーザー アカウントを選択してから 「**削除**」 (2) を選択します。
+9. ストレージ アカウントの 「**アクセス制御 (IAM)**」 リストの 「**Storage Blob Data Owner**」 のロール **(1)** で Azure ユーザー アカウントを選択してから 「**削除」 (2)** を選択します。
 
     ![アクセス制御設定が表示されます。](media/storage-access-control-updated.png "Access Control updated")
 
@@ -457,7 +457,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 ### タスク 4: データ レイクのセキュリティを構成する - アクセス制御リスト (ACL)
 
-1. 左側のメニューで 「**ストレージ エクスプローラー (プレビュー)**」 を選択します**(1)**。CONTAINERS を展開し、**wwi-02** コンテナー **(2)** を選択します。**Sale-small** フォルダー **(3)** を開き、**Year=2019** フォルダー **(4)** を右クリックしてから、「**アクセスの管理..**」 ** (5)** を選択します。
+1. 左側のメニューで 「**ストレージ エクスプローラー (プレビュー)**」 を選択します **(1)**。CONTAINERS を展開し、**wwi-02** コンテナー **(2)** を選択します。**Sale-small** フォルダー **(3)** を開き、**Year=2019** フォルダー **(4)** を右クリックしてから、「**アクセスの管理..」 (5)** を選択します。
 
     ![2019 フォルダーが強調表示され、「アクセスの管理」 が選択されています。](media/manage-access-2019.png "Storage Explorer")
 
@@ -471,9 +471,9 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     これで、`tailwind-2019-writers-<suffix>` グループを使用して、`tailwind-current-<suffix>` セキュリティ グループに追加されたユーザーが `Year=2019` フォルダーに書き込めるようにセキュリティ ACL が設定されました。これらのユーザーは現在 (この場合は 2019 年) の売上ファイルのみを管理できます。
 
-    翌年度の始めに、2019 年度のデータへの書き込みアクセスを無効にするには、`tailwind-current-writers-<suffix>` セキュリティ グループを `tailwind-2019-writers-<suffix>` グループから削除します。`Tailwind-readers-<suffix>` のメンバーは引き続きファイル システムのコンテンツを読み取れます。ACL ではなく、ファイル システム レベルで RBAC 組み込みロールによって読み取り・実行 (リスト) 許可を与えられているためです。
+    翌年度の始めに、2019 年度のデータへの書き込みアクセスを無効にするには、`tailwind-current-writers-<suffix>` セキュリティ グループを `tailwind-2019-writers-<suffix>` グループから削除します。`tailwind-readers-<suffix>` のメンバーは引き続きファイル システムのコンテンツを読み取れます。ACL ではなく、ファイル システム レベルで RBAC 組み込みロールによって読み取り・実行 (リスト) 許可を与えられているためです。
 
-    この構成では、_アクセス_ ACL と_既定_ ACL を両方とも設定しました。
+    この構成では、*アクセス* ACL と*既定* ACL を両方とも設定しました。
 
     *アクセス* ACL はオブジェクトへのアクセスを制御します。ファイルとディレクトリの両方にアクセス ACL があります。
 
@@ -487,7 +487,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231` フォルダー **(4)** に移動します。`Sale-small-20161231-snappy.parquet` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト**」 (6) を選択してから 「**上位 100 行を選択**」 (7) を選びます。
+2. 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231` フォルダー **(4)** に移動します。`Sale-small-20161231-snappy.parquet` ファイル **(5)** を右クリックし、「**新しい SQL スクリプト」 (6)** を選択してから 「**上位 100 行を選択」 (7)** を選びます。
 
     ![オプションが強調表示されたデータ ハブが表示されています。](media/data-hub-parquet-select-rows.png "Select TOP 100 rows")
 
@@ -505,7 +505,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     試しにやってみましょう。
 
-4. 「**データ**」 ハブで再び 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231` フォルダー **(4)** に移動します。`sale-small-20161231-snappy.parquet` ファイル **(5)** を右クリックし、「**新しいノートブック**」 (6) を選択してから 「**DataFrame に読み込む**」 (7) を選びます。
+4. 「**データ**」 ハブで再び 「**リンク**」 タブ **(1)** を選択して **Azure Data Lake Storage Gen2** を展開します。`asaworkspaceXX` プライマリ ADLS Gen2 アカウント **(2)** を展開し、**`wwi-02`** コンテナー **(3)** を選択します。`sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231` フォルダー **(4)** に移動します。`sale-small-20161231-snappy.parquet` ファイル **(5)** を右クリックし、「**新しいノートブック」 (6)** を選択してから 「**DataFrame に読み込む」 (7)** を選びます。
 
     ![オプションが強調表示されたデータ ハブが表示されます。](media/data-hub-parquet-new-notebook.png "New notebook")
 
@@ -545,7 +545,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![Tailwind グループが表示されます。](media/tailwind-groups.png "All groups")
 
-13. 左側で 「**メンバー**」 (1) を選択してから 「**+ メンバーの追加**」 (2) を選択します。
+13. 左側で 「**メンバー」 (1)** を選択してから 「**+ メンバーの追加」 (2)** を選択します。
 
     ![グループが表示され、「メンバーの追加」 が強調表示されています。](media/tailwind-history-owners.png "tailwind-history-owners group")
 
@@ -553,13 +553,13 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![フォームが表示されます。](media/add-members.png "Add members")
 
-15. Sunapse Studio で開いたままにしておいた Synapse ノートブックに戻り、セル 　2 をもう一度**実行**します **(1)**。しばらくすると、「**成功**」 (2) というステータスが表示されるはずです。
+15. Synapse Studio で開いたままにしておいた Synapse ノートブックに戻り、セル 　2 をもう一度**実行**します **(1)**。しばらくすると、「**成功」 (2)** というステータスが表示されるはずです。
 
     ![セル 2 成功。](media/notebook-succeeded.png "Notebook")
 
     今回、セルが成功したのは、**Storage Blob Data Owner** のロールを割り当てられているアカウントを `tailwind-history-owners-<suffix>` グループに追加したためです。
 
-    > **注**: 今回も同じエラーが発生した場合は、ノートブックで** Spark セッションを中止**してから 「**すべて公開**」 を選択し、公開してください。変更の公開後、ページの右上コーナーでユーザー プロファイルを選択して**ログアウト**します。ログアウト後に**ブラウザー タブを閉じ**、Synapse Studio (<https://web.azuresynapse.net/>) を再起動してノートブックを再び開き、セルを再実行します。許可を変更するためにセキュリティ トークンを更新しなくてはならない場合に、この操作が必要になります。
+    > **注**: 今回も同じエラーが発生した場合は、ノートブックで **Spark セッションを中止**してから 「**すべて公開**」 を選択し、公開してください。変更の公開後、ページの右上コーナーでユーザー プロファイルを選択して**ログアウト**します。ログアウト後に**ブラウザー タブを閉じ**、Synapse Studio (<https://web.azuresynapse.net/>) を再起動してノートブックを再び開き、セルを再実行します。許可を変更するためにセキュリティ トークンを更新しなくてはならない場合に、この操作が必要になります。
 
     ファイルがデータ レイクに書き込まれているか確認してみましょう。
 

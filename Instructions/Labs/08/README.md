@@ -31,12 +31,14 @@
     - [演習 1: パイプラインを作成、トリガー、監視する](#exercise-1-create-trigger-and-monitor-pipeline)
       - [タスク 1: パイプラインを作成する](#task-1-create-pipeline)
       - [タスク 2: ユーザー プロファイル データ パイプラインをトリガー、監視、分析する](#task-2-trigger-monitor-and-analyze-the-user-profile-data-pipeline)
+    - [演習 2: クリーンアップ](#exercise-2-cleanup)
+      - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
 ## ラボの構成と前提条件
 
 > **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites` の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
-このモジュールの**[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了**してください。
+このモジュールの **[ラボの構成手順](https://github.com/solliancenet/microsoft-data-engineering-ilt-deploy/blob/main/setup/04/README.md)を完了** してください。
 
 以下のモジュールは、同じ環境を共有している点に留意してください。
 
@@ -61,7 +63,7 @@
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開」 (2)** を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
@@ -98,7 +100,7 @@ Tailwind Traders 社は、データ エンジニアリング タスクでコー�
 
     ![開発メニュー項目が強調表示されています。](media/develop-hub.png "Develop hub")
 
-2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト**」 (2) を選びます。
+2. 「**開発**」 メニューで **+** ボタン **(1)** を選択し、コンテキスト 　メニューから 「**SQL スクリプト」 (2)** を選びます。
 
     ![「SQL スクリプト」 コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "New SQL script")
 
@@ -167,7 +169,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![「管理」、「新規」、[Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
 
-3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成**」 (4) を選択します。
+3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成」 (4)** を選択します。
 
     ![新しい Azure Cosmos DB リンク サービス。](media/create-cosmos-db-linked-service.png "New linked service")
 
@@ -183,15 +185,15 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+2. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-3. リストから 「**Azure Cosmos DB (SQL API)**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+3. リストから 「**Azure Cosmos DB (SQL API)**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![Azure Cosmos DB SQL API オプションが強調表示されています。](media/new-cosmos-db-dataset.png "Integration dataset")
 
-4. 以下の特徴でデータセットを構成し、「**OK**」 (4) を選択します。
+4. 以下の特徴でデータセットを構成し、「**OK」 (4)** を選択します。
 
     - **名前**: `asal400_customerprofile_cosmosdb` **(1)** と入力します。
     - **リンク サービス**: Azure Cosmos DB リンク サービス **(2)** を選択します。
@@ -207,19 +209,19 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![Azure Cosmos DB データのプレビューが表示されます。](media/cosmos-db-dataset-preview-data.png "Preview data")
 
-7. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+7. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-8. リストから 「**Azure Data Lake Storage Gen2**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+8. リストから 「**Azure Data Lake Storage Gen2**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![ADLS Gen2 オプションが強調表示されています。](media/new-adls-dataset.png "Integration dataset")
 
-9. 「**JSON**」 形式 **(1)** を選び、「**続行**」 (2) を選択します。
+9. 「**JSON**」 形式 **(1)** を選び、「**続行」 (2)** を選択します。
 
     ![JSON 形式が選択されています。](media/json-format.png "Select format")
 
-10. 以下の特徴でデータセットを構成し、「**OK**」 (5) を選択します。
+10. 以下の特徴でデータセットを構成し、「**OK」 (5)** を選択します。
 
     - **名前**: `asal400_ecommerce_userprofiles_source` **(1)** と入力します。
     - **リンク サービス**: すでに存在する `asadatalakeXX` リンク サービスを選択します **(2)**。
@@ -228,15 +230,15 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![説明されたようにフォームが設定されています。](media/new-adls-dataset-form.png "Set properties")
 
-11. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+11. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-12. リストから 「**Azure Synapse Analytics**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+12. リストから 「**Azure Synapse Analytics**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![Azure Synapse Analytics オプションが強調表示されています。](media/new-synapse-dataset.png "Integration dataset")
 
-13. 以下の特徴でデータセットを構成し、「**OK**」 (5) を選択します。
+13. 以下の特徴でデータセットを構成し、「**OK」 (5)** を選択します。
 
     - **名前**: `asal400_wwi_campaign_analytics_asa` **(1)** と入力します。
     - **リンク サービス**: `SqlPool01` service **(2)** を選択します。
@@ -245,15 +247,15 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![新しいデータセット フォームが、説明された構成で表示されます。](media/new-dataset-campaignanalytics.png "New dataset")
 
-14. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+14. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-15. リストから 「**Azure Synapse Analytics**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+15. リストから 「**Azure Synapse Analytics**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![Azure Synapse Analytics オプションが強調表示されています。](media/new-synapse-dataset.png "Integration dataset")
 
-16. 以下の特徴でデータセットを構成し、「**OK**」 (5) を選択します。
+16. 以下の特徴でデータセットを構成し、「**OK」 (5)** を選択します。
 
     - **名前**: `asal400_wwi_usertopproductpurchases_asa` **(1)** と入力します。
     - **リンク サービス**: `SqlPool01` service **(2)** を選択します。
@@ -274,19 +276,19 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![データ メニュー項目が強調表示されています。](media/data-hub.png "Data hub")
 
-2. ツールバーで **+** を選択し **(1)**、「**統合データセット**」 (2) を選択して新しいデータセットを作成します。
+2. ツールバーで **+** を選択し **(1)**、「**統合データセット」 (2)** を選択して新しいデータセットを作成します。
 
     ![新しいデータセットを作成します。](media/new-dataset.png "New Dataset")
 
-3. リストから 「**Azure Data Lake Storage Gen2**」 **(1)** を選択し、「**続行**」 (2) を選択します。
+3. リストから 「**Azure Data Lake Storage Gen2**」 **(1)** を選択し、「**続行」 (2)** を選択します。
 
     ![ADLS Gen2 オプションが強調表示されています。](media/new-adls-dataset.png "Integration dataset")
 
-4. 「**DelimitedText**」 形式 **(1)** を選択した後、「**続行**」 (2) を選択します。
+4. 「**DelimitedText**」 形式 **(1)** を選択した後、「**続行」 (2)** を選択します。
 
     ![DelimitedText 形式が選択されています。](media/delimited-text-format.png "Select format")
 
-5. 以下の特徴でデータセットを構成し、「**OK**」 (6) を選択します。
+5. 以下の特徴でデータセットを構成し、「**OK」 (6)** を選択します。
 
     - **名前**: `asal400_campaign_analytics_source` **(1)** と入力します。
     - **リンク サービス**: `asadatalakeSUFFIX` リンク サービス **(2)** を選択します。
@@ -949,7 +951,7 @@ Synapse パイプラインを使用すれば、Tailwind Traders は馴染みの�
 
     ![説明されているように全般タブで名前が設定されています。](media/pipeline-data-flow-general.png "Name on the General tab")
 
-7. **「設定」** タブを選択します **(1)**。「**データ フロー**」 (2) で `write_user_profile_to_asa` を選択し、`AutoResolveIntegrationRuntime` が 「**実行 (Azure IR)**」 (3) で選択されていることを確認します。`General purpose` で 「**コンピューティング型**」 (4) を選び、`8 (+ 8 コア)` を 「**コア数**」 (5) で選択します。
+7. **「設定」** タブを選択します **(1)**。「**データ フロー」 (2)** で `write_user_profile_to_asa` を選択し、`AutoResolveIntegrationRuntime` が 「**実行 (Azure IR)」 (3)** で選択されていることを確認します。`General purpose` で 「**コンピューティング型」 (4)** を選び、`8 (+ 8 cores)` を 「**コア数」 (5)** で選択します。
 
     ![設定が説明どおりに構成されています。](media/data-flow-activity-settings1.png "Settings")
 
@@ -974,7 +976,7 @@ Tailwind Traders は、あらゆるパイプライン実行を監視し、パフ
 
 あなたは、手動でパイプライン実行をトリガー、監視、分析する方法を Tailwind Traders に説明することにしました。
 
-1. パイプラインの最上部で 「**トリガーの追加**」 (1) を選択した後、「**今すぐトリガー**」 (2) を選択します。
+1. パイプラインの最上部で 「**トリガーの追加」 (1)** を選択した後、「**今すぐトリガー」 (2)** を選択します。
 
     ![パイプラインのトリガー オプションが強調表示されています。](media/pipeline-user-profiles-trigger.png "Trigger now")
 
@@ -1007,3 +1009,23 @@ Tailwind Traders は、あらゆるパイプライン実行を監視し、パフ
 8. `UserTopProductPurchasesASA` シンク **(1)** を選択して詳細を表示します。**1,622,203 行** が計算されており **(2)**、パーティションは合計 30 だったことがわかります。SQL テーブルにデータを書き込む前、ADLS Gen2 でのデータのステージングには約 **8 秒** かかりました **(3)**。この場合の合計シンク処理時間は約 **44 秒 (4)** でした。また、他のパーティションよりもはるかに大きい**ホット パーティション (5)** があります。このパイプラインのパフォーマンスをもう少し向上させる必要がある場合は、データ パーティションを再評価し、パーティションをもっと均等に広げ、並列データ読み込み・フィルタリングを向上させることができます。また、ステージングを無効にして処理時間が変化するか試してみることも可能です。最後に、専用 SQL プールの大きさは、シンクへのデータの取り込み時間に影響を与えます。
 
     ![シンクの詳細が表示されます。](media/pipeline-user-profiles-data-flow-sink-details.png "Sink details")
+
+### 演習 2: クリーンアップ
+
+これらの手順を実行して、不要になったリソースを解放します。
+
+#### タスク 1: 専用 SQL プールを一時停止する
+
+1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
+
+2. [**管理**] ハブを選択します。
+
+    ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
+
+3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+
+    ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
+
+4. プロンプトが表示されたら、[**一時停止**] を選択します。
+
+    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
