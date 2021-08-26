@@ -64,7 +64,7 @@
 
 2. 「**リンク サービス**」 を開き、「**+ 新規**」 を選択して新しいリンク サービスを作成します。オプションのリストで 「**Azure Cosmos DB (SQL API)**」 を選択し、「**続行**」 を選択します。
 
-    ![「管理」、「新規」、[Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
+    ![「管理」、「新規」、「Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
 
 3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成」 (4)** を選択します。
 
@@ -158,7 +158,7 @@ Tailwind Traders には、`OnlineUserProfile01` という名前の Azure Cosmos 
 
     ![ボタンが強調表示されています。](media/new-container-button.png "New Container")
 
-3. [**データベース ID**] で、[**既存のものを使用**] を選択し、**`CustomerProfile` (1)** を選択します。[**コンテナー ID**] (2) に **`UserProfileHTAP`** と入力し、[**パーティション キー**] (3) に **`/userId`** と入力します。[**スループット**]については、[**自動スケール**] (4) を選択し、[**最大 RU/秒**] の値 **(5)** に **`4000`** と入力します。最後に、[詳細] を展開し、[**分析ストア**] を [**オン**] (6) に設定し、[**OK**] を選択します。
+3. 「**データベース ID**」 で、「**既存のものを使用**」 を選択し、**`CustomerProfile` (1)** を選択します。「**コンテナー ID**」 (2) に **`UserProfileHTAP`** と入力し、「**パーティション キー**」 (3) に **`/userId`** と入力します。「**スループット**」については、「**自動スケール**」 (4) を選択し、「**最大 RU/秒**」 の値 **(5)** に **`4000`** と入力します。最後に、「詳細」 を展開し、「**分析ストア**」 を 「**オン**」 (6) に設定し、「**OK**」 を選択します。
 
     ![説明されたようにフォームが設定されています。](media/new-container.png "New container")
 

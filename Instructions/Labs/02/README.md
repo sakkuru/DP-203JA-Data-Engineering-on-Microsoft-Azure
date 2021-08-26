@@ -13,28 +13,28 @@
   - [ラボの詳細](#lab-details)
     - [ラボの構成と前提条件](#lab-setup-and-pre-requisites)
   - [演習 0: 専用 SQL プールを起動する](#exercise-0-start-the-dedicated-sql-pool)
-    - [演習 1: スター スキーマを実装する](#exercise-1-implementing-a-star-schema)
-      - [タスク 1: SQL データベースでスター スキーマを作成する](#task-1-create-star-schema-in-sql-database)
-    - [演習 2: スノーフレーク スキーマを実装する](#exercise-2-implementing-a-snowflake-schema)
-      - [タスク 1: SQL データベースで製品のスノーフレーク スキーマを作成する](#task-1-create-product-snowflake-schema-in-sql-database)
-      - [タスク 2: SQL データベースで再販業者のスノーフレーク スキーマを作成する](#task-2-create-reseller-snowflake-schema-in-sql-database)
-    - [演習 3: 時間ディメンション テーブルを実装する](#exercise-3-implementing-a-time-dimension-table)
-      - [タスク 1: 時間ディメンション テーブルを作成する](#task-1-create-time-dimension-table)
-      - [タスク 2: 時間ディメンション テーブルにデータを読み込む](#task-2-populate-the-time-dimension-table)
-      - [タスク 3: 他のテーブルにデータを読み込む](#task-3-load-data-into-other-tables)
-      - [タスク 4: データのクエリを実行する](#task-4-query-data)
-    - [演習 4: Synapse Analytics でスター スキーマを実装する](#exercise-4-implementing-a-star-schema-in-synapse-analytics)
-      - [タスク 1: Synapse 専用 SQL でスター スキーマを作成する](#task-1-create-star-schema-in-synapse-dedicated-sql)
-      - [タスク 2: Synapse テーブルにデータを読み込む](#task-2-load-data-into-synapse-tables)
-      - [タスク 3: Synapse からデータのクエリを実行する](#task-3-query-data-from-synapse)
-    - [演習 5: マッピング データ フローを使用してゆっくり変化するディメンションを更新する](#exercise-5-updating-slowly-changing-dimensions-with-mapping-data-flows)
-      - [タスク 1: Azure SQL Database のリンクされたサービスを作成する](#task-1-create-the-azure-sql-database-linked-service)
-      - [タスク 2: マッピング データ フローを作成する](#task-2-create-a-mapping-data-flow)
-      - [タスク 3: パイプラインを作成してデータ フローを実行する](#task-3-create-a-pipeline-and-run-the-data-flow)
-      - [タスク 4: 挿入されたデータを表示する](#task-4-view-inserted-data)
-      - [タスク 5: ソースの顧客レコードを更新する](#task-5-update-a-source-customer-record)
-      - [タスク 6: マッピング データ フローを再実行する](#task-6-re-run-mapping-data-flow)
-      - [タスク 7: 更新されたレコードを確認する](#task-7-verify-record-updated)
+  - [演習 1: スター スキーマを実装する](#exercise-1-implementing-a-star-schema)
+    - [タスク 1: SQL データベースでスター スキーマを作成する](#task-1-create-star-schema-in-sql-database)
+  - [演習 2: スノーフレーク スキーマを実装する](#exercise-2-implementing-a-snowflake-schema)
+    - [タスク 1: SQL データベースで製品のスノーフレーク スキーマを作成する](#task-1-create-product-snowflake-schema-in-sql-database)
+    - [タスク 2: SQL データベースで再販業者のスノーフレーク スキーマを作成する](#task-2-create-reseller-snowflake-schema-in-sql-database)
+  - [演習 3: 時間ディメンション テーブルを実装する](#exercise-3-implementing-a-time-dimension-table)
+    - [タスク 1: 時間ディメンション テーブルを作成する](#task-1-create-time-dimension-table)
+    - [タスク 2: 時間ディメンション テーブルにデータを読み込む](#task-2-populate-the-time-dimension-table)
+    - [タスク 3: 他のテーブルにデータを読み込む](#task-3-load-data-into-other-tables)
+    - [タスク 4: データのクエリを実行する](#task-4-query-data)
+  - [演習 4: Synapse Analytics でスター スキーマを実装する](#exercise-4-implementing-a-star-schema-in-synapse-analytics)
+    - [タスク 1: Synapse 専用 SQL でスター スキーマを作成する](#task-1-create-star-schema-in-synapse-dedicated-sql)
+    - [タスク 2: Synapse テーブルにデータを読み込む](#task-2-load-data-into-synapse-tables)
+    - [タスク 3: Synapse からデータのクエリを実行する](#task-3-query-data-from-synapse)
+  - [演習 5: マッピング データ フローを使用してゆっくり変化するディメンションを更新する](#exercise-5-updating-slowly-changing-dimensions-with-mapping-data-flows)
+    - [タスク 1: Azure SQL Database のリンクされたサービスを作成する](#task-1-create-the-azure-sql-database-linked-service)
+    - [タスク 2: マッピング データ フローを作成する](#task-2-create-a-mapping-data-flow)
+    - [タスク 3: パイプラインを作成してデータ フローを実行する](#task-3-create-a-pipeline-and-run-the-data-flow)
+    - [タスク 4: 挿入されたデータを表示する](#task-4-view-inserted-data)
+    - [タスク 5: ソースの顧客レコードを更新する](#task-5-update-a-source-customer-record)
+    - [タスク 6: マッピング データ フローを再実行する](#task-6-re-run-mapping-data-flow)
+    - [タスク 7: 更新されたレコードを確認する](#task-7-verify-record-updated)
   - [演習 6: クリーンアップ](#exercise-6-cleanup)
     - [タスク 1: 専用 SQL プールを一時停止する](#task-1-pause-the-dedicated-sql-pool)
 
@@ -253,9 +253,9 @@
     GO
     ```
 
-10. [**実行**」 を選択するか、`F5` を押してクエリを実行します。
+10. 「**実行**」 を選択するか、`F5` を押してクエリを実行します。
 
-    ![クエリと [実行」 ボタンが強調表示されています。](media/execute-setup-query.png "Execute query")
+    ![クエリと 「実行」 ボタンが強調表示されています。](media/execute-setup-query.png "Execute query")
 
     これで 3 つのディメンション テーブルと 1 つのファクト テーブルができました。これらのテーブルは連携してスター スキーマを表します。
 
@@ -991,7 +991,7 @@ Synapse Analytics は[超並列処理](https://docs.microsoft.com/azure/architec
 
     ![新しい SQL スクリプトを作成するためのコンテキスト メニューとともにデータ ハブが表示されています。](media/new-sql-script.png "New SQL script")
 
-6. 以下のスクリプトを空のスクリプト ウィンドウに貼り付け、[**実行**] を選択するか、`F5` を押してクエリを実行します。オリジナルの SQL スター スキーマ作成スクリプトに変更が加えられていることに気づくかもしれません。注意すべき変更がいくつかあります。
+6. 以下のスクリプトを空のスクリプト ウィンドウに貼り付け、「**実行**」 を選択するか、`F5` を押してクエリを実行します。オリジナルの SQL スター スキーマ作成スクリプトに変更が加えられていることに気づくかもしれません。注意すべき変更がいくつかあります。
     - 分散設定が各テーブルに追加されている
     - クラスター化された列ストアのインデックスがほとんどのテーブルで使用されている。
     - HASH 関数がファクト テーブル分散で使用されている (より大きなテーブルで、ノード全体での分散が必要)。
@@ -1452,7 +1452,7 @@ Synapse Analytics のリンク サービスを使用すると、外部リソー�
 
 6. キャンバスで 「**ソースの追加**」 を選択します。
 
-    !「データ フロー キャンバスで 「ソースの追加」 ボタンが強調表示されています。](media/data-flow-add-source.png "Add Source")
+    ![データ フロー キャンバスで 「ソースの追加」 ボタンが強調表示されています。](media/data-flow-add-source.png "Add Source")
 
 7. `Source settings` で以下のプロパティを設定します。
 
@@ -1713,11 +1713,11 @@ Synapse Analytics のリンク サービスを使用すると、外部リソー�
 
     ![「トリガーの追加」 ボタンと 「今すぐトリガー」 メニュー項目が両方とも強調表示されています。](media/pipeline-trigger.png "Pipeline trigger")
 
-8. [**監視**] ハブに移動します。
+8. 「**監視**」 ハブに移動します。
 
     ![監視ハブ。](media/monitor-hub.png "Monitor hub")
 
-9. 左側のメニューで [**パイプライン実行**] を選択し **(1)**、パイプラインの実行が完了するのを待ちます **(2)**。パイプラインが完了するまで [**更新**] (3) を数回選択する必要があるかもしれません。
+9. 左側のメニューで 「**パイプライン実行**」 を選択し **(1)**、パイプラインの実行が完了するのを待ちます **(2)**。パイプラインが完了するまで 「**更新**」 (3) を数回選択する必要があるかもしれません。
 
     ![パイプライン実行が完了しています。](media/pipeline-runs.png "Pipeline runs")
 
@@ -1824,14 +1824,14 @@ Synapse Analytics のリンク サービスを使用すると、外部リソー�
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
-2. [**管理**] ハブを選択します。
+2. 「**管理**」 ハブを選択します。
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、「**一時停止 (2)**」 を選択します。
 
     ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
 
-4. プロンプトが表示されたら、[**一時停止**] を選択します。
+4. プロンプトが表示されたら、「**一時停止**」 を選択します。
 
-    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
+    ![「一時停止」 ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

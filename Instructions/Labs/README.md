@@ -18,7 +18,7 @@
 - [モジュール 14 - Stream Analytics によるリアルタイムのストリーム処理](14/README.md)
 - [モジュール 15 - Event Hubs と Azure Databricks を使用してストリーム処理ソリューションを作成する](15/README.md)
 - [モジュール 16 - Power BI と Azure Synapse Analytics の統合を使用してレポートを作成する](16/README.md)
-- [モジュール 17 ? Azure Synapse Analytics で統合された機械学習プロセスを実行する](17/README.md)
+- [モジュール 17 - Azure Synapse Analytics で統合された機械学習プロセスを実行する](17/README.md)
 
 ## 同じ Synapse ワークスペースを共有できるモジュール
 

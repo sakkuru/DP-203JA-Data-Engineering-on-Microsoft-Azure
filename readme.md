@@ -2,7 +2,7 @@
 
 「DP-203:  Data Engineering on Azure」コースへようこそ。このコースをサポートするため、コースの内容を更新して、コースで使用される Azure サービスを最新の状態に維持する必要があります。  コース作成者と MCT の間のオープンな貢献を可能にし、Azure プラットフォームの変更に伴ってコンテンツを最新の状態に保つため、GitHub でラボの手順とラボ ファイルを公開しています。
 
-- **MCT ですか? ** - [MCT 向け GitHub ユーザー ガイド](https://microsoftlearning.github.io/MCT-User-Guide-JA/)をご覧ください。
+- **MCT ですか?** - [MCT 向け GitHub ユーザー ガイド](https://microsoftlearning.github.io/MCT-User-Guide-JA/)をご覧ください。
                                                                        
 ## 公開済みの MOC ファイルと一緒にこれらのファイルを使用する方法
 
@@ -95,6 +95,6 @@ MCT およびパートナーがこれらの資料にアクセスしてから、�
 
 このラボでは、Power BI を Azure Synapse ワークスペースと統合して Power BI でレポートを作成する方法を学習します。受講者は Azure Synapse Studio で新しいデータ ソースと Power BI レポートを作成します。その後、具体化されたビューと結果セットのキャッシュを使用してクエリのパフォーマンスを向上させる方法を学びます。最後に、サーバーレス SQL プールのあるデータ レイクを確認し、Power BI でそのデータに対する視覚化を作成します。
 
-### ラボ 17 ? Azure Synapse Analytics で統合された機械学習プロセスを実行する
+### ラボ 17 - Azure Synapse Analytics で統合された機械学習プロセスを実行する
 
 ラボでは、Azure Synapse Analytics で統合されたエンドツーエンドの Azure Machine Learning および Azure Cognitive Services を確認します。リンク サービスを使用して Azure Synapse Analytics ワークスペースを Azure Machine Learning ワークスペースに接続する方法を学習した後、Spark テーブルからのデータを使用する Automated ML 実験を開始します。また、Azure Machine Learning または Azure Cognitive Services からトレーニング済みのモデルを使用して SQL プール テーブルでデータを強化し、Power BI で予測結果を提示する方法も学びます。

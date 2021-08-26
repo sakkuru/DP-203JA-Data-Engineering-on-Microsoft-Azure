@@ -67,7 +67,7 @@
 
 4. プロンプトが表示されたら、「**再開**」 を選択します。プールが再開するまでに、1 ～ 2 分かかります。
 
-    ![「再開] ボタンが強調表示されています。](media/resume-dedicated-sql-pool-confirm.png "Resume")
+    ![「再開」 ボタンが強調表示されています。](media/resume-dedicated-sql-pool-confirm.png "Resume")
 
 > 専用 SQL プールが再開する間、**続行して次の演習に進みます**。
 
@@ -91,11 +91,11 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
     ![Azure Active Directory アプリケーション クライアント ID](media/lab-01-ex-01-task-01-service-principal-clientid.png)
 
-3. シークレットを表示するには、Azure Portal を開き、リソース グループで作成された Azure Key Vault インスタンスに移動します。「シークレット」 セクションを選択すると、`ASA-GA-LABS` シークレットが表示されます。
+3. シークレットを表示するには、Azure Portal を開き、リソース グループで作成された Azure Key Vault インスタンスに移動します。`Secrets` セクションを選択すると、`ASA-GA-LABS` シークレットが表示されます。
 
     ![セキュリティ プリンシパル向けの Azure Key Vault シークレット](media/lab-01-ex-01-task-01-keyvault-secret.png)
 
-4. まず、サービス プリンシパルに Azure Machine Learning ワークスペースを使用する許可があることを確認する必要があります。Azure Portal を開き、リソース グループで作成された Azure Machine Learning ワークスペースに移動します。左側で 「アクセス制御 (IAM)」 セクションを選択した後、「+ 追加」 と 「ロールの割り当てを追加」 を選択します。「ロールの割り当てを追加」 ダイアログで 「共同作成者」 の役割を選択し、「Azure Synapse Analytics GA Labs SUFFIX」 (`SUFFIX` はラボのデプロイ中に使用した一意のサフィックス) サービス プリンシパルを選んだ後、「保存」 を選択します。
+4. まず、サービス プリンシパルに Azure Machine Learning ワークスペースを使用する許可があることを確認する必要があります。Azure Portal を開き、リソース グループで作成された Azure Machine Learning ワークスペースに移動します。左側で `Access control (IAM)` セクションを選択した後、`+ Add` と `Add role assignment` を選択します。`Add role assignment` ダイアログで `Contributor` の役割を選択し、`Azure Synapse Analytics GA Labs SUFFIX` (`SUFFIX` はラボのデプロイ中に使用した一意のサフィックス) サービス プリンシパルを選んだ後、`Save` を選択します。
 
     ![セキュリティ プリンシパル向けの Azure Machine Learning ワークスペースの許可](media/lab-01-ex-01-task-01-mlworkspace-permissions.png)
 
@@ -180,7 +180,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
 ### タスク 1: Spark テーブルで回帰 Auto ML 実験をトリガーする
 
-1. 新しい AutoML 実験の実行を開始するには、「データ」 ハブを選択した後、`saleconsolidated` Spark テーブルの右側で `...` を選択し、コンテキスト メニューを有効にします。
+1. 新しい AutoML 実験の実行を開始するには、`Data` ハブを選択した後、`saleconsolidated` Spark テーブルの右側で `...` を選択し、コンテキスト メニューを有効にします。
 
     ![SaleConsolidated Spark テーブルのコンテキスト メニュー](media/lab-01-ex-02-task-01-ml-menu.png)
 
@@ -398,7 +398,7 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
     >
     >`<data_lake_account_name>` は Synapse Analytics プライマリ データ レイク アカウントの実際の名前に置き換えてください。
 
-5. `Data` ハブでテーブルを表示するには、`Workspace` セクションで `default (Spark)` データベースを展開します。**Productreview** テーブルが `Tables` フォルダーに表示されます。テーブル名の右側にある 3 つの点を選択すると、コンテキスト メニューで `Machine Learning` オプションが表示されます。その後、`Machine Learning` > Enrich with existing model` の順に選択します。 
+5. `Data` ハブでテーブルを表示するには、`Workspace` セクションで `default (Spark)` データベースを展開します。**Productreview** テーブルが `Tables` フォルダーに表示されます。テーブル名の右側にある 3 つの点を選択すると、コンテキスト メニューで `Machine Learning` オプションが表示されます。その後、`Machine Learning > Enrich with existing model` の順に選択します。 
 
     ![コンテキストには新しい Spark テーブルが表示されています。](media/productreview-spark-table.png "productreview table with context menu")
 
@@ -654,17 +654,17 @@ Synapse Analytics リンク サービスはサービス プリンシパルを使
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
-2. [**管理**] ハブを選択します。
+2. 「**管理**」 ハブを選択します。
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、「**一時停止 (2)**」 を選択します。
 
     ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
 
-4. プロンプトが表示されたら、[**一時停止**] を選択します。
+4. プロンプトが表示されたら、「**一時停止**」 を選択します。
 
-    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
+    ![「一時停止」 ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
 
 ## リソース
 

@@ -167,7 +167,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
 2. 「**リンク サービス**」 を開き、「**+ 新規**」 を選択して新しいリンク サービスを作成します。オプションのリストで 「**Azure Cosmos DB (SQL API)**」 を選択し、「**続行**」 を選択します。
 
-    ![「管理」、「新規」、[Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
+    ![「管理」、「新規」、「Azure Cosmos DB リンク サービス」 のオプションが強調表示されています。](media/create-cosmos-db-linked-service-step1.png "New linked service")
 
 3. リンク サービスに `asacosmosdb01` **(1)** という名前を付け、「**Cosmos DB アカウント名**」 (`asacosmosdbSUFFIX`) を選択して 「**データベース名**」 の値を `CustomerProfile` **(2)** に設定します。「**テスト接続**」 を選択して接続成功を確認してから **(3)**、「**作成」 (4)** を選択します。
 
@@ -293,7 +293,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
     - **名前**: `asal400_campaign_analytics_source` **(1)** と入力します。
     - **リンク サービス**: `asadatalakeSUFFIX` リンク サービス **(2)** を選択します。
     - **ファイル パス**: `wwi-02/campaign-analytics/campaignanalytics.csv` パス **(3)** を参照します。
-    - **先頭の行を見出しとして使用**: `unchecked **(4)** のままにします。見出しの列数とデータ行の列数が一致しないため、**見出しはスキップします**。
+    - **先頭の行を見出しとして使用**: `unchecked` **(4)** のままにします。見出しの列数とデータ行の列数が一致しないため、**見出しはスキップします**。
     - **スキーマのインポート**: `From connection/store` **(5)** を選択します。
 
     ![説明されたようにフォームが設定されています。](media/new-adls-dataset-form-delimited.png "Set properties")
@@ -329,7 +329,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![開発メニュー項目が強調表示されています。](media/develop-hub.png "Develop hub")
 
-2. + を選択してから 「**データ フロー**」 を選び、新しいデータ フローを作成します。
+2. +, を選択してから 「**データ フロー**」 を選び、新しいデータ フローを作成します。
 
     ![新しいデータ フローのリンクが強調表示されています。](media/new-data-flow-link.png "New data flow")
 
@@ -477,7 +477,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![「統合ハブが強調表示されています。](media/integrate-hub.png "Integrate hub")
 
-2. + を選択した後、「**パイプライン**」 を選択して、新しいパイプラインを作成します。
+2. +, を選択した後、「**パイプライン**」 を選択して、新しいパイプラインを作成します。
 
     ![新しいパイプライン コンテキスト メニュー項目が選択されています。](media/new-pipeline.png "New pipeline")
 
@@ -487,7 +487,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![データ フロー アクティビティをパイプライン キャンバスにドラッグします。](media/pipeline-campaign-analysis-drag-data-flow.png "Pipeline canvas")
 
-5. 「全般」 セクションで 「**名前**」 の値を `asal400_lab2_writecampaignanalyticstoasa` に設定します。
+5. `General` セクションで 「**名前**」 の値を `asal400_lab2_writecampaignanalyticstoasa` に設定します。
 
     ![データ フロー フォームの追加が、説明された構成で表示されます。](media/pipeline-campaign-analysis-adding-data-flow.png "Adding data flow")
 
@@ -982,7 +982,7 @@ Tailwind Traders は、あらゆるパイプライン実行を監視し、パフ
 
 2. このパイプラインにはパラメーターがないため、「**OK**」 を選択してトリガーを実行します。
 
-    !「「OK」 ボタンが強調表示されています。](media/pipeline-run-trigger.png "Pipeline run")
+    ![「OK」 ボタンが強調表示されています。](media/pipeline-run-trigger.png "Pipeline run")
 
 3. 「**監視**」 ハブに移動します。
 
@@ -1018,14 +1018,14 @@ Tailwind Traders は、あらゆるパイプライン実行を監視し、パフ
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
-2. [**管理**] ハブを選択します。
+2. 「**管理**」 ハブを選択します。
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、「**一時停止 (2)**」 を選択します。
 
     ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
 
-4. プロンプトが表示されたら、[**一時停止**] を選択します。
+4. プロンプトが表示されたら、「**一時停止**」 を選択します。
 
-    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
+    ![「一時停止」 ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

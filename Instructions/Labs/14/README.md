@@ -45,7 +45,7 @@ Azure Stream Analytics では、懸念すべきインフラストラクチャや
 
 [保証付きのイベント 配信](https://docs.microsoft.com/stream-analytics-query/event-delivery-guarantees-azure-stream-analytics)とエンタープライズ レベルの SLA により、3 つの「9」を利用でき、ミッション クリティカルなワークロードに Azure Stream Analytics が適していることを確認できます。自動チェックポイントを備えているため、フォールト トレラントな操作が可能で、データを損失することなく、すぐに再起動できます。
 
-Azure Stream Analytics では、ライブ コマンドと制御ビューでPower BI を使用してリアルタイムのダッシュボードをすばやく構築できます。[リアルタイムのダッシュボード」(https://docs.microsoft.com/azure/stream-analytics/stream-analytics-power-bi-dashboard)は、ライブ データを対応可能で情報満載の視覚資料に変換し、最も重要なことに注力する上で役立ちます。
+Azure Stream Analytics では、ライブ コマンドと制御ビューでPower BI を使用してリアルタイムのダッシュボードをすばやく構築できます。[リアルタイムのダッシュボード](https://docs.microsoft.com/azure/stream-analytics/stream-analytics-power-bi-dashboard) は、ライブ データを対応可能で情報満載の視覚資料に変換し、最も重要なことに注力する上で役立ちます。
 
 ### Azure Event Hubs
 
@@ -63,7 +63,7 @@ Contoso Auto は車両テレメトリを収集しており、Event Hubs を利�
 
 ## ラボの構成と前提条件
 
-> **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、「ラボの構成と前提条件」の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
+> **注:** ホストされたラボ環境を**使用しておらず**、ご自分の Azure サブスクリプションを使用している場合は、`Lab setup and pre-requisites`の手順のみを完了してください。その他の場合は、演習 0 にスキップします。
 
 - Azure サブスクリプション
 - Power BI アカウント (<https://powerbi.microsoft.com> でサインアップ)
@@ -75,17 +75,17 @@ Contoso Auto は車両テレメトリを収集しており、Event Hubs を利�
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
-2. [**管理**] ハブを選択します。
+2. 「**管理**」 ハブを選択します。
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして [**再開**]  (2) を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールが一時停止状態の場合は、プールの名前の上にマウスを動かして 「**再開**」  (2) を選択します。
 
     ![専用 SQL プールで再開ボタンが強調表示されています。](media/resume-dedicated-sql-pool.png "Resume")
 
-4. プロンプトが表示されたら、[**再開**] を選択します。プールが再開するまでに、1 ～ 2 分かかります。
+4. プロンプトが表示されたら、「**再開**」 を選択します。プールが再開するまでに、1 ～ 2 分かかります。
 
-    ![[再開] ボタンが強調表示されています。](media/resume-dedicated-sql-pool-confirm.png "Resume")
+    ![「再開」 ボタンが強調表示されています。](media/resume-dedicated-sql-pool-confirm.png "Resume")
 
 > 専用 SQL プールが再開する間、**続行して次の演習に進みます**。
 
@@ -580,9 +580,9 @@ Stream Analytics でクエリを作成した際は、2 分間隔でエンジン�
 
 6. Synapse Studio で左側のメニューにある 「**データ**」 を選択して、「データ」 ハブに移動します。
 
-    !「データ ハブが強調表示されています。」(media/data-hub.png "Data hub")
+    ![データ ハブが強調表示されています。](media/data-hub.png "Data hub")
 
-7. ［**ワークスペース**］ タブ **(1)** を選択し、`ContosoAuto` データベースを展開します。`Tables` を展開してから **dbo.VehicleAverages** テーブル **(2)** を右クリックします。このテーブルがリストに表示されない場合は、テーブル リストを更新します。「**新しい SQL スクリプト」 (3)** を選択してから 「**上位 100 行を選択」 (4)** を選びます。
+7. 「**ワークスペース**」 タブ **(1)** を選択し、`ContosoAuto` データベースを展開します。`Tables` を展開してから **dbo.VehicleAverages** テーブル **(2)** を右クリックします。このテーブルがリストに表示されない場合は、テーブル リストを更新します。「**新しい SQL スクリプト」 (3)** を選択してから 「**上位 100 行を選択」 (4)** を選びます。
 
     ![「上位 100 行を選択」 メニュー項目が選択されています。](media/select-top-100-rows.png "Select TOP 100 rows")
 
@@ -606,22 +606,22 @@ Stream Analytics でクエリを作成した際は、2 分間隔でエンジン�
 
 1. Azure portal で Stream Analytics ジョブに移動します。
 
-2. [概要]ペインで、**[停止]** を選択し、プロンプトが表示されたら **[はい]** を選択します。
+2. 「概要」ペインで、**「停止」** を選択し、プロンプトが表示されたら **「はい」** を選択します。
 
-    ![[停止] ボタンが強調表示されています。](media/asa-stop.png "Stop")
+    ![「停止」 ボタンが強調表示されています。](media/asa-stop.png "Stop")
 
 ### タスク 3: 専用 SQL プールを一時停止する
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
-2. [**管理**] ハブを選択します。
+2. 「**管理**」 ハブを選択します。
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、「**一時停止 (2)**」 を選択します。
 
     ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
 
-4. プロンプトが表示されたら、[**一時停止**] を選択します。
+4. プロンプトが表示されたら、「**一時停止**」 を選択します。
 
-    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
+    ![「一時停止」 ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")

@@ -146,7 +146,7 @@
 
 ### タスク 4: Synapse Studio で Power BI リンク サービスを探索する
 
-1. 「**Azure Synapse Studio**](<https://web.azuresynapse.net/>) で左側のメニュー オプションを使い、「**開発**」 ハブに移動します。
+1. [**Azure Synapse Studio**](<https://web.azuresynapse.net/>) で左側のメニュー オプションを使い、「**開発**」 ハブに移動します。
 
     ![Azure Synapse Workspace の開発オプション。](media/develop-hub.png "Develop hub")
 
@@ -502,7 +502,7 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
 
 ### タスク 3: 結果セットのキャッシュを使用してパフォーマンスを向上させる
 
-1. [**Azure Synapse Studio**」(<https://web.azuresynapse.net/>) で左側のメニューから 「**開発**」 を選択します。
+1. [**Azure Synapse Studio**](<https://web.azuresynapse.net/>) で左側のメニューから 「**開発**」 を選択します。
 
     ![Azure Synapse Workspace の開発オプション。](media/develop-hub.png "Develop hub")
 
@@ -765,14 +765,14 @@ Azure Synapse Analytics で Power BI レポートを統合する際に利用で�
 
 1. Synapse Studio (<https://web.azuresynapse.net/>) を開きます。
 
-2. [**管理**] ハブを選択します。
+2. 「**管理**」 ハブを選択します。
 
     ![管理ハブが強調表示されています。](media/manage-hub.png "Manage hub")
 
-3. 左側のメニューで [**SQL プール**] を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、[**一時停止 (2)**] を選択します。
+3. 左側のメニューで 「**SQL プール**」 を選択します **(1)**。専用 SQL プールの名前にカーソルを合わせ、「**一時停止 (2)**」 を選択します。
 
     ![専用 SQL プールで一時停止ボタンが強調表示されています。](media/pause-dedicated-sql-pool.png "Pause")
 
-4. プロンプトが表示されたら、[**一時停止**] を選択します。
+4. プロンプトが表示されたら、「**一時停止**」 を選択します。
 
-    ![[一時停止] ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
+    ![「一時停止」 ボタンが強調表示されています。](media/pause-dedicated-sql-pool-confirm.png "Pause")
