@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'Azure Databricks でのデータの探索と変換'
     module: 'モジュール 3'
