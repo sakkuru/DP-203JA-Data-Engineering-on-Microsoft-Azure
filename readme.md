@@ -1,4 +1,4 @@
-﻿# DP-203T00: Data Engineering in Azure
+# DP-203T00: Data Engineering in Azure
 
 「DP-203:  Data Engineering on Azure」コースへようこそ。このコースをサポートするため、コースの内容を更新して、コースで使用される Azure サービスを最新の状態に維持する必要があります。  コース作成者と MCT の間のオープンな貢献を可能にし、Azure プラットフォームの変更に伴ってコンテンツを最新の状態に保つため、GitHub でラボの手順とラボ ファイルを公開しています。
 
