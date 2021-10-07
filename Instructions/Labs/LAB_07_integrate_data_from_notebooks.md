@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'ノートブックのデータを Azure Data Factory または Azure Synapse パイプラインと統合する'
     module: 'モジュール 7'

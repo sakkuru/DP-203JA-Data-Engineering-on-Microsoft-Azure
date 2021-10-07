@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'Azure Synapse Analytics を使用したエンドツーエンドのセキュリティ'
     module: 'モジュール 8'
