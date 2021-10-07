@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'Event Hubs と Azure Databricks を使用してストリーム処理ソリューションを作成する'
     module: 'モジュール 11'
