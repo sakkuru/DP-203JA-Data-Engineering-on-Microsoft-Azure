@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'データ エンジニアリング ワークロードのコンピューティングおよびストレージ オプションを確認する'
     module: 'モジュール 1'
@@ -60,7 +60,7 @@ lab:
 1. 「**インポート**」を選択します。
 1. 表示される **11-Delta-Lake-Architecture** フォルダーを選択します。
 
-### タスク 2: *1-Delta-Architecture* ノートブックでコードを実行する
+### タスク 3: *1-Delta-Architecture* ノートブックでコードを実行する
 
 1. **1-Delta-Architecture** ノートブックを開きます。
 1. 指示に従い、含まれているセルを実行する前に、クラスターをノートブックに接続します。コード セルを実行するには、実行するセルを選択してから、右上にある **&#x23f5;** ボタンを使用して実行します。
@@ -197,7 +197,7 @@ spark.conf.set("spark.hyperspace.explain.displayMode", "html")
 hyperspace.explain(df1, True, displayHTML)
 ```
 
-17. 新しいセルを実行します。出力は「インデックスのあるプラン」と「インデックスのないプラン」の比較を示します。最初のケースで、インデックス ファイルがどのように使用されているのか、また 2 番目のケースではオリジナル データ ファイルが使用されていることを観察してください。
+17. 新しいセルを実行します。出力は`Plan with indexes`と`Plan without indexes`の比較を示します。最初のケースで、インデックス ファイルがどのように使用されているのか、また 2 番目のケースではオリジナル データ ファイルが使用されていることを観察してください。
 
     ![Hyperspace の説明 - プランの比較](images/lab-02-ex-02-task-02-explain-hyperspace-03.png)
 
@@ -209,7 +209,7 @@ eqJoin = dfSales.join(dfCustomers, dfSales.CustomerId == dfCustomers.CustomerId)
 hyperspace.explain(eqJoin, True, displayHTML)
 ```
 
-19. 新しいセルを実行します。出力には再び「インデックスのあるプラン」と「インデックスのないプラン」の比較が表示され、インデックスは最初のケース、オリジナル データ ファイルは 2 番目のケースで使用されています。
+19. 新しいセルを実行します。出力には再び`Plan with indexes`と`Plan without indexes`の比較が表示され、インデックスは最初のケース、オリジナル データ ファイルは 2 番目のケースで使用されています。
 
     ![Hyperspace の説明 - join 向けのプランの比較](images/lab-02-ex-02-task-02-explain-hyperspace-04.png)
 
