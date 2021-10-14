@@ -86,9 +86,9 @@ lab:
 >
 >       *プリンシパル 'xxx@xxx.com' を作成できませんでした。Active Directory アカウントで確立された接続のみが、他の Active Directory ユーザーを作成できます。*
 >
->2.次のエラーも発生する可能性があり、無視しても問題ありません。
+>2. 次のエラーも発生する可能性があり、無視しても問題ありません。
 >
->       *07-create-wwi-perf-sale-heap with label CTAS : Sale_Heap.null 配列にインデックスを作成できません。*
+>       *07-create-wwi-perf-sale-heap with label CTAS : Sale_Heap. null 配列にインデックスを作成できません。*
 
 ## 演習 1 - Synapse Studio でデータの探索を行う
 

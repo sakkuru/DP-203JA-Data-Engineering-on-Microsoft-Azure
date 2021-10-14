@@ -159,7 +159,7 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
 このタスクでは、Stream Analytics を構成し、作成済みのイベント ハブをソースとして使用し、そのデータのクエリと分析を行い、報告用に Power BI に送信して、集計データを Azure Synapse Analytics に送れるようにします。
 
-1. Azure portal の **data-engineering-synapse-*xxxxxxx *** リソース グループで、**as*xxxxxxx*** Stream Analytics ジョブを選択します。
+1. Azure portal の **data-engineering-synapse-*xxxxxxx*** リソース グループで、 **as*xxxxxxx*** Stream Analytics ジョブを選択します。
 
     ![Stream Analytics ジョブがリソース グループで選択されています。](images/rg-stream-analytics.png "resource group")
 
