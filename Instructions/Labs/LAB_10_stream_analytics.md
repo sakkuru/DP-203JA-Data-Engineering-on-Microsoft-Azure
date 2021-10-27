@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'Stream Analytics によるリアルタイムのストリーム処理'
     module: 'モジュール 10'
@@ -26,8 +26,6 @@ Azure Stream Analytics を使用すると、超並列型の複雑なイベント
 Azure Stream Analytics では、懸念すべきインフラストラクチャや、管理の必要なサーバー、仮想マシン、クラスターはないので、あっという間に使い始められます。どのようなジョブでも、ひとつのストリーミング ユニットから数百にいたるまで、[処理能力を即時スケールアウト](https://docs.microsoft.com/azure/stream-analytics/stream-analytics-streaming-unit-consumption)できます。料金は、ジョブ 1 件当たりに使用した処理量に応じて発生します。
 
 [保証付きのイベント 配信](https://docs.microsoft.com/stream-analytics-query/event-delivery-guarantees-azure-stream-analytics)とエンタープライズ レベルの SLA により、3 つの「9」を利用でき、ミッション クリティカルなワークロードに Azure Stream Analytics が適していることを確認できます。自動チェックポイントを備えているため、フォールト トレラントな操作が可能で、データを損失することなく、すぐに再起動できます。
-
-Azure Stream Analytics では、ライブ コマンドと制御ビューでPower BI を使用してリアルタイムのダッシュボードをすばやく構築できます。[リアルタイムのダッシュボード](https://docs.microsoft.com/azure/stream-analytics/stream-analytics-power-bi-dashboard)は、ライブ データを対応可能で情報満載の視覚資料に変換し、最も重要なことに注力する上で役立ちます。
 
 ### Azure Event Hubs
 
@@ -58,7 +56,7 @@ Contoso Auto は車両テレメトリを収集しており、Event Hubs を利�
 
 ## 演習 1 - サービスを構成する
 
-Azure Event Hubs はビッグ データ ストリーミング プラットフォームであり、毎秒数百万のイベントを受け取って処理できるイベント インジェスト サービスです。これを使用して、処理が行われ、リアルタイムのダッシュボードへの送信準備ができている車両テレメトリ データを一時的に格納します。データは Event Hubs に移されるため、Azure Stream Analytics はデータのクエリを行い、集計を適用して異常にタグを付け、Azure Synapse Analytics と Power BI に送信します。
+Azure Event Hubs はビッグ データ ストリーミング プラットフォームであり、毎秒数百万のイベントを受け取って処理できるイベント インジェスト サービスです。これを使用して、処理が行われ、リアルタイムのダッシュボードへの送信準備ができている車両テレメトリ データを一時的に格納します。データは Event Hubs に移されるため、Azure Stream Analytics はデータのクエリを行い、集計を適用して異常にタグを付け、Azure Synapse Analytics に送信します。
 
 ### タスク 1: Event Hubs を構成する
 
@@ -157,7 +155,7 @@ Azure Synapse はエンドツーエンドの分析プラットフォームで、
 
 Azure Stream Analytics は、デバイスからの大量のデータ ストリームを分析することができるイベント処理エンジンです。受信データは、デバイス、センサー、Web サイト、ソーシャル メディア フィード、アプリケーションなどから得ることができます。また、データ ストリームから情報を抽出し、パターンや関係を把握することもできます。これらのパターンを使用して、アラートの作成、レポート ツールへの情報のフィード、後で使用するための情報の保存など、別のアクションをダウンストリームでトリガーすることができます。
 
-このタスクでは、Stream Analytics を構成し、作成済みのイベント ハブをソースとして使用し、そのデータのクエリと分析を行い、報告用に Power BI に送信して、集計データを Azure Synapse Analytics に送れるようにします。
+このタスクでは、Stream Analytics を構成し、作成済みのイベント ハブをソースとして使用し、そのデータのクエリと分析を行います。
 
 1. Azure portal の **data-engineering-synapse-*xxxxxxx*** リソース グループで、 **as*xxxxxxx*** Stream Analytics ジョブを選択します。
 
