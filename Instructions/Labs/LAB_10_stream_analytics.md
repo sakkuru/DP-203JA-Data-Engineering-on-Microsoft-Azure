@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'Stream Analytics によるリアルタイムのストリーム処理'
     module: 'モジュール 10'
