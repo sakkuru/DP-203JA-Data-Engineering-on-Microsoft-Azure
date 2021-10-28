@@ -413,7 +413,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 ### タスク 4: データ レイクのセキュリティを構成する - アクセス制御リスト (ACL)
 
-1. 左側のメニューで「**ストレージ エクスプローラー (プレビュー)**」を選択します。**CONTAINERS** を展開し、**wwi-02** コンテナーを選択します。**Sale-small** フォルダーを開き、**Year=2019** フォルダーを右クリックしてから、「**アクセスの管理..**」を選択します。
+1. 左側のメニューで「**ストレージ ブラウザー (プレビュー)**」を選択します。**BLOB コンテナー**を展開し、**wwi-02** コンテナーを選択します。**Sale-small** フォルダーを開き、**Year=2019** フォルダーを右クリックしてから、「**ACL 管理**」を選択します。
 
     ![2019 フォルダーが強調表示され、「アクセスの管理」が選択されています。](images/manage-access-2019.png "Storage Explorer")
 
@@ -439,7 +439,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 ### タスク 5: 許可をテストする
 
-1. Synapse Studio の「**データ**」ハブの「**リンク**」タブで、**Azure Data Lake Storage Gen2/asaworkspace*xxxxxxx*/wwi02** コンテナーを選択します。*sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231* フォルダ－で、**sale-small-20161231-snappy.parquet ファイル**を右クリックし、「**新しい SQL スクリプト**」を選択し、「**上位 100 行を選択**」を選びます。
+1. Synapse Studio の「**データ**」ハブの「**リンク**」タブで、**Azure Data Lake Storage Gen2/asaworkspace*xxxxxxx*/wwi02** コンテナーを選択します。*sale-small/Year=2019/Quarter=Q4/Month=12/Day=20191231* フォルダ－で、**sale-small-20191231-snappy.parquet ファイル**を右クリックし、「**新しい SQL スクリプト**」を選択し、「**上位 100 行を選択**」を選びます。
 
     ![オプションが強調表示されたデータ ハブが表示されています。](images/data-hub-parquet-select-rows.png "Select TOP 100 rows")
 
@@ -457,7 +457,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     試しにやってみましょう。
 
-3. **wwi-02** ウィンドウで、**sale-small-20161231-snappy.parquet** ファイルを右クリックし、「**新しいノートブック**」を選択してから、「**データフレームに読む込む**」を選択します。
+3. **wwi-02** ウィンドウで、**sale-small-20191231-snappy.parquet** ファイルを右クリックし、「**新しいノートブック**」を選択してから、「**データフレームに読む込む**」を選択します。
 
     ![オプションが強調表示されたデータ ハブが表示されています。](images/data-hub-parquet-new-notebook.png "New notebook")
 
@@ -472,7 +472,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 7. 次のコードを入力し、*SUFFIX* をデータ レイク リソースの一意のサフィックスに置き換えます (これは上記のセル 1 からコピーできます)。
 
     ```python
-    df.write.parquet('abfss://wwi-02@asadatalakeSUFFIX.dfs.core.windows.net/sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231/sale-small-20161231-snappy-test.parquet')
+    df.write.parquet('abfss://wwi-02@asadatalakeSUFFIX.dfs.core.windows.net/sale-small/Year=2019/Quarter=Q4/Month=12/Day=20191231/sale-small-20191231-snappy-test.parquet')
     ```
 
 8. 追加した新しいセルを実行します。出力には「**403 エラー**」と表示されるはずです。
@@ -511,13 +511,13 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     今回、セルが成功したのは、**Storage Blob Data Owner** のロールを割り当てられているアカウントを **tailwind-history-owners** グループに追加したためです。
 
-    > **注**: 今回も同じエラーが発生した場合は、ノートブックで** Spark セッションを中止**してから「**すべて公開**」を選択し、公開してください。変更の公開後、ページの右上コーナーでユーザー プロファイルを選択して**ログアウト**します。ログアウト後に**ブラウザー タブを閉じ**、Synapse Studio (<https://web.azuresynapse.net/>) を再起動してノートブックを再び開き、セルを再実行します。許可を変更するためにセキュリティ トークンを更新しなくてはならない場合に、この操作が必要になります。
+    > **注**: 今回も同じエラーが発生した場合は、ノートブックで**Spark セッションを中止**してから「**すべて公開**」を選択し、公開してください。変更の公開後、ページの右上コーナーでユーザー プロファイルを選択して**ログアウト**します。ログアウト後に**ブラウザー タブを閉じ**、 Synapse Studio (<https://web.azuresynapse.net/>) を再起動してノートブックを再び開き、セルを再実行します。許可を変更するためにセキュリティ トークンを更新しなくてはならない場合に、この操作が必要になります。
 
 17. ノートブックの右上にある「**セッションの停止**」ボタンを使用して、ノートブックセッションを停止します。
 18. 変更を保存する場合は、ノートブックを公開します。次に、それを閉じます。
 
     ファイルがデータ レイクに書き込まれているか確認してみましょう。
 
-19. Synapse Studio の「**データ**」ハブの「**リンク**」タブで、**Azure Data Lake Storage Gen2/asaworkspace*xxxxxxx*/wwi02** コンテナーを選択します。そして、*sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231* フォルダーを参照して、このフォルダーに新しいファイルが追加されたことを確認します。
+19. Synapse Studio の「**データ**」ハブの「**リンク**」タブで、**Azure Data Lake Storage Gen2/asaworkspace*xxxxxxx*/wwi02** コンテナーを選択します。そして、*sale-small/Year=2019/Quarter=Q4/Month=12/Day=20191231* フォルダーを参照して、このフォルダーに新しいファイルが追加されたことを確認します。
 
     ![Parquet ファイルのテストが表示されます。](images/test-parquet-file.png "Test parquet file")
