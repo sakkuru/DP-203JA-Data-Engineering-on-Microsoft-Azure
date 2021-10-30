@@ -84,11 +84,11 @@ lab:
 > 
 > 1. 次のエラーは、SQL ユーザーを作成し、専用 SQL プールにロールの割り当てを追加するときに発生する可能性があり、無視しても問題ありません。
 >
->       *プリンシパル 'xxx@xxx.com' を作成できませんでした。Active Directory アカウントで確立された接続のみが、他の Active Directory ユーザーを作成できます。*
+>       *Principal 'xxx@xxx.com' could not be created. Only connections established with Active Directory accounts can create other Active Directory users.(プリンシパル 'xxx@xxx.com' を作成できませんでした。Active Directory アカウントで確立された接続のみが、他の Active Directory ユーザーを作成できます。)*
 >
 >2. 次のエラーも発生する可能性があり、無視しても問題ありません。
 >
->       *07-create-wwi-perf-sale-heap with label CTAS : Sale_Heap. null 配列にインデックスを作成できません。*
+>       *07-create-wwi-perf-sale-heap with label CTAS : Sale_Heap. Cannot index into a null array.*
 
 ## 演習 1 - Synapse Studio でデータの探索を行う
 
