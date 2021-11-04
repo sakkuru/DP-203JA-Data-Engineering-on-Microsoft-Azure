@@ -254,9 +254,11 @@ Synapse Studio のプレビュー機能を使用すると、ファイルをす�
 
     ![「開発」ハブで「新しいリソースの追加」 (+) ボタンが表示され、メニューでは「インポート」が強調表示されています。](images/develop-hub-add-new-resource-import.png "Develop hub import notebook")
 
-3. **Explore with Spark.ipynb** ノートブックを C:\dp-203\data-engineering-ilt-deployment\Allfiles\synapse-apache-spark-notebooks フォルダーにインポートします。
+3. **Explore with Spark.ipynb** ノートブックを C:\dp-203\data-engineering-ilt-deployment\Allfiles\synapse-apache-spark-notebooks フォルダーからインポートします。
 
 4. ノートブックに含まれている指示に従って、このタスクの残りを完了し、**SparkPool01** Spark プールに接続します。Spark プールを開始する必要があるため、最初のセルの実行には時間がかかる場合があることに注意してください。 
+
+    **真ん中あたりのセルでエラーが発生しますが、想定された挙動です。**
 
 5. **Explore with Spark** ノートブックを完了したら、ノートブック ツール バーの右側にある「**セッションの停止**」ボタンを選択して、次の演習のために Spark クラスターを解放します。
 
