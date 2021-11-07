@@ -54,15 +54,15 @@ lab:
 1. 「**ノートブックのインポート**」ダイアログ ボックスで URL を選択し、次の URL 内に貼り付けます。
 
     ```
-    https://github.com/MicrosoftLearning/DP-203-Data-Engineer/raw/master/Allfiles/microsoft-learning-paths-databricks-notebooks/data-engineering/DBC/11-Delta-Lake-Architecture.dbc
+    https://github.com/solliancenet/microsoft-learning-paths-databricks-notebooks/blob/master/data-engineering/DBC/01-Introduction-to-Azure-Databricks.dbc?raw=true
     ```
 
 1. 「**インポート**」を選択します。
-1. 表示される **11-Delta-Lake-Architecture** フォルダーを選択します。
+1. 表示される **01-Introduction-to-Azure-Databricks** フォルダーを選択します。
 
-### タスク 3: *1-Delta-Architecture* ノートブックでコードを実行する
+### タスク 3: *01-The-Databricks-Environment* ノートブックでコードを実行する
 
-1. **1-Delta-Architecture** ノートブックを開きます。
+1. **01-The-Databricks-Environment** ノートブックを開きます。
 1. 指示に従い、含まれているセルを実行する前に、クラスターをノートブックに接続します。コード セルを実行するには、実行するセルを選択してから、右上にある **&#x23f5;** ボタンを使用して実行します。
 
     ノートブック内で、ストリーミングとバッチ処理を 1 つのパイプラインに組み合わせる方法について確認します。
