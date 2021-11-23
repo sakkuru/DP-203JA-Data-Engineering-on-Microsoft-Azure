@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'Azure Synapse Link を使用してハイブリッド トランザクション分析処理 (HTAP) に対応する'
     module: 'モジュール 9'
@@ -25,11 +25,10 @@ lab:
 >       - **Cosmos DB アカウント名**: asacosmosdb*xxxxxxx*
 >       - **データベース名**: CustomerProfile
 > 2. 「**データ**」ハブで、次の**統合データセット**を作成します。
->       - **ソース**: Azure Data Lake Storage Gen2
->       - **形式**: JSON
+>       - **ソース**: Azure Cosmos DB (SQL API)
 >       - **名前**: asal400_customerprofile_cosmosdb
->       - **リンク サービス**: asadatalake*xxxxxxx*
->       - **ファイル パス**: wwi-02/online-user-profiles-02
+>       - **リンク サービス**: asacosmosdb01
+>       - **コレクション**: OnlineUserProfile01
 >       - **スキーマのインポート**: 接続/ストアから
 
 ## 演習 1 - Azure Cosmos DB を使用して Azure Synapse Link を構成する
@@ -342,7 +341,7 @@ Tailwind Traders は、T-SQL を使用して Azure Cosmos DB 分析ストアを�
     GO
     ```
 
-6. [**実行**] ボタンを使用して、クエリを実行します。これにより、以下が行われます。
+6. 「**実行**」 ボタンを使用して、クエリを実行します。これにより、以下が行われます。
     - 存在しない場合は、**Profiles** という名前の新しいサーバーレス SQL プール データベースを作成します
     - データベース コンテキストを **Profiles** データベースに変更します。
     - **UserProfileHTAP** ビューがある場合はこれをドロップします。
