@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'Azure Data Factory または Azure Synapse パイプラインでデータを変換する'
     module: 'モジュール 6'
@@ -371,7 +371,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![説明されているように派生列の設定が表示されます。](images/data-flow-campaign-analysis-derived-column-settings.png "Derived column's settings")
 
-    定義した式は、**RevenuePart1** と **Revenue** の値、および **RevelueTargetPart1** と **RevenueTarget** の値を連結してクリーンアップします。
+    定義した式は、**RevenuePart1** と **Revenue** の値、および **RevenueTargetPart1** と **RevenueTarget** の値を連結してクリーンアップします。
 
 13. **ConvertColumnTypesAndValues** ステップの右側で「**+**」を選択し、コンテキスト メニューで「**選択**」スキーマ修飾子を選択します。
 
@@ -442,7 +442,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![データ フローが選択されています。](images/pipeline-campaign-analysis-data-flow-settings-tab.png "Settings")
 
-8. 「**すべて公開**」を選択して、新しいパイプラインを保存します。
+8. 「**すべて公開**」を選択して、新しいパイプラインを保存してから、「**公開**」を選択します。
 
     ![「すべて公開」が強調表示されています。](images/publish-all-1.png "Publish all")
 
@@ -474,7 +474,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
 2. 「**ワークスペース**」セクションの下にある **SqlPool01** データベースを展開し、「**テーブル**」を展開します (新しいテーブルを表示するには更新が必要な場合があります)。
 
-3. **wwi.CampaignAnalytics** テーブルを右クリックし、「**新しい SQL スクリプト**」を選択してから、「**上位 1000 行を選択**」を選びます。 
+3. **wwi.CampaignAnalytics** テーブルを右クリックし、「**新しい SQL スクリプト**」を選択してから、「**上位 100 行を選択**」を選びます。 
 
     ![「上位 1000 行を選択」メニュー項目が強調表示されています。](images/select-top-1000-rows-campaign-analytics.png "Select TOP 1000 rows")
 

@@ -1,4 +1,4 @@
----
+﻿---
 lab:
     title: 'サーバーレス SQL プールを使用してインタラクティブなクエリを実行する'
     module: 'モジュール 2'
@@ -87,8 +87,8 @@ Azure Synapse Analytics では、SQL、Apache Spark for Synapse、またはそ�
 Parquet ファイルのクエリを行うたびに OPENROWSET のスクリプトとルート 2019 フォルダーを作成する代わりに、外部テーブルを作成することができます。
 
 1. Synapse Studio で、**wwi-02** タブに戻ります。このタブには、*sale-small/Year=2019/Quarter=Q4/Month=12/Day=20191231* フォルダーの内容が引き続き表示されます。
-2. **sale-small-20191231-snappy.parquet** ファイルを右クリックし、「**新しい SQL スクリプト**」を選択してから「**外部テーブルの作成**」を選択します。
-3. 「**SQL プール**」で、「**Built-in**」が選択されていることを確認します。次に、「**データベースの選択**」で、「**+ 新規**」を選択し、`demo` という名前のデータベースを作成します。**外部テーブル名**として `All2019Sales` と入力します。最後に、「**外部テーブルの作成**」で、「**SQL スクリプトを使用する**」が選択されていることを確認し、「**作成**」を選択して SQL スクリプトを生成します。
+2. **sale-small-20191231-snappy.parquet** ファイルを右クリックし、「**新しい SQL スクリプト**」を選択してから「**外部テーブルの作成**」を選択します。「新規外部テーブル」ダイアログ ボックスで、「**続行**」をクリックします。
+3. 「**SQL プール**」で、「**Built-in**」が選択されていることを確認します。次に、「**データベースの選択**」で、「**+ 新規**」を選択して、`demo` という名前のデータベースを作成して、「**作成**」をクリックします。**外部テーブル名**として `All2019Sales` と入力します。最後に、「**外部テーブルの作成**」で、「**SQL スクリプトの使用**」が選択されていることを確認してから、「**スクリプトを開く**」を選択して、SQL スクリプトを生成します。
 
     ![外部テーブルの作成フォームが表示されます。](images/create-external-table-form.png "Create external table")
 
@@ -101,7 +101,7 @@ Parquet ファイルのクエリを行うたびに OPENROWSET のスクリプト
     - **3)** CREATE EXTERNAL TABLE WITH ステートメントでファイルの場所を指定し、上記で作成した新しい外部ファイル形式とデータ ソースを参照します。
     - **4)** 最後に、`2019Sales` 外部テーブルの上位 100 の結果を選択します。
     
-4 CREATE EXTERNAL TABLE ステートメントの **[TransactionId] varchar(8000)** 行に、`COLLATE Latin1_General_100_BIN2_UTF8` を追加します。また、*LOCATION* の値を `sale-small/Year=2019/*/*/*/*.parquet` に置き換えます。ステートメントは次のようになります (固有のリソース SUFFIX を除く)。
+4 CREATE EXTERNAL TABLE ステートメントの **[TransactionId] varchar(8000)** 行で、8000 を 4000 に変更して、`COLLATE Latin1_General_100_BIN2_UTF8` を追加し、*LOCATION* の値を `sale-small/Year=2019/*/*/*/*.parquet` に置き換え、ステートメントが次のようになるようにします (一意のリソースのサフィックスを除きます)。
 
 ```sql
 CREATE EXTERNAL TABLE All2019Sales (
@@ -323,8 +323,6 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 4. 「**+ 新しいグループ**」を選択します。
 
-    ![「新しいグループ」ボタン。](images/new-group.png "New group")
-
 5. **セキュリティ** グループの種類が選択されていることを確認し、**グループ名**に `tailwind-history-owners-SUFFIX` (*サフィックス*は一意のリソース サフィックス) と入力して、「**作成**」を選択します。
 
     ![説明されたようにフォームが設定されています。](images/new-group-history-owners.png "New Group")
@@ -345,15 +343,11 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![グループが表示され、「メンバーの追加」が強調表示されています。](images/tailwind-readers.png "tailwind-readers group")
 
-3. ラボにサインインした際に使用したユーザー アカウントを追加し、「**選択**」を選びます。
-
-    ![フォームが表示されます。](images/add-members.png "Add members")
+3. ラボにサインインした際に使用したユーザー アカウントを検索し、「**選択**」を選びます。
 
 4. **tailwind-2019-writers** グループを開きます。
 
 5. 左側で「**メンバー**」を選択してから「**+ メンバーの追加**」を選択します。
-
-    ![グループが表示され、「メンバーの追加」が強調表示されています。](images/tailwind-2019-writers.png "tailwind-2019-writers group")
 
 6. `tailwind` を検索し、**tailwind-current-writers** グループを選択してから「**選択**」を選びます。
 
@@ -385,9 +379,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![「ロールの割り当ての追加」が強調表示されます。](images/add-role-assignment.png "Add role assignment")
 
-6. 「**ロール**」で **Storage Blob Data Reader** を選択します。`tailwind-readers` を検索し、結果から **tailwind-readers** グループを選択します。次に、「**保存**」を選択します。
-
-    ![説明されたようにフォームが表示されます。](images/add-tailwind-readers.png "Add role assignment")
+6. 「**ロール**」画面で、「**Storage Blob Data Reader**」を検索し、選択してから、「**次へ**」をクリックします。「**メンバー**」画面で、「**+ メンバ－の選択**」をクリックしてから、`tailwind-readers` を検索して、結果から **tailwind-readers** グループを選択します。次に**「選択」**をクリックします。次に、「**確認 + 割り当て**」をクリックして、「**確認 + 割り当て**」をもう一度クリックします。
 
     ユーザー アカウントがこのグループに追加されたので、このアカウントの BLOB コンテナーであらゆるファイルの読み取りアクセスを取得できます。Tailwind Traders はユーザー全員を **tailwind-readers** セキュリティ グループに追加する必要があります。
 
@@ -395,17 +387,15 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![「ロールの割り当ての追加」が強調表示されます。](images/add-role-assignment.png "Add role assignment")
 
-8. 「**ロール**」で **Storage Blob Data Owner** を選択します。`tailwind` を検索し、結果から **tailwind-history-owners** グループを選択します。次に、「**保存**」を選択します。
+8. 「**ロール**」の場合は、「**Storage Blob Data Owner**」を検索してから、「**次へ**」を選択します。
 
-    ![説明されたようにフォームが表示されます。](images/add-tailwind-history-owners.png "Add role assignment")
+9. 「**メンバー**」画面で、「**+ メンバーの選択**」をクリックして、`tailwind` を検索して、結果から **tailwind-history-owners** グループを選択します。次に、「**確認 + 割り当て**」をクリックして、「**確認 + 割り当て**」をもう一度クリックします。
 
     **tailwind-history-owners** セキュリティ グループは、データ レイクが含まれ、Azure Storage に組み込まれている RBAC の役割「**Storage Blob Data Owner** for the Azure Storage」アカウントにに割り当てられます。この役割に追加された Azure AD ユーザーとサービス プリンシパルは、あらゆるデータを修正できるようになります。
 
     Tailwind Traders は、すべての履歴データを修正する許可のあるユーザー セキュリティ プリンシパルを **tailwind-history-owners** セキュリティ グループに追加しなくてはなりません。
 
-9. ストレージ アカウントの「**アクセス制御 (IAM)**」リストの「**Storage Blob Data Owner**」のロールで Azure ユーザー アカウントを選択してから、「**削除**」を選択します。
-
-    ![アクセス制御設定が表示されます。](images/storage-access-control-updated.png "Access Control updated")
+10. ストレージ アカウントの「**アクセス制御 (IAM)**」リストの「**Storage Blob Data Owner**」のロールで Azure ユーザー アカウントを選択してから、「**削除**」を選択します。
 
     **tailwind-history-owners** グループが **Storage Blob Data Owner** グループに割り当てられ、**tailwind-readers** は **Storage Blob Data Reader** グループに割り当てられていることがわかります。
 
@@ -417,13 +407,11 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
     ![2019 フォルダーが強調表示され、「アクセスの管理」が選択されています。](images/manage-access-2019.png "Storage Explorer")
 
-2. **tailwind-2019-writers** セキュリティ グループからコピーした **オブジェクト ID** の値を「**ユーザー、グループ、またはサービス プリンシパルを追加する**」テキスト ボックスに貼り付け、「**追加**」を選択します。
+2. 「ACL の管理」画面の「**アクセス許可**」画面で、「**+ プリンシパルの追加**」をクリックして、**tailwind-2019-writers** セキュリティ グループでコピーした**オブジェクト Id** 値を「**プリンシパルの追加**」検索ボックスに貼り付けて、「**tailwind-2019-writers-suffix**」をクリックしてから、「**選択**」を選びます。
 
-    ![オブジェクト ID の値がフィールドに貼り付けられます。](images/manage-access-2019-object-id.png "Manage Access")
+3. **tailwind-2019-writers** グループが「ACL の管理」ダイアログで選択されていることを確認できるはずです。「**読み取り**」、「**書き込み**」、「**実行**」チェックボックスにチェックを入れてから、「**保存**」を選択します。
 
-3. これで、**tailwind-2019-writers** グループが「アクセスの管理」ダイアログで選択されているはずです。「**アクセス**」と「**既定**」チェックボックス、および「**読み取り**」、「**書き込み**」、「**実行**」チェックボックスをそれぞれ選択し、「**保存**」を選択します。
-
-    ![許可が説明どおりに構成されています。](images/manage-access-2019-permissions.png "Manage Access")
+4. 「ACL の管理」画面の「**既定のアクセス許可**」画面で、「**+ プリンシパルの追加**」をクリックして、**tailwind-2019-writers** セキュリティ グループでコピーした**オブジェクト Id** 値を「**プリンシパルの追加**」検索ボックスに貼り付けて、「**tailwind-2019-writers-suffix**」をクリックしてから、「**選択**」を選びます。
 
     これで、**tailwind-2019-writers** グループを使用して、**tailwind-current** セキュリティ グループに追加されたユーザーが **Year=2019** フォルダーに書き込めるようにセキュリティ ACL が設定されました。これらのユーザーは現在 (この場合は 2019 年) の売上ファイルのみを管理できます。
 
@@ -485,23 +473,13 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 
 10. 「**ホーム**」ページの「ポータル」メニューで、「**Azure Active Directory**」を選択します。
 
-    ![メニュー項目が強調表示されます。](images/azure-ad-menu.png "Azure Active Directory")
-
 11. 左側のメニューで「**グループ**」を選択します。
-
-    ![グループが強調表示されます。](images/aad-groups-link.png "Azure Active Directory")
 
 12. 検索ボックスに `tailwind` と入力し、結果で **tailwind-history-owners** グループを選択します。
 
-    ![Tailwind グループが表示されます。](images/tailwind-groups.png "All groups")
-
 13. 左側で「**メンバー**」を選択してから「**+ メンバーの追加**」を選択します。
 
-    ![グループが表示され、「メンバーの追加」が強調表示されています。](images/tailwind-history-owners.png "tailwind-history-owners group")
-
 14. ラボにサインインした際に使用したユーザー アカウントを追加し、「**選択**」を選びます。
-
-    ![フォームが表示されます。](images/add-members.png "Add members")
 
 15. 新しいタブで、Azure Synapse Studio (<https://web.azuresynapse.net/>) を参照します。次に、「**開発**」タブで、「**ノートブック**」を展開し、以前に公開したノートブックを再度開きます。
 
@@ -514,6 +492,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
     > **注**: 今回も同じエラーが発生した場合は、ノートブックで**Spark セッションを中止**してから「**すべて公開**」を選択し、公開してください。変更の公開後、ページの右上コーナーでユーザー プロファイルを選択して**ログアウト**します。ログアウト後に**ブラウザー タブを閉じ**、 Synapse Studio (<https://web.azuresynapse.net/>) を再起動してノートブックを再び開き、セルを再実行します。許可を変更するためにセキュリティ トークンを更新しなくてはならない場合に、この操作が必要になります。
 
 17. ノートブックの右上にある「**セッションの停止**」ボタンを使用して、ノートブックセッションを停止します。
+
 18. 変更を保存する場合は、ノートブックを公開します。次に、それを閉じます。
 
     ファイルがデータ レイクに書き込まれているか確認してみましょう。
