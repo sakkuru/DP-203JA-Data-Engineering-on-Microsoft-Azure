@@ -1,4 +1,4 @@
-﻿---
+---
 lab:
     title: 'Azure Data Factory または Azure Synapse パイプラインでデータを変換する'
     module: 'モジュール 6'
