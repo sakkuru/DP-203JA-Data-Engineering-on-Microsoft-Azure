@@ -85,7 +85,7 @@ Hyperspace では、永続的なデータ ファイルからスキャンされ�
 
 また、Hyperspace では、ユーザーはクエリを実行する前に、元のプランと更新されたインデックス依存プランを比較できます。
 
-1. Synapse Studio (`https：//web.azuresynapse.net`) を開き、プロンプトが表示されたら、Azure Active Directory テナント、サブスクリプション、Azure Synapse Analytics ワークスペースを選択します。
+1. Synapse Studio (`https：//web.azuresynapse.net`) を開き、プロンプトが表示されたら、Azure Active Directory テナント、サブスクリプション、Azure Synapse Analytics ワークスペースを選択します。「当社ではより良い使用体験を提供するためにオプション Cookie を使用します」というプロンプトが表示されたら、「承諾」を選択します。
 
 2. 「**開発**」ハブを選択します。
 
