@@ -105,7 +105,7 @@ Parquet ファイルのクエリを行うたびに OPENROWSET のスクリプト
 
 ```sql
 CREATE EXTERNAL TABLE All2019Sales (
-    [TransactionId] varchar(8000) COLLATE Latin1_General_100_BIN2_UTF8,
+    [TransactionId] varchar(4000) COLLATE Latin1_General_100_BIN2_UTF8,
     [CustomerId] int,
     [ProductId] smallint,
     [Quantity] smallint,
