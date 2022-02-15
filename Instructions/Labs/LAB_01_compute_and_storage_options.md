@@ -71,6 +71,53 @@ lab:
 
 1. Azure Databricks ノートブックの探索が終了したら、Azure Databricks ワークスペースの左側のウィンドウで、「**コンピューティング**」を選択し、クラスターを選択します。次に、「**終了**」を選択してクラスターを停止します。
 
+
+## PowerShellスクリプトの実行
+
+1. このコースで提供されるホスト VM 環境で、管理者モードで Powershell を開き、以下を実行して実行ポリシーを「制限なし」に設定し、ローカルの PowerShell スクリプト ファイルを実行できるようにします。
+
+    ```
+    Set-ExecutionPolicy Unrestricted
+    ```
+
+    > **注意**: 注**：信頼できないリポジトリからモジュールをインストールしているというプロンプトが表示された場合、**Yes to All**を選択してセットアップを続行します。
+
+2. 2. ローカルファイルシステム内のこのレポのルートにディレクトリを変更します。
+
+    ```
+    cd C:\dp-203\data-engineering-ilt-deployment\Allfiles\00\artifacts\environment-setup\automation\
+    ```
+
+3. 以下のコマンドを入力し、SQLプールにオブジェクトを作成するPowerShellスクリプトを実行します。
+
+    ```
+    .\dp-203-setup-Part02.ps1
+    ```
+
+4. スクリプトが完了したら、PowerShell ウィンドウで次のコマンドを実行します。
+   
+   ```
+   exit
+   ```
+
+    **注**: このスクリプトはおよそ10～15分で実行され、Synapseにデータがロードされます。
+>
+> SQLPool01 専用 SQL プールのリンクされたサービスを作成中にスクリプトがハングアップするようであれば、**Enter** を押してください。これにより、PowerShellスクリプトがリフレッシュされ、最後まで継続できるようになります。
+>
+> 無視できる潜在的なエラー
+>
+> スクリプトの実行中にいくつかのエラーや警告に遭遇することがあります。以下のエラーは無視しても問題ありません。
+>
+> 1.専用SQLプールでSQLユーザーを作成し、ロールアサインメントを追加する際に、以下のエラーが発生することがありますが、無視していただいて問題ありません。
+>
+>      *Principal 'xxx@xxx.com' could not be created. Only connections established with Active Directory accounts can create other Active Directory users.*
+>
+> 2.以下のようなエラーが発生することがありますが、無視しても問題ありません。
+>
+>      *07-create-wwi-perf-sale-heap with label CTAS : Sale_Heap. Cannot index into a null array.*
+> 
+
+
 ## 演習 2 - Synapse Analytics で Apache Spark を使用する
 
 この演習では、Azure Synapse Analytics で Apache Spark を使用する方法も説明します。また、Hyperspace や MSSparkUtil のようなライブラリを使用して、Spark ノートブックから Data Lake ストレージ アカウントを使用する方法を最適化します。
