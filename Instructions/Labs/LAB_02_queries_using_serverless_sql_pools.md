@@ -460,7 +460,7 @@ Tailwind Traders 社は、売上データへのどのような変更も当年度
 7. 次のコードを入力し、*SUFFIX* をデータ レイク リソースの一意のサフィックスに置き換えます (これは上記のセル 1 からコピーできます)。
 
     ```python
-    df.write.parquet('abfss://wwi-02@asadatalakeSUFFIX.dfs.core.windows.net/sale-small/Year=2019/Quarter=Q4/Month=12/Day=20191231/sale-small-20191231-snappy-test.parquet')
+    df.write.parquet('abfss://wwi-02@asadatalakeSUFFIX.dfs.core.windows.net/sale-small/Year=2016/Quarter=Q4/Month=12/Day=20161231/sale-small-20161231-snappy-test.parquet')
     ```
 
 8. 追加した新しいセルを実行します。出力には「**403 エラー**」と表示されるはずです。
