@@ -125,7 +125,6 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
 3. リンク サービスに `asacosmosdb01` という名前を付けてから、**asacosmosdb*xxxxxxx*** Cosmos DBア カウント名と **CustomerProfile** データベースを選択します。次に、「**作成**」をクリックする前に、「**接続のテスト**」を選択して成功を確認します。
 
-    ![新しい Azure Cosmos DB リンク サービス。](images/create-cosmos-db-linked-service.png "New linked service")
 
 ### タスク 3: データ セットを作成する
 
@@ -150,8 +149,6 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
     - **名前**: `asal400_customerprofile_cosmosdb` と入力します。
     - **リンク サービス**: 「**asacosmosdb01**」を選択します。
     - **コレクション**: 「**OnlineUserProfile01**」を選択します。
-
-        ![新しい Azure Cosmos DB データセット。](images/create-cosmos-db-dataset.png "New Cosmos DB dataset")
 
 5. データセットの作成後、「**接続**」タブで「**データのプレビュー**」を選択します。
 
@@ -180,7 +177,6 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
     - **ファイル パス**: **wwi-02/online-user-profiles-02** パスを参照します。
     - **スキーマのインポート**: 「**接続/ストアから**」を選択します。
 
-    ![説明されたようにフォームが設定されています。](images/new-adls-dataset-form.png "Set properties")
 
 11. 「**データ**」ハブの「**+**」メニューで、「**統合データセット**」を選択して、キャンペーン分析の宛先テーブルを参照する 3 番目のデータセットを作成します。
 
@@ -772,8 +768,6 @@ Tailwind Traders は、JSON ファイルとして e コマースシステムか�
 
 29.  「**出力ストリーム名**」を `Filter1` に、 「**フィルター適用**」式を `!isNull(productId)` に設定します。
 
-    ![フィルターの設定が表示されます。](images/data-flow-user-profiles-new-filter-settings.png "Filter settings")
-
 30. **Filter1** ステップの右側で「**+**」を選択し、コンテキスト メニューで「**シンク**」の宛先を選択します。
 
     ![新しいシンクの宛先が強調表示されています。](images/data-flow-user-profiles-new-sink.png "New sink")
@@ -820,7 +814,7 @@ Tailwind Traders は、JSON ファイルとして e コマースシステムか�
     - **出力ストリーム名**: `DataLake` と入力します。
     - **着信ストリーム**: 「**Filter1**」を選択します。
     - **シンクの種類**: **インライン** を選択します。
-    - **インライン データセットの種類**: **差分** を選択します。
+    - **インライン データセットの種類**: **Delta** を選択します。
     - **リンク サービス**: **asaworkspace*xxxxxxx*-WorkspaceDefaultStorage** を選択します。
     - **オプション**: 「**スキーマドリフトを許可**」をチェックし、「**スキーマの検証**」はオフにします。
 
