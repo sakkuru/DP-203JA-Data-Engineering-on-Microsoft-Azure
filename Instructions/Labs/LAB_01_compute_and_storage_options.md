@@ -18,9 +18,9 @@ lab:
 
 このラボを開始する前に、ラボ環境を作成するためのセットアップ手順が正常に完了していることを確認してください。
 
-## 演習 1 - Delta Lake アーキテクチャ
+## 演習 1 - Databricks
 
-この演習では、Azure Databricks ワークスペースを使用し、Delta Lake を使ってバッチ ジョブにより構造化ストリーミングを実行します。Databricks Notebooks 内で演習を完了する必要があります。開始するには、Azure Databricks ワークスペースにアクセスできる必要があります。
+この演習では、Azure Databricks ワークスペースを使用ます。開始するには、Azure Databricks ワークスペースにアクセスできる必要があります。
 
 ### タスク 1: Azure Databricks クラスターを作成する
 
@@ -32,16 +32,15 @@ lab:
 
     ![Azure Databricks のワークスペースの起動ボタンが表示されます。](images/databricks-launch-workspace.png "Launch Workspace")
 
-3. Databricks ワークスペースの左側のメニューで、「**コンピューティング**」を選択します。
-4. 「**+ クラスターの作成**」をクリックして、新しいクラスターを追加します。
 
-    ![「クラスターの作成」ページ](images/create-a-cluster.png)
+3. Databricks ワークスペースの左側のメニューで、「**Compute**」を選択します。
+4. 「**Create compute**」をクリックして、新しいクラスターを追加します。
 
-5. `Test Cluster` など、クラスターの名前を入力します。
-6. **シングル ノード** クラスター モードを選択します。
-7. 「**Databricks RuntimeVersion**」を選択します。最新のランタイムと **Scala 2.12** をお勧めします。
-8. タイムアウト**後の終了**を 30 分に設定し、既定のノードの種類を選択します。
-9. 「**クラスターの作成**」を選択します。
+5. `Test Cluster` など、クラスターの名前を変更します。
+6. **Single node** クラスター モードを選択します。
+7. 「**Databricks Runtime Version**」を選択します。最新のランタイムと **Scala 2.12** をお勧めします。
+8. **Terminate after** を 30 分に設定し、既定のノードの種類を選択します。
+9. 「**Create Cluster**」を選択します。
 10. クラスターが開始されるまで待ちます。次のタスクに進む前に、クラスターが起動するまで 5 〜 7 分待つ必要があることに注意してください。
 
 ### タスク 2: Databricks アーカイブを複製する
@@ -54,22 +53,20 @@ lab:
 1. 「**ノートブックのインポート**」ダイアログ ボックスで URL を選択し、次の URL 内に貼り付けます。
 
     ```
-    https://github.com/solliancenet/microsoft-learning-paths-databricks-notebooks/blob/master/data-engineering/DBC/01-Introduction-to-Azure-Databricks.dbc?raw=true
+    https://github.com/solliancenet/microsoft-learning-paths-databricks-notebooks/raw/master/data-engineering/DBC/03-Reading-and-writing-data-in-Azure-Databricks.dbc
     ```
 
-1. 「**インポート**」を選択します。
-1. 表示される **01-Introduction-to-Azure-Databricks** フォルダーを選択します。
+1. 「**Import**」を選択します。
+1. 表示される **03-Reading-and-writing-data-in-Azure-Databricks** フォルダーを選択します。
 
-### タスク 3: *01-The-Databricks-Environment* ノートブックでコードを実行する
+### タスク 3: ノートブックでコードを実行する
 
-1. **01-The-Databricks-Environment** ノートブックを開きます。
-1. 指示に従い、含まれているセルを実行する前に、クラスターをノートブックに接続します。コード セルを実行するには、実行するセルを選択してから、右上にある **&#x23f5;** ボタンを使用して実行します。
-
-    ノートブック内で、ストリーミングとバッチ処理を 1 つのパイプラインに組み合わせる方法について確認します。
+1. **1.Reading Data - CSV** ノートブックを開きます。
+1. 含まれているセルを実行する前に、クラスターをノートブックに接続します。コード セルを実行するには、実行するセルを選択してから、右上にある **&#x23f5;** ボタンを使用して実行します。
 
 ## 重要: クラスターをシャットダウンする
 
-1. Azure Databricks ノートブックの探索が終了したら、Azure Databricks ワークスペースの左側のウィンドウで、「**コンピューティング**」を選択し、クラスターを選択します。次に、「**終了**」を選択してクラスターを停止します。
+1. Azure Databricks ノートブックの実行が終了したら、Azure Databricks ワークスペースの左側のウィンドウで、「**Compute**」を選択し、クラスターを選択します。次に、「**終了**」を選択してクラスターを停止します。
 
 ## 演習 2 - Synapse Analytics で Apache Spark を使用する
 
