@@ -18,6 +18,50 @@ lab:
 
 このラボを開始する前に、ラボ環境を作成するためのセットアップ手順が正常に完了していることを確認してください。
 
+
+## PowerShellスクリプトの実行
+
+1. このコースで提供されるホスト VM 環境で、管理者モードで Powershell を開き、以下を実行して実行ポリシーを「制限なし」に設定し、ローカルの PowerShell スクリプト ファイルを実行できるようにします。
+
+    ```
+    Set-ExecutionPolicy Unrestricted
+    ```
+
+    > **注意**: 注**：信頼できないリポジトリからモジュールをインストールしているというプロンプトが表示された場合、**Yes to All**を選択してセットアップを続行します。
+
+2. 2. ローカルファイルシステム内のこのレポのルートにディレクトリを変更します。
+
+    ```
+    cd C:\dp-203\data-engineering-ilt-deployment\Allfiles\00\artifacts\environment-setup\automation\
+    ```
+
+3. 以下のコマンドを入力し、SQLプールにオブジェクトを作成するPowerShellスクリプトを実行します。
+
+    ```
+    .\dp-203-setup-Part02.ps1
+    ```
+    
+    > **注**: ここでエラーが出た方は、
+    > ```
+    > code .\dp-203-setup-Part02.ps1
+    > ```
+    > と実行してください。
+    > エディタが開きますので、suffixの値をリソースグループのサフィックス(**data-engineering-synapse-XXXXXXX**の**XXXXXX**の部分)に書き換えます。
+    > 全部で4箇所あります。
+    > 書き換えて保存した後、再度下記を実行して下さい。
+    > ```
+    > .\dp-203-setup-Part02.ps1
+    > ```
+
+4. スクリプトが完了したら、PowerShell ウィンドウで次のコマンドを実行します。
+   
+   ```
+   exit
+   ```
+
+    **注**: このスクリプトはおよそ10～15分で実行され、Synapseにデータがロードされます。
+
+
 ## 演習 1 - Databricks
 
 この演習では、Azure Databricks ワークスペースを使用ます。開始するには、Azure Databricks ワークスペースにアクセスできる必要があります。
@@ -68,63 +112,6 @@ lab:
 
 1. Azure Databricks ノートブックの実行が終了したら、Azure Databricks ワークスペースの左側のウィンドウで、「**Compute**」を選択し、クラスターを選択します。次に、「**終了**」を選択してクラスターを停止します。
 
-
-## PowerShellスクリプトの実行
-
-1. このコースで提供されるホスト VM 環境で、管理者モードで Powershell を開き、以下を実行して実行ポリシーを「制限なし」に設定し、ローカルの PowerShell スクリプト ファイルを実行できるようにします。
-
-    ```
-    Set-ExecutionPolicy Unrestricted
-    ```
-
-    > **注意**: 注**：信頼できないリポジトリからモジュールをインストールしているというプロンプトが表示された場合、**Yes to All**を選択してセットアップを続行します。
-
-2. 2. ローカルファイルシステム内のこのレポのルートにディレクトリを変更します。
-
-    ```
-    cd C:\dp-203\data-engineering-ilt-deployment\Allfiles\00\artifacts\environment-setup\automation\
-    ```
-
-3. 以下のコマンドを入力し、SQLプールにオブジェクトを作成するPowerShellスクリプトを実行します。
-
-    ```
-    .\dp-203-setup-Part02.ps1
-    ```
-    
-    > **注**: ここでエラーが出た方は、
-    > ```
-    > code .\dp-203-setup-Part02.ps1
-    > ```
-    > と実行してください。
-    > エディタが開きますので、suffixの値リソースグループのサフィックス(**data-engineering-synapse-XXXXXXX**の**XXXXXX**の部分)に書き換えます。
-    > 全部で4箇所あります。
-    > 書き換えて保存したあと、再度下記を実行して下さい。
-    > ```
-    > .\dp-203-setup-Part02.ps1
-    > ```
-
-4. スクリプトが完了したら、PowerShell ウィンドウで次のコマンドを実行します。
-   
-   ```
-   exit
-   ```
-
-    **注**: このスクリプトはおよそ10～15分で実行され、Synapseにデータがロードされます。
->
-> SQLPool01 専用 SQL プールのリンクされたサービスを作成中にスクリプトがハングアップするようであれば、**Enter** を押してください。これにより、PowerShellスクリプトがリフレッシュされ、最後まで継続できるようになります。
->
-> 無視できる潜在的なエラー
->
-> スクリプトの実行中にいくつかのエラーや警告に遭遇することがあります。以下のエラーは無視しても問題ありません。
->
-> 1.専用SQLプールでSQLユーザーを作成し、ロールアサインメントを追加する際に、以下のエラーが発生することがありますが、無視していただいて問題ありません。
->
->      *Principal 'xxx@xxx.com' could not be created. Only connections established with Active Directory accounts can create other Active Directory users.*
->
-> 2.以下のようなエラーが発生することがありますが、無視しても問題ありません。
->
->      *07-create-wwi-perf-sale-heap with label CTAS : Sale_Heap. Cannot index into a null array.*
-> 
 
 
 ## 演習 2 - Synapse Analytics で Apache Spark を使用する
