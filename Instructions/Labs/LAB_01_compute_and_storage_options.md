@@ -43,11 +43,15 @@ lab:
     
     > **注**: ここでエラーが出た方は、
     > ```
-    > code .\dp-203-setup-Part02.ps1
+    > code .
     > ```
     > と実行してください。
-    > エディタが開きますので、suffixの値をリソースグループのサフィックス(**data-engineering-synapse-XXXXXXX**の**XXXXXX**の部分)に書き換えます。
-    > 全部で4箇所あります。
+    > エディタが開きますので、dp-203-setup-Part02.ps1のsuffixの値をリソースグループのサフィックス(**data-engineering-synapse-XXXXXXX**の**XXXXXX**の部分)に書き換えます。
+    > 
+    > 同樣に、dp-203-setup-Part02.ps3のsuffixの値を書き換えます。
+    > 
+    > それぞれのファイルで4箇所あります。
+    > 
     > 書き換えて保存した後、再度下記を実行して下さい。
     > ```
     > .\dp-203-setup-Part02.ps1
