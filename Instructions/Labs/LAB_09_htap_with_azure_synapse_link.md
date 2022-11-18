@@ -50,8 +50,8 @@ Azure Synapse Link では、Cosmos DB のトランザクション処理の分散
     ![Azure Cosmos DB アカウントが強調表示されています。](images/resource-group-cosmos.png "Azure Cosmos DB アカウント")
 
 3. 左側のメニューで **[Azure Synapse Link]** を選択します。
-    * **[アカウントが有効]** が設定されていることを確認します。
-    * **[コンテナーで有効な Azure Synapse Link]** で、 *[cosmos_db_htap]* と *[OnlineUserProfile01]* が選択されていることを確認します。
+    * **[有効なアカウント]** が設定されていることを確認します。
+    * **[コンテナーの Azure Synapse リンクを有効にする]** で、 *[cosmos_db_htap]* と *[OnlineUserProfile01]* が選択されていることを確認します。
 
   
 4. **[有効化]** を選択します。
