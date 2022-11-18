@@ -278,7 +278,7 @@ Azure Stream Analytics は、デバイスからの大量のデータ ストリ�
 
     ![Appsettings.json ファイル内でイベント ハブ接続文字列が強調表示されています。](images/appsettings.png "appsettings.json")
 
-    > **注:** *接続文字列が EntityPath = telemetry で終わっていることを確認してください* (例: *Endpoint=sb://YOUR_EVENTHUB_NAMESPACE.servicebus.windows.net/;SharedAccessKeyName=Write;SharedAccessKey=REDACTED/S/U=;EntityPath=telemetry*)。そうでない場合は、イベント ハブの**書き込み**ポリシーから接続文字列をコピーしていません。
+    > **注:** *接続文字列が EntityPath = telemetry で終わっていることを確認してください* (例: *Endpoint=sb://YOUR_EVENTHUB_NAMESPACE.servicebus.windows.net/;SharedAccessKeyName=Write;SharedAccessKey=REDACTED/S/U=;EntityPath=telemetry*)。そうでない場合は、イベント ハブの**Write**ポリシーから接続文字列をコピーしていません。
 
     SECONDS_TO_LEAD は、車両テレメトリ データを送信する前に待つ時間です。既定値は 0 です。
 
