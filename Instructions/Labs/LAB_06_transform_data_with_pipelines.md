@@ -119,11 +119,11 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![管理メニュー項目が強調表示されています。](images/manage-hub.png "Manage hub")
 
-2. 「**リンク サービス**」を開き、「**+ 新規**」を選択して新しいリンク サービスを作成します。オプションのリストで「**Azure Cosmos DB (SQL API)**」を選択し、「**続行**」を選択します。
+2. 「**リンク サービス**」を開き、「**+ 新規**」を選択して新しいリンク サービスを作成します。オプションのリストで「**Azure Cosmos DB for NoSQL**」を選択し、「**続行**」を選択します。
 
     ![「管理」、「新規」、「Azure Cosmos DB リンク サービス」のオプションが強調表示されています。](images/create-cosmos-db-linked-service-step1.png "New linked service")
 
-3. リンク サービスに `asacosmosdb01` という名前を付けてから、**asacosmosdb*xxxxxxx*** Cosmos DBア カウント名と **CustomerProfile** データベースを選択します。次に、「**作成**」をクリックする前に、「**接続のテスト**」を選択して成功を確認します。
+3. リンク サービスに `asacosmosdb01` という名前を付けてから、**asacosmosdb*xxxxxxx*** Cosmos DBアカウント名と **CustomerProfile** データベースを選択します。次に、「**作成**」をクリックする前に、「**接続のテスト**」を選択して成功を確認します。
 
 
 ### タスク 3: データ セットを作成する
