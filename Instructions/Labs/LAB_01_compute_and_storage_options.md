@@ -48,7 +48,7 @@ lab:
     > と実行してください。
     > エディタが開きますので、dp-203-setup-Part02.ps1のsuffixの値をリソースグループのサフィックス(**data-engineering-synapse-XXXXXXX**の**XXXXXX**の部分)に書き換えます。
     > 
-    > 同樣に、dp-203-setup-Part02.ps3のsuffixの値を書き換えます。
+    > 同樣に、dp-203-setup-Part03.ps1のsuffixの値を書き換えます。
     > 
     > それぞれのファイルで4箇所あります。
     > 
