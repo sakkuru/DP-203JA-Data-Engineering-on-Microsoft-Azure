@@ -140,9 +140,7 @@ Azure Cosmos DB は、マッピング フロー データで使用するデー�
 
     ![新しいデータセットを作成します。](images/new-dataset.png "New Dataset")
 
-3. 「**Azure Cosmos DB (SQL API)**」を選択してから、「**続行**」を選択します。
-
-    ![Azure Cosmos DB SQL API オプションが強調表示されています。](images/new-cosmos-db-dataset.png "Integration dataset")
+3. 「**Azure Cosmos DB for NoSQL**」を選択してから、「**続行**」を選択します。
 
 4. データセットを次のように構成して、「**OK**」を選択します。
 
