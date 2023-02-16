@@ -788,7 +788,7 @@ Tailwind Traders は、JSON ファイルとして e コマースシステムか�
 
         ![設定が表示されます。](images/data-flow-user-profiles-new-sink-settings-options.png "Settings")
 
-33. 「**マッピング**」を選択して以下を構成します。
+33. 「**マップ**」を選択して以下を構成します。
 
     - **自動マッピング**: このオプションを選択解除します。
     - **列**: 次の情報を指定します。
