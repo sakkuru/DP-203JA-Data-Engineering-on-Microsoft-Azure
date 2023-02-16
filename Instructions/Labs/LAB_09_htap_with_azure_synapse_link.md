@@ -20,12 +20,12 @@ lab:
 
 > **注**:ラボ 6 を完了して "***いない***" が、このコースのラボのセットアップを<u>完了</u>している場合は、これらの手順を完了して、必要なリンク サービスとデータセットを作成できます。
 >
-> 1. Synapse Studio の **[管理]** ハブで、次の設定を使用して **Azure Cosmos DB (SQL API)** 用の新しい**リンク サービス**を追加します。
+> 1. Synapse Studio の **[管理]** ハブで、次の設定を使用して **Azure Cosmos DB for NoSQL** 用の新しい**リンク サービス**を追加します。
 >       - **名前**: asacosmosdb01
 >       - **Cosmos DB アカウント名**: asacosmosdb*xxxxxxx*
 >       - **データベース名**: CustomerProfile
 > 2. **[データ]** ハブで、次の**統合データセット**を作成します。
->       - **ソース**:Azure Cosmos DB (SQL API)
+>       - **ソース**:Azure Cosmos DB for NoSQL
 >       - **名前**: asal400_customerprofile_cosmosdb
 >       - **リンク サービス**: asacosmosdb01
 >       - **コレクション**:OnlineUserProfile01
@@ -33,7 +33,7 @@ lab:
 
 ## <a name="exercise-1---configuring-azure-synapse-link-with-azure-cosmos-db"></a>演習 1 – Azure Cosmos DB を使用して Azure Synapse Link を構成する
 
-Tailwind Traders では Azure Cosmos DB を使用して、電子商取引サイトからユーザー プロファイル データを格納しています。 Azure Cosmos DB SQL API によって提供される NoSQL ドキュメント ストアでは、使い慣れた SQL 構文を使用してデータを管理する一方で、ファイルの読み取りと書き込みは大規模なグローバル スケールで行うことができます。
+Tailwind Traders では Azure Cosmos DB を使用して、電子商取引サイトからユーザー プロファイル データを格納しています。 Azure Cosmos DB for NoSQL によって提供される NoSQL ドキュメント ストアでは、使い慣れた SQL 構文を使用してデータを管理する一方で、ファイルの読み取りと書き込みは大規模なグローバル スケールで行うことができます。
 
 Tailwind Traders では Azure Cosmos DB の機能やパフォーマンスに満足していますが、データ ウェアハウスから複数のパーティションにわたる大量の分析クエリ (クロスパーティション クエリ) を実行するコストについて懸念しています。 Azure Cosmos DB の要求ユニット (RU) を増やすことなく、すべてのデータに効率的にアクセスする必要があります。 Azure Cosmos DB 変更フィード メカニズムを使用して、変更時にコンテナーからデータ レイクにデータを抽出するためのオプションに注目しました。 このアプローチの問題は、追加のサービスとコードの依存関係、およびソリューションの長期的なメンテナンスです。 Synapse パイプラインから一括エクスポートを実行できますが、任意の時点での最新情報は得られません。
 
